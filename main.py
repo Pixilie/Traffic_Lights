@@ -28,29 +28,27 @@ def Levels():
 
 # Button for closing
 exit_icon = PhotoImage(
-    file='./Assets/Icons/exit_icon2.png', width=128, height=130)  # TODO: Redimensionner l'image de base plus changer les dimensions dans le code
+    file='./Assets/Icons/exit_icon2.png', width=170, height=120)  # TODO: bordure + fond quand survoler + image en blanc
 exit_button = Button(main_window, image=exit_icon,
                      bd=0, bg='#B78BC4', command=Close)
 exit_button.pack(pady=800)
-exit_button.place(x=1400, y=5)
+exit_button.place(x=screen_width/1.08, y=screen_height/1.12)
 
 # Main frame
 frame = Frame(main_window, bg='#B78BC4')
 
-# Title
-width = 1200
-height = 400
+# Title #TODO: Taille ?
 title_icon = PhotoImage(file="./Assets/Icons/TRAFFIC LIGHT.png")
-canvas = Canvas(main_window, width=width, height=height,
+canvas = Canvas(main_window, width=1300, height=500,
                 bg='#B78BC4', bd=0, highlightthickness=0)
-canvas.create_image(width/2, height/2, image=title_icon)
+canvas.create_image(screen_width/3, screen_height/4.5, image=title_icon)
 canvas.pack(pady=20)
 
-# Levels Button #TODO: Terminer design bouton
-levels_button = Button(main_window, text="Levels", font=('Arial', 40),
-                       bd=0, bg='#B78BC4', command=Levels)
+# Levels Button #TODO: Terminer design bouton (même police que le titre, bordure, fond quand survoler)
+levels_button = Button(main_window, text="Levels", font=('Arial', 50),
+                       bd=0, bg='#B78BC4', fg="#ffffff", command=Levels)
 levels_button.pack(pady=20)
-levels_button.place(x=screen_width/2.1, y=screen_height/3)
+levels_button.place(x=screen_width/2.2, y=screen_height/2.7)
 
 # Compiling the main frame
 frame.pack(expand=YES)
