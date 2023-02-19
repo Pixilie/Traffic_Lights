@@ -49,7 +49,7 @@ frame = Frame(main_window, bg='#B78BC4')
 title_icon = PhotoImage(file="./Assets/Icons/TRAFFIC LIGHT.png")
 title = Canvas(main_window, width=1400, height=600,
                bg='#B78BC4', bd=0, highlightthickness=0)
-title.create_image(screen_width/2.8, screen_height/4.7, image=title_icon)
+title.create_image(screen_width/2, screen_height/4, image=title_icon)
 title.pack(pady=20)
 
 # Button for closing
