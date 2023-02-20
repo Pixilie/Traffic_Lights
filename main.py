@@ -6,78 +6,79 @@ except ImportError:
     import Tkinter as tkinter
     from Tkinter import *
 # Import other files from the game
-import Levels.select as lvl
+import Levels.select as level
+import Menus.settings as settings
 
 # Main window setup
-main_window = tkinter.Tk()
+mainWindow = tkinter.Tk()
 
 # Screen info
-screen_width = main_window.winfo_screenwidth()
-screen_height = main_window.winfo_screenheight()
+screenWidth = mainWindow.winfo_screenwidth()
+screenHeight = mainWindow.winfo_screenheight()
 
 # Main window setting
-main_window.title("Traffic Light")
-main_window.config(background='#B78BC4')
-main_window.attributes('-fullscreen', True)
+mainWindow.title("Traffic Light")
+mainWindow.config(background='#B78BC4')
+mainWindow.attributes('-fullscreen', True)
 
 
-# Exit button
+# Exit button function
 def Close():
-    main_window.destroy()
+    mainWindow.destroy()
 
 
-# Levels button #TODO: Terminer fonction, chercher importer un autre fichier
+# Levels button function #TODO: Terminer fonction, chercher importer un autre fichier
 def Levels():
-    main_window.destroy()
+    level.levelsWindow()
 
 
-# Settings button #TODO: Terminer fonction, chercher importer un autre fichier
+# Settings button function #TODO: Terminer fonction, chercher importer un autre fichier
 def Settings():
-    main_window.destroy()
+    mainWindow.destroy()
 
 
-# Credits button #TODO: Terminer fonction, chercher importer un autre fichier
+# Credits button function #TODO: Terminer fonction, chercher importer un autre fichier
 def Credits():
-    main_window.destroy()
+    mainWindow.destroy()
 
 
 # Main frame
-frame = Frame(main_window, bg='#B78BC4')
+frame = Frame(mainWindow, bg='#B78BC4')
 
 
 # Title
 title_icon = PhotoImage(file="./Assets/Icons/TRAFFIC LIGHT.png")
-title = Canvas(main_window, width=1400, height=600,
+title = Canvas(mainWindow, width=screenWidth*0.7, height=screenHeight*0.5,
                bg='#B78BC4', bd=0, highlightthickness=0)
-title.create_image(screen_width/2, screen_height/4, image=title_icon)
+title.create_image(screenWidth*0.35, screenHeight*0.2, image=title_icon)
 title.pack(pady=20)
 
-# Button for closing
-exit_icon = PhotoImage(
-    file='./Assets/Icons/exit_icon2.png', width=100, height=71)  # TODO: enlever bordure quand survoler
-exit_button = Button(main_window, image=exit_icon,
-                     bd=0, bg='#B78BC4', highlightthickness=0, command=Close)
-exit_button.pack(pady=800)
-exit_button.place(x=screen_width/1.05, y=screen_height/1.075)
+# Exit button
+exitIcon = PhotoImage(
+    file='./Assets/Icons/exit_icon2.png', width=100, height=71)  # TODO: enlever bordure quand survoler + solution pour reponsive taille car n'accepte pas les float
+exitButton = Button(mainWindow, image=exitIcon,
+                    bd=0, bg='#B78BC4', highlightthickness=0, command=Close)
+exitButton.pack(pady=800)
+exitButton.place(x=screenWidth*0.95, y=screenHeight*0.93)
 
 # Levels Button #TODO:son quand survoler ou cliquer
-levels_button = Button(main_window, text="Niveaux", font=('Arial', 30),
-                       bd=0, bg='#B78BC4', fg="#ffffff", width=10, command=Levels)
-levels_button.pack(pady=20)
-levels_button.place(x=screen_width/2.3, y=screen_height/2.9)
+levelsButton = Button(mainWindow, text="Niveaux", font=('Arial', 30),
+                      bd=0, bg='#B78BC4', fg="#ffffff", width=10, command=Levels)
+levelsButton.pack(pady=20)
+levelsButton.place(x=screenWidth*0.44, y=screenHeight*0.35)
 
 # Setting Button #TODO:son quand survoler ou cliquer
-setting_button = Button(main_window, text="Paramètres", font=('Arial', 30),
+settingsButton = Button(mainWindow, text="Paramètres", font=('Arial', 30),
                         bd=0, bg='#B78BC4', fg="#ffffff", width=10, command=Settings)
-setting_button.pack(pady=20)
-setting_button.place(x=screen_width/2.3, y=screen_height/2.3)
+settingsButton.pack(pady=20)
+settingsButton.place(x=screenWidth*0.44, y=screenHeight*0.45)
 
 # Credits Button #TODO:son quand survoler ou cliquer
-credits_button = Button(main_window, text="Crédits", font=('Arial', 30),
-                        bd=0, bg='#B78BC4', fg="#ffffff", width=10, command=Credits)
-credits_button.pack(pady=20)
-credits_button.place(x=screen_width/2.3, y=screen_height/1.9)
+creditsButton = Button(mainWindow, text="Crédits", font=('Arial', 30),
+                       bd=0, bg='#B78BC4', fg="#ffffff", width=10, command=Credits)
+creditsButton.pack(pady=20)
+creditsButton.place(x=screenWidth*0.44, y=screenHeight*0.55)
 
 # Compiling the main frame
 frame.pack(expand=YES)
-main_window.mainloop()
+mainWindow.mainloop()
