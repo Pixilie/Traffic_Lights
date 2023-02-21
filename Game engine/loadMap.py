@@ -1,5 +1,5 @@
 import pygame
 
 
-def loadMap(map):
-    print('e')
+def loadMap(map, window):
+    
