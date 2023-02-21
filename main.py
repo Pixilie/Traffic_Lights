@@ -55,27 +55,27 @@ title.pack(pady=20)
 
 # Exit button
 exitIcon = PhotoImage(
-    file='./Assets/Icons/exit_icon2.png', width=100, height=71)  # TODO: enlever bordure quand survoler + solution pour reponsive taille car n'accepte pas les float
+    file='./Assets/Icons/exit_icon2.png', width=round(screenWidth*0.05), height=round(screenHeight*0.04))  # TODO: enlever bordure quand survoler + solution pour responsive taille car n'accepte pas les float
 exitButton = Button(mainWindow, image=exitIcon,
                     bd=0, bg='#B78BC4', highlightthickness=0, command=Close)
 exitButton.pack(pady=800)
 exitButton.place(x=screenWidth*0.95, y=screenHeight*0.93)
 
 # Levels Button #TODO:son quand survoler ou cliquer
-levelsButton = Button(mainWindow, text="Niveaux", font=('Arial', 30),
-                      bd=0, bg='#B78BC4', fg="#ffffff", width=10, command=Levels)
+levelsButton = Button(mainWindow, text="Niveaux", font=('Arial', round(screenWidth*0.016)),
+                      bd=0, bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.005), command=Levels)
 levelsButton.pack(pady=20)
 levelsButton.place(x=screenWidth*0.44, y=screenHeight*0.35)
 
 # Setting Button #TODO:son quand survoler ou cliquer
-settingsButton = Button(mainWindow, text="Paramètres", font=('Arial', 30),
-                        bd=0, bg='#B78BC4', fg="#ffffff", width=10, command=Settings)
+settingsButton = Button(mainWindow, text="Paramètres", font=('Arial', round(screenWidth*0.016)),
+                        bd=0, bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.005), command=Settings)
 settingsButton.pack(pady=20)
 settingsButton.place(x=screenWidth*0.44, y=screenHeight*0.45)
 
 # Credits Button #TODO:son quand survoler ou cliquer
-creditsButton = Button(mainWindow, text="Crédits", font=('Arial', 30),
-                       bd=0, bg='#B78BC4', fg="#ffffff", width=10, command=Credits)
+creditsButton = Button(mainWindow, text="Crédits", font=('Arial', round(screenWidth*0.016)),
+                       bd=0, bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.005), command=Credits)
 creditsButton.pack(pady=20)
 creditsButton.place(x=screenWidth*0.44, y=screenHeight*0.55)
 
