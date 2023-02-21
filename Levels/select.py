@@ -59,20 +59,17 @@ def levelsWindow():
 
     directory = os.listdir('./Levels')
     yPos = screenHeight*0.1
-    fileIndex = 0
-    for files in directory:
-        if files.endswith('.py') and files != 'select.py' and files != '__pycache__':
-            fileIndex += 1
+    folderIndex = 0
+    for folder in directory:
+        if "py" not in folder:
+            folderIndex += 1
             yPos += 0.07*screenHeight
             # Button creation
-            levelButton = Button(levelWindow, text=f'Niveau {fileIndex}', font=(
+            levelButton = Button(levelWindow, text=f'Niveau {folderIndex}', font=(
                 'Arial', round(screenWidth*0.016)), bd=0, bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.02), command=goBack)
             levelButton.pack(pady=40)
             levelButton.place(x=screenWidth*0.01, y=yPos)
-            # Executing the panel function
-            levelButton.bind("<Enter>", onEnter)
-            levelButton.bind("<Leave>", onLeave)
 
-    # Compiling the main frame
+        # Compiling the main frame
     frame.pack(expand=YES)
     levelWindow.mainloop()
