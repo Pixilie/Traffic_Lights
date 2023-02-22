@@ -6,7 +6,7 @@ except ImportError:
     import Tkinter as tkinter
     from Tkinter import *
 # Import other files from the game
-import Game.selectLevel as selectLevel
+import Menus.selectLevel as selectLevel
 import Menus.settings as settings
 
 # Main window setup
@@ -64,19 +64,19 @@ exitButton.place(x=screenWidth*0.93, y=screenHeight*0.90)
 # TODO: animation de survole des boutons + son + peut-être les mettre dans un canvas et les centrer dans le canvas
 # Levels Button
 levelsButton = Button(mainWindow, text="Niveaux", font=('Arial', round(screenWidth*0.016)),
-                      bd=0, bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.006), command=Levels)
+                      bd=0, relief="flat", activebackground="#c59dd1", activeforeground="white", bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.006), command=Levels)
 levelsButton.pack(pady=20)
 levelsButton.place(x=screenWidth*0.44, y=screenHeight*0.35)
 
 # Setting Button
 settingsButton = Button(mainWindow, text="Paramètres", font=('Arial', round(screenWidth*0.016)),
-                        bd=0, bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.008), state="disabled", command=Settings)
+                        bd=0, relief="flat", activebackground="#c59dd1", activeforeground="white", bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.008), state="disabled", command=Settings)
 settingsButton.pack(pady=20)
-settingsButton.place(x=screenWidth*0.44, y=screenHeight*0.45)
+settingsButton.place(x=screenWidth*0.43, y=screenHeight*0.45)
 
 # Credits Button
 creditsButton = Button(mainWindow, text="Crédits", font=('Arial', round(screenWidth*0.016)),
-                       bd=0, bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.006), state="disabled", command=Credits)
+                       bd=0, relief="flat", activebackground="#c59dd1", activeforeground="white", bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.006), state="disabled", command=Credits)
 creditsButton.pack(pady=20)
 creditsButton.place(x=screenWidth*0.44, y=screenHeight*0.55)
 

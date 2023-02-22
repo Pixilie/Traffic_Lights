@@ -67,7 +67,7 @@ def levelsWindow():
             yPos += 0.07*screenHeight
             # Button creation
             levelButton = Button(levelWindow, text=f'Niveau {folderIndex}', font=(
-                'Arial', round(screenWidth*0.016)), bd=0, bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.02), command=goBack)
+                'Arial', round(screenWidth*0.016)), bd=0, bg='#B78BC4', activebackground="#c59dd1", activeforeground="white", fg="#ffffff", width=round(screenWidth*0.02), command=goBack)
             levelButton.pack(pady=40)
             levelButton.place(x=screenWidth*0.01, y=yPos)
 
