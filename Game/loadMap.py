@@ -1,10 +1,9 @@
 import pygame
 import os
 
-
 def loadMap(map, window):
     """
-    Loads a map from a text file and returns a list of the map
+    Loads and display a map from a text file and returns a list of the map
     :param map: The map to load, must be a text file, and must specify the path from the root directory of the project.
     :param window: The window to draw the map on
     """
@@ -26,5 +25,3 @@ def loadMap(map, window):
                         pass
                     x += tilesSize
                 y += tilesSize
-
-#loadMap("./Game/Assets/Maps/map_lvl1.txt", pygame.display.set_mode((0, 0), pygame.FULLSCREEN))
