@@ -6,7 +6,7 @@ except ImportError:
     import Tkinter as tkinter
     from Tkinter import *
 # Import other files from the game
-import Levels.select as level
+import Game.selectLevel as selectLevel
 import Menus.settings as settings
 
 # Main window setup
@@ -29,7 +29,7 @@ def Close():
 
 # Levels button function #TODO: Terminer fonction, chercher importer un autre fichier
 def Levels():
-    level.levelsWindow()
+    selectLevel.levelsWindow()
 
 
 # Settings button function #TODO: Terminer fonction, chercher importer un autre fichier
@@ -47,7 +47,7 @@ frame = Frame(mainWindow, bg='#B78BC4')
 
 
 # Title
-title_icon = PhotoImage(file="./Assets/Icons/TRAFFIC LIGHT.png")
+title_icon = PhotoImage(file="./Menus/Assets/traffic_lights.png")
 title = Canvas(mainWindow, width=screenWidth*0.7, height=screenHeight*0.5,
                bg='#B78BC4', bd=0, highlightthickness=0)
 title.create_image(screenWidth*0.35, screenHeight*0.2, image=title_icon)
@@ -55,27 +55,28 @@ title.pack(pady=20)
 
 # Exit button
 exitIcon = PhotoImage(
-    file='./Assets/Icons/exit_icon2.png', width=round(screenWidth*0.05), height=round(screenHeight*0.07))  # TODO: enlever bordure quand survoler + solution pour responsive taille car n'accepte pas les float
+    file='./Menus/Assets/exit_icon.png', width=round(screenWidth*0.08), height=round(screenHeight*0.09))  # TODO: enlever bordure quand survoler + solution pour responsive taille car n'accepte pas les float
 exitButton = Button(mainWindow, image=exitIcon,
                     bd=0, bg='#B78BC4', highlightthickness=0, command=Close)
 exitButton.pack(pady=800)
-exitButton.place(x=screenWidth*0.95, y=screenHeight*0.93)
+exitButton.place(x=screenWidth*0.93, y=screenHeight*0.90)
 
-# Levels Button #TODO:son quand survoler ou cliquer
+# TODO: animation de survole des boutons + son + peut-être les mettre dans un canvas et les centrer dans le canvas
+# Levels Button
 levelsButton = Button(mainWindow, text="Niveaux", font=('Arial', round(screenWidth*0.016)),
-                      bd=0, bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.005), command=Levels)
+                      bd=0, bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.006), command=Levels)
 levelsButton.pack(pady=20)
 levelsButton.place(x=screenWidth*0.44, y=screenHeight*0.35)
 
-# Setting Button #TODO:son quand survoler ou cliquer
+# Setting Button
 settingsButton = Button(mainWindow, text="Paramètres", font=('Arial', round(screenWidth*0.016)),
-                        bd=0, bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.005), state="disabled", command=Settings)
+                        bd=0, bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.008), state="disabled", command=Settings)
 settingsButton.pack(pady=20)
 settingsButton.place(x=screenWidth*0.44, y=screenHeight*0.45)
 
-# Credits Button #TODO:son quand survoler ou cliquer
+# Credits Button
 creditsButton = Button(mainWindow, text="Crédits", font=('Arial', round(screenWidth*0.016)),
-                       bd=0, bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.005), state="disabled", command=Credits)
+                       bd=0, bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.006), state="disabled", command=Credits)
 creditsButton.pack(pady=20)
 creditsButton.place(x=screenWidth*0.44, y=screenHeight*0.55)
 

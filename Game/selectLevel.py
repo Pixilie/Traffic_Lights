@@ -30,7 +30,7 @@ def levelsWindow():
 
     # Title
     title = Label(levelWindow, bg='#B78BC4', text="Sélectionner un niveau",
-                  font=('Arial', round(screenWidth*0.026)), fg="white", highlightthickness=0, bd=0, width=round(screenWidth*0.01))
+                  font=('Arial', round(screenWidth*0.026)), fg="white", highlightthickness=0, bd=0, width=round(screenWidth*0.02))
     title.pack()
 
     # Go back button
@@ -57,11 +57,12 @@ def levelsWindow():
     def onLeave(e):
         infoPanel.destroy()
 
-    directory = os.listdir('./Levels')
+    directory = os.listdir('./Game')
     yPos = screenHeight*0.1
     folderIndex = 0
-    for folder in directory:
-        if "py" not in folder:
+    for file in directory:
+        if "level" in file:
+            print(file)
             folderIndex += 1
             yPos += 0.07*screenHeight
             # Button creation
