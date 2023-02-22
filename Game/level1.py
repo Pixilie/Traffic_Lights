@@ -26,11 +26,11 @@ pygame.display.set_caption(f'Traffic Light - {levelName}')
 window.fill(white)
 
 # Event loop
-open = True
-while open:
+gameLoop = True
+while gameLoop:
     for event in pygame.event.get():
         if event.type == QUIT:
-            open = False
+            gameLoop = False
     loadMap.loadMap("./Game/Assets/Maps/map_lvl1.txt", window)
     pygame.display.update()
 pygame.quit()
