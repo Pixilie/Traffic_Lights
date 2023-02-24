@@ -46,10 +46,13 @@ def changeTrafficLightsState(trafficLightsList, green, x, y): #TODO: terminer la
     :param x: The x position of the mouse
     :param y: The y position of the mouse
     """
+    redTrafficLightsList = pygame.sprite.Group()
     for trafficLights in trafficLightsList:
         if trafficLights.rect.collidepoint(x, y) and green == True:
             trafficLights.image = pygame.image.load("./Game/Assets/Textures/road_redlights.png").convert_alpha()
             green = False
+            redTrafficLightsList.add(trafficLights)
         elif trafficLights.rect.collidepoint(x, y) and green == False:
             trafficLights.image = pygame.image.load("./Game/Assets/Textures/road_greenlights.png").convert_alpha()
-            green = True 
+            green = True
+            redTrafficLightsList.remove(trafficLights)

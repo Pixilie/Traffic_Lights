@@ -26,7 +26,7 @@ def trafficLights(x, y):
     trafficLights.rect.y = y
     return trafficLights
 
-def car(x, y):
+def car(x, y, direction, speed):
     """
     Creates a sprite for a car
     :param x: The x position of the car
@@ -37,4 +37,6 @@ def car(x, y):
     car.rect = car.image.get_rect()
     car.rect.x = x
     car.rect.y = y
+    car.speed = speed
+    car.direction = direction
     return car

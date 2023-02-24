@@ -129,3 +129,4 @@ dmypy.json
 
 # Vscode
 .vscode/
+.VSCodeCounter/

@@ -28,9 +28,14 @@ window.fill(white)
 
 # Sprites list
 spritesList, roadList, trafficLightsList = display.loadMap("./Game/Assets/Maps/map_lvl1.txt", window)
-carList = cars.spawnCars(0, 0, 10, 10, 1, "right", spritesList)
+redTrafficLightsList = pygame.sprite.Group()
+carList = pygame.sprite.Group()
 
 clock = pygame.time.Clock()
+
+car = cars.car(10, 10, 2, 1)
+spritesList.add(car)
+carList.add(car)
 
 # Event loop
 gameLoop = True
@@ -43,11 +48,11 @@ while gameLoop:
             x,y = event.pos
             display.changeTrafficLightsState(trafficLightsList, green, x, y)
             green = not green      
-        
                 
     display.loadMap("./Game/Assets/Maps/map_lvl1.txt", window)
-    cars.spawnCars(0, 0, 10, 10, 1, "right", spritesList)
-    spritesList.update()
+    # cars.collisions(carList, redTrafficLightsList, spritesList)
+    #spritesList.update()
+    cars.update(carList)
     window.fill(white)
     spritesList.draw(window)
     pygame.display.flip()

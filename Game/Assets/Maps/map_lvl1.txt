@@ -1,6 +1,25 @@
-                                                                                 
-RRRRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRR 
-      R                         R                         R    
-      R                         R                         R    
-      R                         R                         R    
-RRRRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRR
+                                            |   43 symbols width & 25 lines height                                  
+RRRRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRR|
+      R                         R           |                 
+      R                         R           |                 
+      R                         R           |                 
+RRRRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRR|
+                                            |
+                                            |
+                                            |
+                                            |
+                                            |
+                                            |
+                                            |
+                                            |
+                                            |
+                                            |
+                                            |
+                                            |
+                                            |
+                                            |
+                                            |
+                                            |
+                                            |
+                                            |
+--------------------------------------------|
