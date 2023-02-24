@@ -2,7 +2,8 @@ import pygame
 import os
 
 # Import game files
-import sprites
+import trafficLightFile
+import roadFile
 
 def loadMap(map, window):
     """
@@ -25,34 +26,15 @@ def loadMap(map, window):
                 x = 0
                 for symbols in line:
                     if symbols == "R":
-                        road = sprites.road(x, y)
+                        road = roadFile.road(x, y)
                         roadList.add(road)
                         spritesList.add(road)
                     elif symbols == "g":
-                        trafficLights = sprites.trafficLights(x, y)
-                        trafficLightsList.add(trafficLights)
-                        spritesList.add(trafficLights)
+                        trafficLight = trafficLightFile.trafficLight(x, y)
+                        trafficLightsList.add(trafficLight)
+                        spritesList.add(trafficLight)
                     else:
                         pass
                     x += tilesSize
                 y += tilesSize
     return spritesList, roadList, trafficLightsList
-
-def changeTrafficLightsState(trafficLightsList, green, x, y): #TODO: terminer la fonction pour mettre à jour les listes pour les collisions
-    """
-    Changes the color of the traffic lights
-    :param trafficLightsList: The list of traffic lights
-    :param green: If the traffic lights are green or not
-    :param x: The x position of the mouse
-    :param y: The y position of the mouse
-    """
-    redTrafficLightsList = pygame.sprite.Group()
-    for trafficLights in trafficLightsList:
-        if trafficLights.rect.collidepoint(x, y) and green == True:
-            trafficLights.image = pygame.image.load("./Game/Assets/Textures/road_redlights.png").convert_alpha()
-            green = False
-            redTrafficLightsList.add(trafficLights)
-        elif trafficLights.rect.collidepoint(x, y) and green == False:
-            trafficLights.image = pygame.image.load("./Game/Assets/Textures/road_greenlights.png").convert_alpha()
-            green = True
-            redTrafficLightsList.remove(trafficLights)

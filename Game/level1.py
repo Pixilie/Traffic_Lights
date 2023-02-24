@@ -9,7 +9,8 @@ carsToPass = 10 # How many cars the player has to pass to complete the level
 
 # Changing path and import game files
 import display
-import cars
+import carFile
+import trafficLightFile
 
 # Pygame init
 import pygame
@@ -33,7 +34,7 @@ carList = pygame.sprite.Group()
 
 clock = pygame.time.Clock()
 
-car = cars.car(10, 10, 2, 1)
+car = carFile.car(10, 30, 2, 1)
 spritesList.add(car)
 carList.add(car)
 
@@ -46,13 +47,14 @@ while gameLoop:
             gameLoop = False
         if event.type == MOUSEBUTTONDOWN:
             x,y = event.pos
-            display.changeTrafficLightsState(trafficLightsList, green, x, y)
+            trafficLightFile.changeTrafficLightsState(trafficLightsList, green, x, y)
             green = not green      
                 
     display.loadMap("./Game/Assets/Maps/map_lvl1.txt", window)
-    # cars.collisions(carList, redTrafficLightsList, spritesList)
-    #spritesList.update()
-    cars.update(carList)
+    # spritesList.update() # Inutile
+    carFile.update(carList)
+    carFile.collisionRedLights(carList, redTrafficLightsList)
+    carFile.collisionCars(carList, spritesList)
     window.fill(white)
     spritesList.draw(window)
     pygame.display.flip()
