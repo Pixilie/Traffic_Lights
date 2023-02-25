@@ -7,7 +7,7 @@ def car(x, y, direction, speed):
     :param y: The y position of the car
     """
     car = pygame.sprite.Sprite()
-    car.image = pygame.image.load("./Game/Assets/Textures/car.png").convert_alpha()
+    car.image = pygame.image.load("./Game/Assets/Textures/car_r.png").convert_alpha()
     car.rect = car.image.get_rect()
     car.rect.x = x
     car.rect.y = y
@@ -16,28 +16,34 @@ def car(x, y, direction, speed):
     car.previousSpeed = speed
     return car
     
-def update(carList):
-    for car in carList:
-        car.rect.x += car.speed
+def update(car, spritesList, carList): # FIXME: Erreur quand on supprime une voiture de la liste on ne peut plus changer la
+    width, heigh = pygame.display.get_window_size()
+    car.rect.x += car.speed
+    '''if car.rect.x > width:
+        print("remove")         
+        car.kill()
+        car.remove(carList)
+        car.remove(spritesList)
+    if car.rect.y > heigh:
+        print("remove")
+        car.kill()
+        car.remove(carList)
+        car.remove(spritesList)'''
+    return spritesList, carList
 
-def collisionRedLights(carList, redTrafficLightsList): # FIXME: collision avec les feux rouges marche pas
-    for car in carList:
-        collideRedTrafficLightsList = pygame.sprite.spritecollide(car, redTrafficLightsList, False)
-        print(collideRedTrafficLightsList)
-        for car in collideRedTrafficLightsList:
-            car.speed = 0
+def collisionRedLights(car, trafficLightsList): # TODO: collision avec les feux rouges (refaire)
+    return car.speed
 
-def collisionCars(carList, spriteList):
+def collisionCars(car, carList, spritesList): #FIXME: collision avec les voitures marche pas
     collideCarList = []
-    for car in carList:
-        _carList = carList.copy()
-        _carList = _carList.remove(car)
-        if _carList != None:
-            _collideCarlist = pygame.sprite.spritecollide(car, _carList, False)
-            print(_collideCarlist)
-            if len(_collideCarlist) > 0:
-                collideCarList.append(car)
-            for car in collideCarList:
-                car.kill()
-                spriteList.remove(car)
-                carList.remove(car)
+    _carList = carList.copy()
+    _carList = _carList.remove(car)
+    if _carList != None:
+        _collideCarList = pygame.sprite.spritecollide(car, _carList, False)
+        if len(_collideCarList) > 0:
+            collideCarList.append(car)
+        for car in collideCarList:
+            car.kill()
+            spritesList.remove(car)
+            carList.remove(car)
+    return carList, spritesList

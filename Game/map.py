@@ -30,7 +30,7 @@ def loadMap(map, window):
                         roadList.add(road)
                         spritesList.add(road)
                     elif symbols == "g":
-                        trafficLight = trafficLightFile.trafficLight(x, y)
+                        trafficLight = trafficLightFile.trafficLight(x, y, "green") 
                         trafficLightsList.add(trafficLight)
                         spritesList.add(trafficLight)
                     else:

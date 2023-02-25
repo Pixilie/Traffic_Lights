@@ -1,19 +1,20 @@
 import pygame
 
-def trafficLight(x, y):
+def trafficLight(x, y, color):
     """
     Creates a sprite for traffic light
     :param x: The x position of the traffic light
     :param y: The y position of the traffic light
     """
     trafficLights = pygame.sprite.Sprite()
-    trafficLights.image = pygame.image.load("./Game/Assets/Textures/road_greenlights.png").convert_alpha()
+    trafficLights.image = pygame.image.load("./Game/Assets/Textures/road_greenlights_v.png").convert_alpha()
     trafficLights.rect = trafficLights.image.get_rect()
     trafficLights.rect.x = x
     trafficLights.rect.y = y
+    trafficLights.color = color
     return trafficLights
 
-def changeTrafficLightsState(trafficLightsList, green, x, y): #TODO: terminer la fonction pour mettre à jour les listes pour les collisions
+def trafficLightsUpdate(trafficLight, x, y): #FIXME: ne peut pas y avoir plus de 1 feu rouge -> si plus override le premier
     """
     Changes the color of the traffic lights
     :param trafficLightsList: The list of traffic lights
@@ -21,14 +22,11 @@ def changeTrafficLightsState(trafficLightsList, green, x, y): #TODO: terminer la
     :param x: The x position of the mouse
     :param y: The y position of the mouse
     """
-    redTrafficLightsList = pygame.sprite.Group()
-    for trafficLights in trafficLightsList:
-        if trafficLights.rect.collidepoint(x, y) and green == True:
-            trafficLights.image = pygame.image.load("./Game/Assets/Textures/road_redlights.png").convert_alpha()
-            green = False
-            redTrafficLightsList.add(trafficLights)
-        elif trafficLights.rect.collidepoint(x, y) and green == False:
-            trafficLights.image = pygame.image.load("./Game/Assets/Textures/road_greenlights.png").convert_alpha()
-            green = True
-            redTrafficLightsList.remove(trafficLights)
-    return redTrafficLightsList
+    print(trafficLight.color)
+    if trafficLight.rect.collidepoint(x, y) and trafficLight.color == "green":
+        trafficLight.image = pygame.image.load("./Game/Assets/Textures/road_redlights_v.png").convert_alpha()
+        trafficLight.color = "red"
+    elif trafficLight.rect.collidepoint(x, y) and trafficLight.color == "red":
+        trafficLight.image = pygame.image.load("./Game/Assets/Textures/road_greenlights_v.png").convert_alpha()
+        trafficLight.color = "green"
+   
