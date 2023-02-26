@@ -1,22 +1,25 @@
-# Level Information
-level = 1 # Level number
-levelName = "Niveau 1" # Level name
-levelDescription = "Le premier niveau est un niveau d'initiation. Il vous permettra de vous familiariser avec le jeu. Vous devrez apprendre à gérer les feux de signalisation et à éviter les collisions. Bonne chance !" # Level description
-completed = False # If the level is completed
-lives = 3 # Number of lives
-score = 0 # Score of the player
-carsToPass = 1 # How many cars the player has to pass to complete the level
-
-# Changing path and import game files
+# Import librairies and game files
 import map
 import carFile
 import trafficLightFile
 import levelBackend
-
-# Pygame init
 import pygame
 from pygame.locals import *
+
+# Level Information
+level = 1  # Level number
+levelName = "Niveau 1"  # Level name
+levelDescription = "Le premier niveau est un niveau d'initiation. Il vous permettra de vous familiariser avec le jeu. Vous devrez apprendre à gérer les feux de signalisation et à éviter les collisions. Bonne chance !"  # Level description
+completed = False  # If the level is completed
+lives = 3  # Number of lives
+score = 0  # Score of the player
+carsToPass = 1  # How many cars the player has to pass to complete the level
+carsPassed = 0  # How many cars the player has passed
+
+
+# Pygame init
 pygame.init()
+
 
 # Variables
 screenWidth = pygame.display.Info().current_w
@@ -24,22 +27,25 @@ screenHeight = pygame.display.Info().current_h
 white = (255, 255, 255)
 clock = pygame.time.Clock()
 
+
 # Main window setup
 window = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 pygame.display.set_caption(f'Traffic Light - {levelName}')
 window.fill(white)
 
+
 # Sprites list
-spritesList, roadList, trafficLightsList = map.loadMap("./Game/Assets/Maps/map_lvl1.txt", window)
+spritesList, roadList, trafficLightsList = map.loadMap(
+    "./Game/Assets/Maps/map_lvl1.txt", window)
 redTrafficLightsList = pygame.sprite.Group()
 carList = pygame.sprite.Group()
-carsPassed = 0
+
 
 # Create the cars (will be changed later, just for testing)
-car = carFile.car(150, 30, 2, 1)
+car = carFile.car(1040, 30, 2, 1)
 spritesList.add(car)
 carList.add(car)
-
+"""
 car2 = carFile.car(5, 30, 2, 2)
 spritesList.add(car2)
 carList.add(car2)
@@ -47,7 +53,7 @@ carList.add(car2)
 car3 = carFile.car(250, 100, 2, 1)
 spritesList.add(car3)
 carList.add(car3)
-"""
+
 car4 = carFile.car(5, 100, 2, 2)
 spritesList.add(car4)
 carList.add(car4)"""
@@ -59,19 +65,24 @@ while gameLoop:
         if event.type == QUIT:
             gameLoop = False
         if event.type == MOUSEBUTTONDOWN:
-            x,y = event.pos
+            x, y = event.pos
             for trafficLight in trafficLightsList:
-                trafficLightFile.trafficLightsUpdate(trafficLight, x, y) # Update the traffic lights
+                trafficLightFile.trafficLightsUpdate(
+                    trafficLight, x, y)  # Update the traffic lights
 
-    for car in carList:    
-        carFile.collisionCars(car, carList, spritesList) # Check if the cars collide with each other
-        carFile.collisionRedLights(car, trafficLightsList) # Check if the cars collide with the red lights
-        carFile.update(car, spritesList, carList, carsPassed) # Update the cars
-    
-    levelBackend.levelCompleted(carsPassed, carsToPass, level, levelName, levelDescription, lives, score, window) # Check if the level is completed
-    map.loadMap("./Game/Assets/Maps/map_lvl1.txt", window) # Load the map
-    window.fill(white) # Fill the window with white
-    spritesList.draw(window) # Draw the sprites
-    pygame.display.flip() # Update the display
-    displayRate = clock.tick(60) # Limit the display rate to 60 fps
+    for car in carList:
+        # Check if the cars collide with each other
+        carFile.collisionCars(car, carList, spritesList)
+        # Check if the cars collide with the red lights
+        carFile.collisionRedLights(car, trafficLightsList)
+        carFile.update(car, spritesList, carList,
+                       carsPassed)  # Update the cars
+
+    levelBackend.levelCompleted(carsPassed, carsToPass, level, levelName,
+                                levelDescription, lives, score, window)  # Check if the level is completed
+    map.loadMap("./Game/Assets/Maps/map_lvl1.txt", window)  # Load the map
+    window.fill(white)  # Fill the window with white
+    spritesList.draw(window)  # Draw the sprites
+    pygame.display.flip()  # Update the display
+    displayRate = clock.tick(60)  # Limit the display rate to 60 fps
 pygame.quit()

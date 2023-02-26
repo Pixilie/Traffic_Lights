@@ -1,4 +1,6 @@
 import pygame
+import time
+
 
 def car(x, y, direction, speed):
     """
@@ -7,7 +9,8 @@ def car(x, y, direction, speed):
     :param y: The y position of the car
     """
     car = pygame.sprite.Sprite()
-    car.image = pygame.image.load("./Game/Assets/Textures/car_r.png").convert_alpha()
+    car.image = pygame.image.load(
+        "./Game/Assets/Textures/car_r.png").convert_alpha()
     car.rect = car.image.get_rect()
     car.rect.x = x
     car.rect.y = y
@@ -16,6 +19,7 @@ def car(x, y, direction, speed):
     car.previousSpeed = speed
     return car
 
+
 def explosion(x, y):
     """
     Creates a sprite for an explosion
@@ -23,12 +27,14 @@ def explosion(x, y):
     :param y: The y position of the explosion
     """
     explosion = pygame.sprite.Sprite()
-    explosion.image = pygame.image.load("./Game/Assets/Textures/explosion.png").convert_alpha()
+    explosion.image = pygame.image.load(
+        "./Game/Assets/Textures/explosion.png").convert_alpha()
     explosion.rect = explosion.image.get_rect()
     explosion.rect.x = x
     explosion.rect.y = y
     return explosion
-    
+
+
 def update(car, spritesList, carList, carsPassed):
     """
     Updates the car
@@ -42,12 +48,13 @@ def update(car, spritesList, carList, carsPassed):
         car.kill()
         car.remove(carList)
         car.remove(spritesList)
-        carsPassed += 1
+        carsPassed += 1  # FIXME: variable pas mis à jour
     if car.rect.y > heigh:
         car.kill()
         car.remove(carList)
         car.remove(spritesList)
         carsPassed += 1
+
 
 def collisionRedLights(car, trafficLightsList):
     """
@@ -61,6 +68,7 @@ def collisionRedLights(car, trafficLightsList):
         elif trafficLight.color == "green" and trafficLight.rect.collidepoint(car.rect.x, car.rect.y):
             car.speed = car.previousSpeed
 
+
 def collisionCars(car, carList, spritesList):
     """
     Checks if the car is colliding with another car
@@ -73,11 +81,34 @@ def collisionCars(car, carList, spritesList):
     for _car in _carList:
         if car.rect.colliderect(_car.rect):
             boom = explosion(car.rect.x, car.rect.y)
-            spritesList.add(boom) #TODO: Remove the explosion after a while
+            spritesList.add(boom)  # TODO: Remove the explosion after a while
             car.kill()
             _car.kill()
             car.remove(carList)
             _car.remove(carList)
             car.remove(spritesList)
             _car.remove(spritesList)
-       
+
+
+def createCars(x, y, number, speed, delay, spritesList, carList):  # TODO: finish this
+    """
+    Creates a number of cars
+    :param x: The x position of the cars
+    :param y: The y position of the cars
+    :param number: The number of cars to create
+    :param speed: The speed of the cars
+    :param delay: The delay between each car
+    :param spritesList: The list of sprites
+    :param carList: The list of cars
+    """
+    nextCarSpawn = 0
+    for i in range(number):
+        if i == number - 1:
+            pass
+        else:
+            print("Creating car " + str(i) + " of " + str(number))
+            if pygame.time.get_ticks() > nextCarSpawn:
+                nextCarSpawn += delay
+                newCar = car(x, y, "right", speed)
+                spritesList.add(newCar)
+                carList.add(newCar)
