@@ -14,7 +14,7 @@ def trafficLight(x, y, color):
     trafficLights.color = color
     return trafficLights
 
-def trafficLightsUpdate(trafficLight, x, y): #FIXME: ne peut pas y avoir plus de 1 feu rouge -> si plus override le premier
+def trafficLightsUpdate(trafficLight, x, y):
     """
     Changes the color of the traffic lights
     :param trafficLightsList: The list of traffic lights
@@ -22,11 +22,11 @@ def trafficLightsUpdate(trafficLight, x, y): #FIXME: ne peut pas y avoir plus de
     :param x: The x position of the mouse
     :param y: The y position of the mouse
     """
-    print(trafficLight.color)
     if trafficLight.rect.collidepoint(x, y) and trafficLight.color == "green":
         trafficLight.image = pygame.image.load("./Game/Assets/Textures/road_redlights_v.png").convert_alpha()
         trafficLight.color = "red"
     elif trafficLight.rect.collidepoint(x, y) and trafficLight.color == "red":
         trafficLight.image = pygame.image.load("./Game/Assets/Textures/road_greenlights_v.png").convert_alpha()
         trafficLight.color = "green"
+    return trafficLight.color
    

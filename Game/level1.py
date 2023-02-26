@@ -5,12 +5,13 @@ levelDescription = "Le premier niveau est un niveau d'initiation. Il vous permet
 completed = False # If the level is completed
 lives = 3 # Number of lives
 score = 0 # Score of the player
-carsToPass = 10 # How many cars the player has to pass to complete the level
+carsToPass = 1 # How many cars the player has to pass to complete the level
 
 # Changing path and import game files
 import map
 import carFile
 import trafficLightFile
+import levelBackend
 
 # Pygame init
 import pygame
@@ -32,14 +33,24 @@ window.fill(white)
 spritesList, roadList, trafficLightsList = map.loadMap("./Game/Assets/Maps/map_lvl1.txt", window)
 redTrafficLightsList = pygame.sprite.Group()
 carList = pygame.sprite.Group()
+carsPassed = 0
 
 # Create the cars (will be changed later, just for testing)
-car = carFile.car(20, 30, 2, 1)
-car2 = carFile.car(5, 30, 2, 2)
+car = carFile.car(150, 30, 2, 1)
 spritesList.add(car)
-spritesList.add(car2)
 carList.add(car)
+
+car2 = carFile.car(5, 30, 2, 2)
+spritesList.add(car2)
 carList.add(car2)
+
+car3 = carFile.car(250, 100, 2, 1)
+spritesList.add(car3)
+carList.add(car3)
+"""
+car4 = carFile.car(5, 100, 2, 2)
+spritesList.add(car4)
+carList.add(car4)"""
 
 # Event loop
 gameLoop = True
@@ -50,13 +61,14 @@ while gameLoop:
         if event.type == MOUSEBUTTONDOWN:
             x,y = event.pos
             for trafficLight in trafficLightsList:
-                trafficLightFile.trafficLightsUpdate(trafficLight, x, y) # Update the traffic lights #FIXME: crash quand on clique sur l'écran
+                trafficLightFile.trafficLightsUpdate(trafficLight, x, y) # Update the traffic lights
 
     for car in carList:    
-        carList, spritesList = carFile.collisionCars(car, carList, spritesList) # Check if the cars collide with each other
-        # car.speed = carFile.collisionRedLights(car, trafficLightsList) # Check if the cars collide with the red lights
-        carList, spritesList = carFile.update(car, spritesList, carList) # Update the cars
-                
+        carFile.collisionCars(car, carList, spritesList) # Check if the cars collide with each other
+        carFile.collisionRedLights(car, trafficLightsList) # Check if the cars collide with the red lights
+        carFile.update(car, spritesList, carList, carsPassed) # Update the cars
+    
+    levelBackend.levelCompleted(carsPassed, carsToPass, level, levelName, levelDescription, lives, score, window) # Check if the level is completed
     map.loadMap("./Game/Assets/Maps/map_lvl1.txt", window) # Load the map
     window.fill(white) # Fill the window with white
     spritesList.draw(window) # Draw the sprites
