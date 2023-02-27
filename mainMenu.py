@@ -51,9 +51,9 @@ title.create_image(screenWidth*0.35, screenHeight*0.2, image=title_icon)
 title.pack(side='top')
 
 # Exit button
-exitIcon = PhotoImage(file='./Menus/Assets/exit_icon.png', width=round(screenWidth*0.08), height=round(screenHeight*0.09))  # TODO: enlever bordure quand survoler + solution pour responsive taille car n'accepte pas les float
+exitIcon = PhotoImage(file='./Menus/Assets/exit_icon.png', width=round(screenWidth*0.08), height=round(screenHeight*0.09)) 
 exitButton = Button(mainWindow, image=exitIcon,
-                    bd=0, bg='#B78BC4', highlightthickness=0, command=Close)
+                    bd=0, bg='#B78BC4', highlightthickness=0, relief=SUNKEN ,activebackground="#c59dd1", command=Close)
 exitButton.pack()
 exitButton.place(x=screenWidth - 100, y=screenHeight - 71)
 
