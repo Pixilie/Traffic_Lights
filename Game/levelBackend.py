@@ -22,4 +22,13 @@ def isLevelFinished(carsPassed, carsToPass, level, levelName, levelDescription, 
 
 # TODO: Faire la fenêtre de fin de niveau
 def finishWindow(level, levelName, levelDescription, lives, score, window):
+    """
+    The window that appears when the level is completed
+    :param level: The level number
+    :param levelName: The name of the level
+    :param levelDescription: The description of the level
+    :param lives: The number of lives
+    :param score: The score
+    :param window: The window
+    """
     print("finishWindow")
