@@ -9,8 +9,18 @@ def car(x, y, direction, speed):
     :param y: The y position of the car
     """
     car = pygame.sprite.Sprite()
-    car.image = pygame.image.load(
-        "./Game/Assets/Textures/car_r.png").convert_alpha()
+    if direction == "up":
+        car.image = pygame.image.load(
+            "./Game/Assets/Textures/car_u.png").convert_alpha()
+    elif direction == "down":
+        car.image = pygame.image.load(
+            "./Game/Assets/Textures/car_d.png").convert_alpha()
+    elif direction == "left":
+        car.image = pygame.image.load(
+            "./Game/Assets/Textures/car_l.png").convert_alpha()
+    elif direction == "right":
+        car.image = pygame.image.load(
+            "./Game/Assets/Textures/car_r.png").convert_alpha()
     car.rect = car.image.get_rect()
     car.rect.x = x
     car.rect.y = y
@@ -32,6 +42,7 @@ def explosion(x, y):
     explosion.rect = explosion.image.get_rect()
     explosion.rect.x = x
     explosion.rect.y = y
+    explosion.spawnTime = pygame.time.get_ticks()
     return explosion
 
 
@@ -48,12 +59,13 @@ def update(car, spritesList, carList, carsPassed):
         car.kill()
         car.remove(carList)
         car.remove(spritesList)
-        carsPassed += 1  # FIXME: variable pas mis à jour
+        carsPassed += 1
     if car.rect.y > heigh:
         car.kill()
         car.remove(carList)
         car.remove(spritesList)
         carsPassed += 1
+    return carsPassed
 
 
 def collisionRedLights(car, trafficLightsList):
@@ -69,7 +81,7 @@ def collisionRedLights(car, trafficLightsList):
             car.speed = car.previousSpeed
 
 
-def collisionCars(car, carList, spritesList):
+def collisionCars(car, carList, spritesList, explosionList):
     """
     Checks if the car is colliding with another car
     :param car: The car to check
@@ -81,7 +93,8 @@ def collisionCars(car, carList, spritesList):
     for _car in _carList:
         if car.rect.colliderect(_car.rect):
             boom = explosion(car.rect.x, car.rect.y)
-            spritesList.add(boom)  # TODO: Remove the explosion after a while
+            spritesList.add(boom)
+            explosionList.add(boom)
             car.kill()
             _car.kill()
             car.remove(carList)
@@ -90,7 +103,21 @@ def collisionCars(car, carList, spritesList):
             _car.remove(spritesList)
 
 
-def createCars(x, y, number, speed, delay, spritesList, carList):  # TODO: finish this
+def explosionRemove(explosion, explosionList, spritesList):
+    """
+    Removes the explosion
+    :param explosion: The explosion to remove
+    :param spritesList: The list of sprites
+    """
+    explosionDelay = 2000
+    if pygame.time.get_ticks() - explosionDelay > explosion.spawnTime:
+        print("Removing explosion")
+        spritesList.remove(explosion)
+        explosionList.remove(explosion)
+        explosion.kill()
+
+
+def createCars(x, y, number, speed, delay, spritesList, carList):  # TODO: finir la fonction
     """
     Creates a number of cars
     :param x: The x position of the cars

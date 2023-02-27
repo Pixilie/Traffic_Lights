@@ -1,7 +1,7 @@
 import pygame
 
 
-def levelCompleted(carsPassed, carsToPass, level, levelName, levelDescription, lives, score, window):
+def isLevelFinished(carsPassed, carsToPass, level, levelName, levelDescription, lives, score, window, gameLoop):
     """
     Checks if the level is completed
     :param carsPassed: The number of cars that passed
@@ -13,8 +13,13 @@ def levelCompleted(carsPassed, carsToPass, level, levelName, levelDescription, l
     :param score: The score
     :param window: The window
     """
-    # FIXME: Never updated -> conditions not met
-    print("carsPassed: " + str(carsPassed))
-    print("carsToPass: " + str(carsToPass))
-    if carsPassed == carsToPass:
-        pygame.quit()
+    if carsPassed == carsToPass or lives == 0:
+        gameLoop = not gameLoop
+        finishWindow(level, levelName, levelDescription, lives, score, window)
+    else:
+        return gameLoop
+
+
+# TODO: Faire la fenêtre de fin de niveau
+def finishWindow(level, levelName, levelDescription, lives, score, window):
+    print("finishWindow")
