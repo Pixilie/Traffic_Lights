@@ -18,7 +18,7 @@ Traffic Lights needs python3 or python2, pygame and tkinter to work.
 - To install Traffic Lights, you just have to clone this repository.  
 > Using **[``Git (All plateforms)``](https://git-scm.com/downloads)** or ``apt/brew install git`` -> ``git clone https://github.com/Pixilie/Traffic_Lights``  
 > Using **[``Github CLI (Windows)``](https://cli.github.com/)** -> ``gh repo clone Pixilie/Traffic_Lights``  
-> Using **[``Ghithub Dekstop``](https://desktop.github.com/)** -> go [here](https://github.com/Pixilie/Traffic_Lights), click on the green code button and click ``Open with Gitub Deskstop``
+> Using **[``Github Deskstop``](https://desktop.github.com/)** -> go [here](https://github.com/Pixilie/Traffic_Lights), click on the green code button and click ``Open with Gitub Deskstop``
 
 ## Credits
 Game based on [Traffix](https://store.steampowered.com/app/1102580/Traffix/), there was no intention to copy or to compete with the real game, it's just a school project. I don't think we will continue to develop the game.
