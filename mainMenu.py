@@ -42,6 +42,16 @@ def Credits():
     mainWindow.destroy()
 
 
+def onEnter(e):
+    e.widget['bg'] = '#c59dd1'
+    e.widget['fg'] = 'white'
+
+
+def onLeave(e):
+    e.widget['bg'] = '#B78BC4'
+    e.widget['fg'] = 'white'
+
+
 # Title
 title_icon = PhotoImage(file="./Menus/Assets/traffic_lights.png")
 title = Canvas(mainWindow, width=screenWidth*0.7, height=screenHeight*0.35,
@@ -53,25 +63,33 @@ title.pack(side='top')
 exitIcon = PhotoImage(file='./Menus/Assets/exit_icon.png',
                       width=round(screenWidth*0.08), height=round(screenHeight*0.09))
 exitButton = Button(mainWindow, image=exitIcon,
-                    bd=0, bg='#B78BC4', highlightthickness=0, relief=SUNKEN, activebackground="#c59dd1", command=Close)
+                    bd=0, bg='#B78BC4', highlightthickness=0, cursor="hand2", activebackground="#c59dd1", command=Close)
 exitButton.pack()
 exitButton.place(x=screenWidth - 100, y=screenHeight - 71)
+exitButton.bind("<Enter>", onEnter)
+exitButton.bind("<Leave>", onLeave)
 
-# TODO: animation de survole des boutons + son
+# TODO: son
 # Levels Button
 levelsButton = Button(mainWindow, text="Niveaux", font=('Arial', round(screenWidth*0.016)),
-                      bd=0, relief="flat", activebackground="#c59dd1", activeforeground="white", bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.006), command=Levels)
+                      bd=0, relief="flat", activebackground="#c59dd1", cursor="hand2", activeforeground="white", bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.006), command=Levels)
 levelsButton.pack(side='top')
+levelsButton.bind("<Enter>", onEnter)
+levelsButton.bind("<Leave>", onLeave)
 
 # Setting Button
 settingsButton = Button(mainWindow, text="Paramètres", font=('Arial', round(screenWidth*0.016)),
-                        bd=0, relief="flat", activebackground="#c59dd1", activeforeground="white", bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.008), state="disabled", command=Settings)
+                        bd=0, relief="flat", activebackground="#c59dd1", cursor="hand2", activeforeground="white", bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.008), state="disabled", command=Settings)
 settingsButton.pack(side='top')
+settingsButton.bind("<Enter>", onEnter)
+settingsButton.bind("<Leave>", onLeave)
 
 # Credits Button
 creditsButton = Button(mainWindow, text="Crédits", font=('Arial', round(screenWidth*0.016)),
-                       bd=0, relief="flat", activebackground="#c59dd1", activeforeground="white", bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.006), state="disabled", command=Credits)
+                       bd=0, relief="flat", activebackground="#c59dd1", cursor="hand2", activeforeground="white", bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.006), state="disabled", command=Credits)
 creditsButton.pack(side='top')
+creditsButton.bind("<Enter>", onEnter)
+creditsButton.bind("<Leave>", onLeave)
 
 # Compiling the main frame
 mainWindow.mainloop()

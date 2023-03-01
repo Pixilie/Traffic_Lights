@@ -8,6 +8,8 @@ except ImportError:
 # Other imports
 import os
 
+# Main window function
+
 
 def levelsWindow():
     # Main window setup
@@ -22,11 +24,17 @@ def levelsWindow():
     levelWindow.config(background='#B78BC4')
     levelWindow.attributes('-fullscreen', True)
 
+    # Exit button function
     def goBack():
         levelWindow.destroy()
 
-    # Main frame
-    frame = Frame(levelWindow, bg='#B78BC4')
+    def onEnter(e):
+        e.widget['bg'] = '#c59dd1'
+        e.widget['fg'] = 'white'
+
+    def onLeave(e):
+        e.widget['bg'] = '#B78BC4'
+        e.widget['fg'] = 'white'
 
     # Title
     title = Label(levelWindow, bg='#B78BC4', text="Sélectionner un niveau",
@@ -34,19 +42,27 @@ def levelsWindow():
     title.pack()
 
     # Go back button
-    # backIcon = PhotoImage(file='../Assets/Icons/exit_icon2.png', width=100, height=71)  # TODO: enlever bordure quand survoler + voir pourquoi erreur si on veut afficher une image
-    backButton = Button(levelWindow, text="<-", font=('Arial', round(screenWidth*0.016)), bd=0,
-                        bg='#B78BC4', highlightthickness=0, command=goBack)
+    # TODO: mettre une image
+    backButton = Button(levelWindow, text="<-", font=('Arial', round(screenWidth*0.016)),  bd=0, relief="flat",
+                        activebackground="#c59dd1", activeforeground="white", cursor="hand2", bg='#B78BC4', fg="#ffffff", command=goBack)
     backButton.pack(pady=20)
     backButton.place(x=0, y=0)
+    backButton.bind("<Enter>", onEnter)
+    backButton.bind("<Leave>", onLeave)
 
     # Creating one button and an information panel for each level
-
     # Panel creation
     infoPanel = Canvas(levelWindow)
 
     # Panel function
-    def onEnter(e):
+    def onEnterLevelButton(e):
+        """
+        Creates a panel with information about the level and change the background color of the button
+        :param e: Event triggered by the button
+        """
+        e.widget['bg'] = '#c59dd1'
+        e.widget['fg'] = 'white'
+        # TODO: Terminer panel + panel ne disparait pas quand on quitte le bouton
         infoPanel = Canvas(levelWindow, width=screenWidth *
                            0.43, height=screenHeight*0.8, bg='#B78BC4', bd=8)
         infoPanel.create_text(screenWidth*0.22, screenHeight*0.05, text=f'Niveau {e}', font=(
@@ -54,9 +70,16 @@ def levelsWindow():
         infoPanel.pack()
         infoPanel.place(x=screenWidth*0.55, y=screenHeight*0.17)
 
-    def onLeave(e):
+    def onLeaveLevelButton(e):
+        """
+        Removes the panel and go back to the previous background color
+        :param e: Event triggered by the button
+        """
         infoPanel.destroy()
+        e.widget['bg'] = '#B78BC4'
+        e.widget['fg'] = 'white'
 
+    # Creating the buttons for each level
     directory = os.listdir('./Game')
     yPos = screenHeight*0.1
     folderIndex = 0
@@ -67,10 +90,11 @@ def levelsWindow():
             yPos += 0.07*screenHeight
             # Button creation
             levelButton = Button(levelWindow, text=f'Niveau {folderIndex}', font=(
-                'Arial', round(screenWidth*0.016)), bd=0, bg='#B78BC4', activebackground="#c59dd1", activeforeground="white", fg="#ffffff", width=round(screenWidth*0.02), command=goBack)
+                'Arial', round(screenWidth*0.016)), bd=0, cursor="hand2", bg='#B78BC4', activebackground="#c59dd1", activeforeground="white", fg="#ffffff", width=round(screenWidth*0.02), command=goBack)
             levelButton.pack(pady=40)
             levelButton.place(x=screenWidth*0.01, y=yPos)
+            levelButton.bind("<Enter>", onEnterLevelButton)
+            levelButton.bind("<Leave>", onLeaveLevelButton)
 
-        # Compiling the main frame
-    frame.pack(expand=YES)
+    # Compiling the main frame
     levelWindow.mainloop()
