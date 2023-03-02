@@ -1,11 +1,14 @@
 import pygame
 
 def trafficLight(x, y, color):
-    """
-    Creates a sprite for traffic light
-    :param x: The x position of the traffic light
-    :param y: The y position of the traffic light
-    """
+    """Creates a sprite for a traffic light
+    Args:
+        x (float): position on the screen
+        y (float): position on the screen
+        color (str): The color of the traffic light
+    Returns:
+        trafficLight (Sprite): Sprite of the traffic light
+    """    
     trafficLights = pygame.sprite.Sprite()
     trafficLights.image = pygame.image.load("./Game/Assets/Textures/road_greenlights_v.png").convert_alpha()
     trafficLights.rect = trafficLights.image.get_rect()
@@ -15,13 +18,14 @@ def trafficLight(x, y, color):
     return trafficLights
 
 def trafficLightsUpdate(trafficLight, x, y):
-    """
-    Changes the color of the traffic lights
-    :param trafficLightsList: The list of traffic lights
-    :param green: If the traffic lights are green or not
-    :param x: The x position of the mouse
-    :param y: The y position of the mouse
-    """
+    """Updates the traffic light
+    Args:
+        trafficLight (sprite): The traffic light to update
+        x (float): position on the screen
+        y (float): position on the screen
+    Returns:
+        trafficLight.color (str): The color of the traffic light
+    """    
     if trafficLight.rect.collidepoint(x, y) and trafficLight.color == "green":
         trafficLight.image = pygame.image.load("./Game/Assets/Textures/road_redlights_v.png").convert_alpha()
         trafficLight.color = "red"

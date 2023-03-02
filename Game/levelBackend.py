@@ -2,16 +2,19 @@ import pygame
 
 
 def isLevelFinished(carsPassed, carsToPass, level, levelName, levelDescription, lives, score, window, gameLoop):
-    """
-    Checks if the level is completed
-    :param carsPassed: The number of cars that passed
-    :param carsToPass: The number of cars that need to pass
-    :param level: The level number
-    :param levelName: The name of the level
-    :param levelDescription: The description of the level
-    :param lives: The number of lives
-    :param score: The score
-    :param window: The window
+    """Checks if the level is finished
+    Args:
+        carsPassed (int): The number of cars that passed
+        carsToPass (int): The number of cars to pass
+        level (int): The level number
+        levelName (str): The name of the level
+        levelDescription (str): The description of the level
+        lives (int): The number of lives
+        score (int): The score
+        window (pygame.display): The window
+        gameLoop (bool): The game loop
+    Returns:
+        gameLoop (bool): The game loop
     """
     if carsPassed == carsToPass or lives == 0:
         gameLoop = not gameLoop
@@ -22,13 +25,13 @@ def isLevelFinished(carsPassed, carsToPass, level, levelName, levelDescription, 
 
 # TODO: Faire la fenêtre de fin de niveau
 def finishWindow(level, levelName, levelDescription, lives, score, window):
-    """
-    The window that appears when the level is completed
-    :param level: The level number
-    :param levelName: The name of the level
-    :param levelDescription: The description of the level
-    :param lives: The number of lives
-    :param score: The score
-    :param window: The window
-    """
+    """The window that appears when the level is finished
+    Args:
+        level (int): The level number
+        levelName (str): The name of the level
+        levelDescription (str): The description of the level
+        lives (int): The number of lives
+        score (int): The score
+        window (pygame.display): The window
+    """    
     print("finishWindow")

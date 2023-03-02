@@ -3,10 +3,14 @@ import time
 
 
 def car(x, y, direction, speed):
-    """
-    Creates a sprite for a car
-    :param x: The x position of the car
-    :param y: The y position of the car
+    """Creates a sprite for a car
+    Args:
+        x (float): x position on the screen
+        y (float): y position on the screen
+        direction (str): direction of the car
+        speed (float): speed of the car
+    Returns:
+        car (Sprite): Sprite of the car
     """
     car = pygame.sprite.Sprite()
     if direction == "up":
@@ -31,10 +35,12 @@ def car(x, y, direction, speed):
 
 
 def explosion(x, y):
-    """
-    Creates a sprite for an explosion
-    :param x: The x position of the explosion
-    :param y: The y position of the explosion
+    """Creates a sprite for an explosion
+    Args:
+        x (float): x position on the screen
+        y (float): y position on the screen
+    Returns:
+        explosion (Sprite): Sprite of the explosion
     """
     explosion = pygame.sprite.Sprite()
     explosion.image = pygame.image.load(
@@ -47,11 +53,14 @@ def explosion(x, y):
 
 
 def update(car, spritesList, carList, carsPassed):
-    """
-    Updates the car
-    :param car: The car to update
-    :param spritesList: The list of sprites
-    :param carList: The list of cars
+    """Updates the car
+    Args:
+        car (sprite): The car to update
+        spritesList (list): The list of sprites
+        carList (list): The list of cars
+        carsPassed (int): The number of cars that passed
+    Returns:
+        carsPassed (int): The number of cars that passed
     """
     width, heigh = pygame.display.get_window_size()
     car.rect.x += car.speed
@@ -69,10 +78,10 @@ def update(car, spritesList, carList, carsPassed):
 
 
 def collisionRedLights(car, trafficLightsList):
-    """
-    Checks if the car is colliding with a red light
-    :param car: The car to check
-    :param trafficLightsList: The list of traffic lights
+    """Checks if the car is colliding with a red light
+    Args:
+        car (sprite): The car to check
+        trafficLightsList (list): The list of traffic lights
     """
     for trafficLight in trafficLightsList:
         if trafficLight.color == "red" and trafficLight.rect.collidepoint(car.rect.x, car.rect.y):
@@ -82,12 +91,13 @@ def collisionRedLights(car, trafficLightsList):
 
 
 def collisionCars(car, carList, spritesList, explosionList):
-    """
-    Checks if the car is colliding with another car
-    :param car: The car to check
-    :param carList: The list of cars
-    :param spritesList: The list of sprites
-    """
+    """Checks if the car is colliding with another car
+    Args:
+        car (sprite): The car to check
+        carList (list): The list of cars
+        spritesList (list): The list of sprites
+        explosionList (list): The list of explosions
+    """    
     _carList = carList.copy()
     _carList.remove(car)
     for _car in _carList:
@@ -104,29 +114,30 @@ def collisionCars(car, carList, spritesList, explosionList):
 
 
 def explosionRemove(explosion, explosionList, spritesList):
-    """
-    Removes the explosion
-    :param explosion: The explosion to remove
-    :param spritesList: The list of sprites
-    """
+    """Removes the explosion from the lists
+    Args:
+        explosion (sprite): The explosion to remove
+        explosionList (list): The list of explosions
+        spritesList (list): The list of sprites
+    """    
     explosionDelay = 2000
     if pygame.time.get_ticks() - explosionDelay > explosion.spawnTime:
-        print("Removing explosion")
         spritesList.remove(explosion)
         explosionList.remove(explosion)
         explosion.kill()
 
 
 def createCars(x, y, number, speed, delay, spritesList, carList):  # TODO: finir la fonction
-    """
-    Creates a number of cars
-    :param x: The x position of the cars
-    :param y: The y position of the cars
-    :param number: The number of cars to create
-    :param speed: The speed of the cars
-    :param delay: The delay between each car
-    :param spritesList: The list of sprites
-    :param carList: The list of cars
+    """Creates a list of cars
+
+    Args:
+        x (float): x start position on the screen
+        y (float): y start position on the screen
+        number (int): number of cars to create
+        speed (float): speed of the cars
+        delay (int): delay between each car
+        spritesList (list): The list of sprites
+        carList (list): The list of cars
     """
     nextCarSpawn = 0
     for i in range(number):

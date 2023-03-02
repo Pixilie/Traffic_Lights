@@ -5,6 +5,8 @@ try:
 except ImportError:
     import Tkinter as tkinter
     from Tkinter import *
+#Import other files from the game
+import music
 # Other imports
 import os
 
@@ -13,7 +15,7 @@ import os
 
 def levelsWindow():
     # Main window setup
-    levelWindow = tkinter.Tk()
+    levelWindow = tkinter.Toplevel()
 
     # Screen info
     screenWidth = levelWindow.winfo_screenwidth()
@@ -31,22 +33,21 @@ def levelsWindow():
     def onEnter(e):
         e.widget['bg'] = '#c59dd1'
         e.widget['fg'] = 'white'
+        music.playSound(float(os.getenv("SOUND_VOLUME")))
 
     def onLeave(e):
         e.widget['bg'] = '#B78BC4'
         e.widget['fg'] = 'white'
 
     # Title
-    title = Label(levelWindow, bg='#B78BC4', text="Sélectionner un niveau",
-                  font=('Arial', round(screenWidth*0.026)), fg="white", highlightthickness=0, bd=0, width=round(screenWidth*0.02))
+    title = Label(levelWindow, bg='#B78BC4', text="Sélectionner un niveau", font=('Arial', round(screenWidth*0.026)), fg="white", highlightthickness=0, bd=0, width=round(screenWidth*0.02))
     title.pack()
 
     # Go back button
-    # TODO: mettre une image
-    backButton = Button(levelWindow, text="<-", font=('Arial', round(screenWidth*0.016)),  bd=0, relief="flat",
-                        activebackground="#c59dd1", activeforeground="white", cursor="hand2", bg='#B78BC4', fg="#ffffff", command=goBack)
+    backIcon = PhotoImage(file='./Menus/Assets/Images/back.png', width=round(screenWidth*0.06), height=round(screenHeight*0.09))
+    backButton = Button(levelWindow, image=backIcon, font=('Arial', round(screenWidth*0.016)),  bd=0, relief="flat", activebackground="#c59dd1", activeforeground="white", cursor="hand2", bg='#B78BC4', fg="#ffffff", command=goBack)
     backButton.pack(pady=20)
-    backButton.place(x=0, y=0)
+    backButton.place(x=screenWidth*0.01, y=0)
     backButton.bind("<Enter>", onEnter)
     backButton.bind("<Leave>", onLeave)
 
@@ -56,24 +57,23 @@ def levelsWindow():
 
     # Panel function
     def onEnterLevelButton(e):
-        """
-        Creates a panel with information about the level and change the background color of the button
-        :param e: Event triggered by the button
+        """Creates a panel with information about the level and changes the background color of the button
+        Args:
+            e (Event): Event triggered by the button
         """
         e.widget['bg'] = '#c59dd1'
         e.widget['fg'] = 'white'
+        music.playSound(float(os.getenv("SOUND_VOLUME")))
         # TODO: Terminer panel + panel ne disparait pas quand on quitte le bouton
-        infoPanel = Canvas(levelWindow, width=screenWidth *
-                           0.43, height=screenHeight*0.8, bg='#B78BC4', bd=8)
-        infoPanel.create_text(screenWidth*0.22, screenHeight*0.05, text=f'Niveau {e}', font=(
-            'Arial', round(screenWidth*0.016)), fill="white")
+        infoPanel = Canvas(levelWindow, width=screenWidth * 0.43, height=screenHeight*0.8, bg='#B78BC4', bd=8)
+        infoPanel.create_text(screenWidth*0.22, screenHeight*0.05, text=f'Niveau {e}', font=('Arial', round(screenWidth*0.016)), fill="white")
         infoPanel.pack()
         infoPanel.place(x=screenWidth*0.55, y=screenHeight*0.17)
 
     def onLeaveLevelButton(e):
-        """
-        Removes the panel and go back to the previous background color
-        :param e: Event triggered by the button
+        """Destroys the panel and changes the background color of the button
+        Args:
+            e (Event): Event triggered by the button
         """
         infoPanel.destroy()
         e.widget['bg'] = '#B78BC4'
@@ -85,16 +85,17 @@ def levelsWindow():
     folderIndex = 0
     for file in directory:
         if "level" in file:
-            print(file)
             folderIndex += 1
             yPos += 0.07*screenHeight
             # Button creation
-            levelButton = Button(levelWindow, text=f'Niveau {folderIndex}', font=(
-                'Arial', round(screenWidth*0.016)), bd=0, cursor="hand2", bg='#B78BC4', activebackground="#c59dd1", activeforeground="white", fg="#ffffff", width=round(screenWidth*0.02), command=goBack)
+            levelButton = Button(levelWindow, text=f'Niveau {folderIndex}', font=('Arial', round(screenWidth*0.016)), bd=0, cursor="hand2", bg='#B78BC4' ,activebackground="#c59dd1", activeforeground="white", fg="#ffffff", width=round(screenWidth*0.02), command=goBack)
             levelButton.pack(pady=40)
             levelButton.place(x=screenWidth*0.01, y=yPos)
             levelButton.bind("<Enter>", onEnterLevelButton)
             levelButton.bind("<Leave>", onLeaveLevelButton)
 
+    # Play music
+    music.playMusic(float(os.getenv("SOUND_VOLUME")))
+    
     # Compiling the main frame
     levelWindow.mainloop()
