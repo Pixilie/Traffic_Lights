@@ -51,9 +51,6 @@ exitButton.bind("<Leave>", onLeave)
 
 #Music Settings
 pygame.mixer.init()
-pygame.display.init()
-
-screen = pygame.display.set_mode ( ( 420 , 240 ) )
 
 playlist = list()
 playlist.append ('./Menus/Assets/music3.mp3')
@@ -62,16 +59,10 @@ playlist.append ('./Menus/Assets/music1.mp3')
 pygame.mixer.music.load ( playlist.pop() )  
 pygame.mixer.music.queue ( playlist.pop() ) 
 pygame.mixer.music.set_endevent ( pygame.USEREVENT )  
-pygame.mixer.music.set_volume(0.5)
+pygame.mixer.music.set_volume(0.1)
 
 pygame.mixer.music.play()        
 
-running = True
-while running:
-   for event in pygame.event.get():
-      if event.type == pygame.USEREVENT:    
-         if len ( playlist ) > 0:       
-            pygame.mixer.music.queue ( playlist.pop() ) 
 
 # Compiling the main frame
 SettingsWindow.mainloop()
