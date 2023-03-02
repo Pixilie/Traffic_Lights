@@ -62,7 +62,9 @@ pygame.mixer.music.set_endevent ( pygame.USEREVENT )
 pygame.mixer.music.set_volume(0.1)
 
 pygame.mixer.music.play()        
-
-
+Scale = Scale(SettingsWindow, orient='horizontal', from_=0, to=100,
+      resolution=1, tickinterval=10, length=200,
+      label='Volume (%)', bg = '#B78BC4', activebackground="#B78BC4",relief="flat",fg = 'white', cursor="hand2",highlightthickness=0)
+Scale.pack(side = 'top')
 # Compiling the main frame
 SettingsWindow.mainloop()

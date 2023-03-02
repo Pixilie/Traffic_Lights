@@ -5,6 +5,7 @@ try:
 except ImportError:
     import Tkinter as tkinter
     from Tkinter import *
+import pygame
 # Import other files from the game
 import Menus.selectLevel as selectLevel
 import Menus.settings as settings
@@ -90,6 +91,17 @@ creditsButton = Button(mainWindow, text="Crédits", font=('Arial', round(screenW
 creditsButton.pack(side='top')
 creditsButton.bind("<Enter>", onEnter)
 creditsButton.bind("<Leave>", onLeave)
+
+#Music
+playlist = list()
+playlist.append ('./Menus/Assets/music3.mp3')
+playlist.append ('./Menus/Assets/music2.mp3')
+playlist.append ('./Menus/Assets/music1.mp3')
+pygame.mixer.music.load ( playlist.pop() )  
+pygame.mixer.music.queue ( playlist.pop() ) 
+pygame.mixer.music.set_endevent ( pygame.USEREVENT )  
+pygame.mixer.music.set_volume(0.5)
+pygame.mixer.music.play()
 
 # Compiling the main frame
 mainWindow.mainloop()
