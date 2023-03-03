@@ -43,7 +43,7 @@ explosionList = pygame.sprite.Group()
 
 
 # Create the cars (will be changed later, just for testing)
-car = carFile.car(800, 30, "right", 1)
+"""car = carFile.car(800, 30, "right", 1)
 spritesList.add(car)
 carList.add(car)
 
@@ -57,11 +57,12 @@ carList.add(car3)
 
 car4 = carFile.car(5, 100, "right", 2)
 spritesList.add(car4)
-carList.add(car4)
+carList.add(car4)"""
 
 # Event loop
 gameLoop = True
 while gameLoop:
+    carFile.createCars(10, 10, 3, 1, "right", 10, spritesList, carList)
     for event in pygame.event.get():
         if event.type == QUIT:
             gameLoop = False

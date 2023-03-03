@@ -127,9 +127,8 @@ def explosionRemove(explosion, explosionList, spritesList):
         explosion.kill()
 
 
-def createCars(x, y, number, speed, delay, spritesList, carList):  # TODO: finir la fonction
+def createCars(x, y, number, speed, direction, delay, spritesList, carList):  # TODO: finir la fonction + marche pas
     """Creates a list of cars
-
     Args:
         x (float): x start position on the screen
         y (float): y start position on the screen
@@ -141,12 +140,10 @@ def createCars(x, y, number, speed, delay, spritesList, carList):  # TODO: finir
     """
     nextCarSpawn = 0
     for i in range(number):
-        if i == number - 1:
-            pass
-        else:
-            print("Creating car " + str(i) + " of " + str(number))
-            if pygame.time.get_ticks() > nextCarSpawn:
-                nextCarSpawn += delay
-                newCar = car(x, y, "right", speed)
-                spritesList.add(newCar)
-                carList.add(newCar)
+        print(pygame.time.get_ticks())
+        print("nextCarSpawn", nextCarSpawn)
+        if pygame.time.get_ticks() > nextCarSpawn:
+            nextCarSpawn = pygame.time.get_ticks() + delay
+            _car = car(x, y, direction, speed)
+            spritesList.add(_car)
+            carList.add(_car)

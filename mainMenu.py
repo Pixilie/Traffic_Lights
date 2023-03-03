@@ -36,12 +36,12 @@ def Levels():
     selectLevel.levelsWindow()
 
 
-# Settings button function #TODO: Terminer fonction, chercher importer un autre fichier
+# Settings button function
 def Settings():
     settings.settingsWindow()
 
 
-# Credits button function #TODO: Terminer fonction, chercher importer un autre fichier
+# Credits button function #TODO: Terminer fonction
 def Credits():
     mainWindow.destroy()
 
