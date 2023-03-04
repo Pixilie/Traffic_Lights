@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 # Import other files from the game
 import Menus.selectLevel as selectLevel
 import Menus.settings as settings
+import Menus.credits as credits
 import music
 
 # Main window setup
@@ -31,7 +32,7 @@ def Close():
     mainWindow.destroy()
 
 
-# Levels button function #TODO: Terminer fonction, chercher importer un autre fichier
+# Levels button function
 def Levels():
     selectLevel.levelsWindow()
 
@@ -41,9 +42,9 @@ def Settings():
     settings.settingsWindow()
 
 
-# Credits button function #TODO: Terminer fonction
+# Credits button function
 def Credits():
-    mainWindow.destroy()
+    credits.creditsWindow()
 
 def onEnter(e):
     e.widget['bg'] = '#c59dd1'
@@ -90,5 +91,5 @@ creditsButton.bind("<Leave>", onLeave)
 # Play music
 music.playMusic(float(os.getenv("SOUND_VOLUME")))
 
-# Compiling the main frame
+# Compiling window
 mainWindow.mainloop()

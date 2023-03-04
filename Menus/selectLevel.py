@@ -38,6 +38,10 @@ def levelsWindow():
     def onLeave(e):
         e.widget['bg'] = '#B78BC4'
         e.widget['fg'] = 'white'
+        
+    def startGame(directory): #TODO: Faire fonctionner
+        exec(open(directory).read())
+
 
     # Title
     title = Label(levelWindow, bg='#B78BC4', text="Sélectionner un niveau", font=('Arial', round(screenWidth*0.026)), fg="white", highlightthickness=0, bd=0, width=round(screenWidth*0.02))
@@ -64,7 +68,7 @@ def levelsWindow():
         e.widget['bg'] = '#c59dd1'
         e.widget['fg'] = 'white'
         music.playSound(float(os.getenv("SOUND_VOLUME")))
-        # TODO: Terminer panel + panel ne disparait pas quand on quitte le bouton
+        # TODO: Terminer panel + panel ne disparaît pas quand on quitte le bouton
         infoPanel = Canvas(levelWindow, width=screenWidth * 0.43, height=screenHeight*0.8, bg='#B78BC4', bd=8)
         infoPanel.create_text(screenWidth*0.22, screenHeight*0.05, text=f'Niveau {e}', font=('Arial', round(screenWidth*0.016)), fill="white")
         infoPanel.pack()
@@ -84,11 +88,11 @@ def levelsWindow():
     yPos = screenHeight*0.1
     folderIndex = 0
     for file in directory:
-        if "level" in file:
+        if "level" in file and file != "levelFinished.py":
             folderIndex += 1
             yPos += 0.07*screenHeight
             # Button creation
-            levelButton = Button(levelWindow, text=f'Niveau {folderIndex}', font=('Arial', round(screenWidth*0.016)), bd=0, cursor="hand2", bg='#B78BC4' ,activebackground="#c59dd1", activeforeground="white", fg="#ffffff", width=round(screenWidth*0.02), command=goBack)
+            levelButton = Button(levelWindow, text=f'Niveau {folderIndex}', font=('Arial', round(screenWidth*0.016)), bd=0, cursor="hand2", bg='#B78BC4' ,activebackground="#c59dd1", activeforeground="white", fg="#ffffff", width=round(screenWidth*0.02), command=startGame(f"./Game/{file}"))
             levelButton.pack(pady=40)
             levelButton.place(x=screenWidth*0.01, y=yPos)
             levelButton.bind("<Enter>", onEnterLevelButton)
@@ -97,5 +101,5 @@ def levelsWindow():
     # Play music
     music.playMusic(float(os.getenv("SOUND_VOLUME")))
     
-    # Compiling the main frame
+    # Compiling window
     levelWindow.mainloop()

@@ -10,7 +10,7 @@ import os
 # Import other files from the game
 import music
 
-
+#TODO: Terminer le design + param son appliquer uniquement après restart + langues
 def settingsWindow():
     # Main window setup
     settingsWindow = tkinter.Toplevel()
@@ -54,5 +54,5 @@ def settingsWindow():
     volumeControl.set(float(os.getenv("SOUND_VOLUME")))
     volumeControl.pack(side='top')
 
-    # Compiling the main frame
+    # Compiling window
     settingsWindow.mainloop()

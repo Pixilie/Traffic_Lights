@@ -63,13 +63,15 @@ def update(car, spritesList, carList, carsPassed):
         carsPassed (int): The number of cars that passed
     """
     width, heigh = pygame.display.get_window_size()
-    car.rect.x += car.speed
-    if car.rect.x > width:
-        car.kill()
-        car.remove(carList)
-        car.remove(spritesList)
-        carsPassed += 1
-    if car.rect.y > heigh:
+    if car.direction == "up":
+        car.rect.y -= car.speed
+    elif car.direction == "down":
+        car.rect.y += car.speed
+    elif car.direction == "left":
+        car.rect.x -= car.speed
+    else:
+        car.rect.x += car.speed
+    if car.rect.x > width or car.rect.x < 0 or car.rect.y > heigh or car.rect.y < 0:
         car.kill()
         car.remove(carList)
         car.remove(spritesList)
@@ -127,23 +129,25 @@ def explosionRemove(explosion, explosionList, spritesList):
         explosion.kill()
 
 
-def createCars(x, y, number, speed, direction, delay, spritesList, carList):  # TODO: finir la fonction + marche pas
-    """Creates a list of cars
+def createCars(x, y, speed, direction, delay, ticks, lastTick, spritesList, carList):  # TODO: finir la fonction + trouver un moyen de faire sans retourner lastTick car c'est pas très propre + le modifie pour les voitures suivantes donc seulement le 1er appel de la fonction marche
+    """Creates a car
     Args:
-        x (float): x start position on the screen
-        y (float): y start position on the screen
-        number (int): number of cars to create
-        speed (float): speed of the cars
+        x (int): x start position of the car on the screen
+        y (int): y start position of the car on the screen
+        speed (int): speed of the car
+        direction (str): direction of the car
         delay (int): delay between each car
-        spritesList (list): The list of sprites
-        carList (list): The list of cars
-    """
-    nextCarSpawn = 0
-    for i in range(number):
-        print(pygame.time.get_ticks())
-        print("nextCarSpawn", nextCarSpawn)
-        if pygame.time.get_ticks() > nextCarSpawn:
-            nextCarSpawn = pygame.time.get_ticks() + delay
-            _car = car(x, y, direction, speed)
-            spritesList.add(_car)
-            carList.add(_car)
+        ticks (int): ticks of the game
+        lastTick (int): last tick of the game when a car was created
+        spritesList (list): list of sprites
+        carList (list): list of cars
+    Returns:
+        lastTick (int): last tick of the game when a car was created
+    """    
+    if ticks > lastTick + delay:
+        newCar = car(x, y, direction, speed)
+        carList.add(newCar)
+        spritesList.add(newCar)
+        lastTick = pygame.time.get_ticks()
+    return lastTick
+
