@@ -20,6 +20,7 @@ def loadMap(map, window):
     roadList = pygame.sprite.Group()
     spritesList = pygame.sprite.Group()
     trafficLightsList = pygame.sprite.Group()
+    carSpawnPointsList = pygame.sprite.Group()
     tilesSize = 30
     x = 0
     y = 0
@@ -39,8 +40,12 @@ def loadMap(map, window):
                         trafficLight = trafficLightFile.trafficLight(x, y, "green") 
                         trafficLightsList.add(trafficLight)
                         spritesList.add(trafficLight)
+                    elif symbols == "c":
+                        carSpawn = roadFile.carSpawn(x, y)
+                        carSpawnPointsList.add(carSpawn)
+                        spritesList.add(carSpawn)
                     else:
                         pass
                     x += tilesSize
                 y += tilesSize
-    return spritesList, roadList, trafficLightsList
+    return spritesList, roadList, trafficLightsList, carSpawnPointsList

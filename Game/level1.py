@@ -35,7 +35,7 @@ pygame.display.set_caption(f'Traffic Light - {levelName}')
 window.fill(white)
 
 # Sprites list
-spritesList, roadList, trafficLightsList = map.loadMap("./Game/Assets/Maps/map_lvl1.txt", window)
+spritesList, roadList, trafficLightsList, carSpawnPointsList = map.loadMap("./Game/Assets/Maps/map_lvl1.txt", window)
 redTrafficLightsList = pygame.sprite.Group()
 carList = pygame.sprite.Group()
 explosionList = pygame.sprite.Group()
@@ -45,8 +45,7 @@ explosionList = pygame.sprite.Group()
 gameLoop = True
 while gameLoop:
     
-    lastTick = carFile.createCars(0, 20, 1, "right", 3000, ticks, lastTick, spritesList, carList)
-    lastTick = carFile.createCars(screenWidth, 120, 2, "left", 1000, ticks, lastTick, spritesList, carList)
+    carFile.createCars(spritesList, carList, carSpawnPointsList, screenWidth, screenHeight, ticks, speed)
     
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -54,8 +53,7 @@ while gameLoop:
         if event.type == MOUSEBUTTONDOWN:
             x, y = event.pos  # Get the mouse position
             for trafficLight in trafficLightsList:
-                trafficLightFile.trafficLightsUpdate(
-                    trafficLight, x, y)  # Update the traffic lights
+                trafficLightFile.trafficLightsUpdate(trafficLight, x, y)  # Update the traffic lights
 
     for car in carList:
         carFile.collisionCars(car, carList, spritesList, explosionList) # Check if the cars collide with each other

@@ -1,17 +1,16 @@
-                                            |   43 symbols width & 25 lines height                                  
-RRRRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRR|
+      R                         c           |
+      R                         R           |
+      R                         R           |
+      R                         R           |   43 symbols width & 25 lines height                                  
+cRRRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRR|
       R                         R           |                 
       R                         R           |                 
       R                         R           |                 
-RRRRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRR|
-                                            |
-                                            |
-                                            |
-                                            |
-                                            |
-                                            |
-                                            |
-                                            |
+RRRRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRc|
+      R                         R           |
+      R                         R           |
+      R                         R           |
+      c                         R           |
                                             |
                                             |
                                             |

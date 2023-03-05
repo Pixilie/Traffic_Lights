@@ -1,7 +1,6 @@
 import pygame
 import time
 
-
 def car(x, y, direction, speed):
     """Creates a sprite for a car
     Args:
@@ -129,25 +128,36 @@ def explosionRemove(explosion, explosionList, spritesList):
         explosion.kill()
 
 
-def createCars(x, y, speed, direction, delay, ticks, lastTick, spritesList, carList):  # TODO: finir la fonction + trouver un moyen de faire sans retourner lastTick car c'est pas très propre + le modifie pour les voitures suivantes donc seulement le 1er appel de la fonction marche
-    """Creates a car
-    Args:
-        x (int): x start position of the car on the screen
-        y (int): y start position of the car on the screen
-        speed (int): speed of the car
-        direction (str): direction of the car
-        delay (int): delay between each car
-        ticks (int): ticks of the game
-        lastTick (int): last tick of the game when a car was created
-        spritesList (list): list of sprites
-        carList (list): list of cars
-    Returns:
-        lastTick (int): last tick of the game when a car was created
-    """    
-    if ticks > lastTick + delay:
-        newCar = car(x, y, direction, speed)
-        carList.add(newCar)
-        spritesList.add(newCar)
-        lastTick = pygame.time.get_ticks()
-    return lastTick
-
+def createCars(spritesList, carList, carSpawnPointsList, screenWidth, screenHeight, ticks, speed):  # TODO: finir la fonction (direction, vitesse différente)
+    lastTick = 0
+    delay = 5000
+    for carSpawnPoint in carSpawnPointsList:
+        if ticks > carSpawnPoint.lastTick + delay:
+            
+            if 0 < carSpawnPoint.rect.x < 30:
+                print("1")
+                newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "right", speed)
+                newCar.add(spritesList)
+                newCar.add(carList)
+                carSpawnPoint.lastTick = ticks
+                
+            if screenWidth - 30 < carSpawnPoint.rect.x < screenWidth:
+                print("2")
+                newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "left", speed)
+                newCar.add(spritesList)
+                newCar.add(carList)
+                carSpawnPoint.lastTick = ticks
+                
+            if 0 < carSpawnPoint.rect.y < 30:
+                print("3")
+                newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "down", speed)
+                newCar.add(spritesList)
+                newCar.add(carList)
+                carSpawnPoint.lastTick = ticks
+                
+            if screenHeight - 30 < carSpawnPoint.rect.y < screenHeight:
+                print("4")
+                newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "up", speed)
+                newCar.add(spritesList)
+                newCar.add(carList)
+                carSpawnPoint.lastTick = ticks
