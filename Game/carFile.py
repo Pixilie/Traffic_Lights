@@ -1,7 +1,8 @@
 import pygame
 import time
+import random
 
-def car(x, y, direction, speed):
+def car(x, y, direction, speed, windowWidth, windowHeight):
     """Creates a sprite for a car
     Args:
         x (float): x position on the screen
@@ -24,6 +25,7 @@ def car(x, y, direction, speed):
     elif direction == "right":
         car.image = pygame.image.load(
             "./Game/Assets/Textures/car_r.png").convert_alpha()
+    car.image = pygame.transform.smoothscale(car.image, (windowWidth*0.02277, windowWidth*0.02277))
     car.rect = car.image.get_rect()
     car.rect.x = x
     car.rect.y = y
@@ -33,7 +35,7 @@ def car(x, y, direction, speed):
     return car
 
 
-def explosion(x, y):
+def explosion(x, y, windowWidth, windowHeight):
     """Creates a sprite for an explosion
     Args:
         x (float): x position on the screen
@@ -42,8 +44,8 @@ def explosion(x, y):
         explosion (Sprite): Sprite of the explosion
     """
     explosion = pygame.sprite.Sprite()
-    explosion.image = pygame.image.load(
-        "./Game/Assets/Textures/explosion.png").convert_alpha()
+    explosion.image = pygame.image.load("./Game/Assets/Textures/explosion.png").convert_alpha()
+    explosion.image = pygame.transform.smoothscale(explosion.image, (windowWidth*0.02277, windowWidth*0.02277))
     explosion.rect = explosion.image.get_rect()
     explosion.rect.x = x
     explosion.rect.y = y
@@ -91,7 +93,7 @@ def collisionRedLights(car, trafficLightsList):
             car.speed = car.previousSpeed
 
 
-def collisionCars(car, carList, spritesList, explosionList):
+def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowHeight, lives):
     """Checks if the car is colliding with another car
     Args:
         car (sprite): The car to check
@@ -103,7 +105,7 @@ def collisionCars(car, carList, spritesList, explosionList):
     _carList.remove(car)
     for _car in _carList:
         if car.rect.colliderect(_car.rect):
-            boom = explosion(car.rect.x, car.rect.y)
+            boom = explosion(car.rect.x, car.rect.y, windowWidth, windowHeight)
             spritesList.add(boom)
             explosionList.add(boom)
             car.kill()
@@ -112,6 +114,7 @@ def collisionCars(car, carList, spritesList, explosionList):
             _car.remove(carList)
             car.remove(spritesList)
             _car.remove(spritesList)
+            lives -= 1
 
 
 def explosionRemove(explosion, explosionList, spritesList):
@@ -128,36 +131,49 @@ def explosionRemove(explosion, explosionList, spritesList):
         explosion.kill()
 
 
-def createCars(spritesList, carList, carSpawnPointsList, screenWidth, screenHeight, ticks, speed):  # TODO: finir la fonction (direction, vitesse différente)
+def createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, ticks, speed):  # TODO: finir la fonction (vitesse différente)
+    """Creates a car
+
+    Args:
+        carSpawnPoint (sprites): Spawn point of the car
+        spritesList (List of sprites): List of sprites
+        carList (List of sprites): List of cars
+        windowWidth (int): Width of the window
+        windowHeight (int): Height of the window
+        ticks (int): Number of ticks
+        speed (int): Speed of the car
+    """    
     lastTick = 0
-    delay = 5000
-    for carSpawnPoint in carSpawnPointsList:
-        if ticks > carSpawnPoint.lastTick + delay:
-            
-            if 0 < carSpawnPoint.rect.x < 30:
-                print("1")
-                newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "right", speed)
-                newCar.add(spritesList)
-                newCar.add(carList)
-                carSpawnPoint.lastTick = ticks
-                
-            if screenWidth - 30 < carSpawnPoint.rect.x < screenWidth:
-                print("2")
-                newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "left", speed)
-                newCar.add(spritesList)
-                newCar.add(carList)
-                carSpawnPoint.lastTick = ticks
-                
-            if 0 < carSpawnPoint.rect.y < 30:
-                print("3")
-                newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "down", speed)
-                newCar.add(spritesList)
-                newCar.add(carList)
-                carSpawnPoint.lastTick = ticks
-                
-            if screenHeight - 30 < carSpawnPoint.rect.y < screenHeight:
-                print("4")
-                newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "up", speed)
-                newCar.add(spritesList)
-                newCar.add(carList)
-                carSpawnPoint.lastTick = ticks
+    if ticks > carSpawnPoint.lastTick + carSpawnPoint.delay:
+        
+        if 0 <= carSpawnPoint.rect.x <= windowWidth*0.023:
+            speed = random.randint(1, 3)
+            newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "right", speed, windowWidth, windowHeight)
+            newCar.add(spritesList)
+            newCar.add(carList)
+            carSpawnPoint.lastTick = ticks
+            carSpawnPoint.delay = delay = random.randint(5000, 20000)
+        
+        if windowWidth - windowWidth*0.023 <= carSpawnPoint.rect.x <= windowWidth:
+            speed = random.randint(1, 3)
+            newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "left", speed, windowWidth, windowHeight)
+            newCar.add(spritesList)
+            newCar.add(carList)
+            carSpawnPoint.lastTick = ticks
+            carSpawnPoint.delay = delay = random.randint(5000, 20000)
+        
+        if 0 <= carSpawnPoint.rect.y <= windowWidth*0.023:
+            speed = random.randint(1, 3)
+            newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "down", speed, windowWidth, windowHeight)
+            newCar.add(spritesList)
+            newCar.add(carList)
+            carSpawnPoint.lastTick = ticks
+            carSpawnPoint.delay = delay = random.randint(5000, 20000)
+        
+        if windowHeight - windowWidth*0.023 <= carSpawnPoint.rect.y <= windowHeight:
+            speed = random.randint(1, 3)
+            newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "up", speed, windowWidth, windowHeight)
+            newCar.add(spritesList)
+            newCar.add(carList)
+            carSpawnPoint.lastTick = ticks
+            carSpawnPoint.delay = delay = random.randint(5000, 20000)

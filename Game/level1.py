@@ -22,8 +22,8 @@ carsPassed = 0  # How many cars the player has passed
 pygame.init()
 
 # Variables
-screenWidth = pygame.display.Info().current_w
-screenHeight = pygame.display.Info().current_h
+windowWidth = pygame.display.Info().current_w
+windowHeight = pygame.display.Info().current_h
 white = (255, 255, 255)
 clock = pygame.time.Clock()
 ticks = 0
@@ -44,8 +44,8 @@ explosionList = pygame.sprite.Group()
 # Event loop
 gameLoop = True
 while gameLoop:
-    
-    carFile.createCars(spritesList, carList, carSpawnPointsList, screenWidth, screenHeight, ticks, speed)
+    for carSpawnPoint in carSpawnPointsList:
+        carFile.createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, ticks, 1) # Create the cars
     
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -53,10 +53,10 @@ while gameLoop:
         if event.type == MOUSEBUTTONDOWN:
             x, y = event.pos  # Get the mouse position
             for trafficLight in trafficLightsList:
-                trafficLightFile.trafficLightsUpdate(trafficLight, x, y)  # Update the traffic lights
+                trafficLightFile.trafficLightsUpdate(trafficLight, x, y, windowWidth, windowHeight)  # Update the traffic lights
 
     for car in carList:
-        carFile.collisionCars(car, carList, spritesList, explosionList) # Check if the cars collide with each other
+        carFile.collisionCars(car, carList, spritesList, explosionList, windowWidth, windowHeight, lives) # Check if the cars collide with each other
         carFile.collisionRedLights(car, trafficLightsList) # Check if the cars collide with the red lights
         carsPassed = carFile.update(car, spritesList, carList, carsPassed)  # Update the cars
 

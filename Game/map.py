@@ -21,7 +21,11 @@ def loadMap(map, window):
     spritesList = pygame.sprite.Group()
     trafficLightsList = pygame.sprite.Group()
     carSpawnPointsList = pygame.sprite.Group()
-    tilesSize = 30
+    
+    windowSize = pygame.display.get_surface()
+    windowWidth, windowHeight = windowSize.get_width(), windowSize.get_height()
+    
+    tilesSize = windowWidth*0.02273
     x = 0
     y = 0
     if not os.path.isfile(map):
@@ -33,15 +37,15 @@ def loadMap(map, window):
                 x = 0
                 for symbols in line:
                     if symbols == "R":
-                        road = roadFile.road(x, y)
+                        road = roadFile.road(x, y, window.get_width(), window.get_height())
                         roadList.add(road)
                         spritesList.add(road)
                     elif symbols == "g":
-                        trafficLight = trafficLightFile.trafficLight(x, y, "green") 
+                        trafficLight = trafficLightFile.trafficLight(x, y, "green", window.get_width(), window.get_height()) 
                         trafficLightsList.add(trafficLight)
                         spritesList.add(trafficLight)
                     elif symbols == "c":
-                        carSpawn = roadFile.carSpawn(x, y)
+                        carSpawn = roadFile.carSpawn(x, y, window.get_width(), window.get_height())
                         carSpawnPointsList.add(carSpawn)
                         spritesList.add(carSpawn)
                     else:

@@ -1,24 +1,25 @@
-      R                         c           |
-      R                         R           |
-      R                         R           |
-      R                         R           |   43 symbols width & 25 lines height                                  
-cRRRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRR|
-      R                         R           |                 
-      R                         R           |                 
-      R                         R           |                 
-RRRRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRc|
-      R                         R           |
-      R                         R           |
-      R                         R           |
-      c                         R           |
-                                            |
-                                            |
-                                            |
-                                            |
-                                            |
-                                            |
-                                            |
-                                            |
-                                            |
-                                            |
---------------------------------------------|
+      RR                        cR
+      RR                        RR
+      RR                        RR
+      RR                        RR
+      RR                        RR
+      RR                        RR
+cRRRRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRc
+      RR                        RR
+      RR                        RR
+      RR                        RR
+      RR                        RR
+      RR                        RR
+      RR                        RR
+      RR                        RR
+RRRRRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRc
+      RR                        RR
+      RR                        RR
+cRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+      Rg                        RR
+      RR                        RR
+      RR                        RR
+      RR                        RR
+      RR                        RR
+      Rc                        RR
