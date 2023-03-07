@@ -10,11 +10,12 @@ import music
 # Other imports
 import os
 
-# Main window function
-
+# Changing working directory
+os.chdir('../Traffic_Lights')
 
 def levelsWindow():
-    # Main window setup
+    """Creates the window to select a level"""    
+    # Select window setup
     levelWindow = tkinter.Toplevel()
 
     # Screen info
@@ -39,9 +40,8 @@ def levelsWindow():
         e.widget['bg'] = '#B78BC4'
         e.widget['fg'] = 'white'
         
-    def startGame(directory): #TODO: Faire fonctionner
-        exec(open(directory).read())
-
+    def startGame(level): #FIXME: Faire fonctionner, module du niveau non trouvé
+        exec(open(f"./Game/{level}").read())
 
     # Title
     title = Label(levelWindow, bg='#B78BC4', text="Sélectionner un niveau", font=('Arial', round(screenWidth*0.026)), fg="white", highlightthickness=0, bd=0, width=round(screenWidth*0.02))
@@ -89,10 +89,11 @@ def levelsWindow():
     folderIndex = 0
     for file in directory:
         if "level" in file and file != "levelFinished.py":
+            print(file)
             folderIndex += 1
             yPos += 0.07*screenHeight
             # Button creation
-            levelButton = Button(levelWindow, text=f'Niveau {folderIndex}', font=('Arial', round(screenWidth*0.016)), bd=0, cursor="hand2", bg='#B78BC4' ,activebackground="#c59dd1", activeforeground="white", fg="#ffffff", width=round(screenWidth*0.02), command=startGame(f"./Game/{file}"))
+            levelButton = Button(levelWindow, text=f'Niveau {folderIndex}', font=('Arial', round(screenWidth*0.016)), bd=0, cursor="hand2", bg='#B78BC4' ,activebackground="#c59dd1", activeforeground="white", fg="#ffffff", width=round(screenWidth*0.02), command=startGame(file))
             levelButton.pack(pady=40)
             levelButton.place(x=screenWidth*0.01, y=yPos)
             levelButton.bind("<Enter>", onEnterLevelButton)

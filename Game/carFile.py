@@ -1,6 +1,10 @@
 import pygame
 import time
 import random
+import os
+
+# Changing working directory
+os.chdir('../Traffic_Lights')
 
 def car(x, y, direction, speed, windowWidth, windowHeight):
     """Creates a sprite for a car

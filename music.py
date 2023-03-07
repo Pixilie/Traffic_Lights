@@ -5,6 +5,8 @@ import os
 from dotenv import load_dotenv
 import subprocess
 
+# Changing working directory
+os.chdir('../Traffic_Lights')
 
 def playMusic(volume):
     """Play music in loop.

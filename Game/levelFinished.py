@@ -1,4 +1,8 @@
 import pygame
+import os
+
+# Changing working directory
+os.chdir('../Traffic_Lights')
 
 
 def isLevelFinished(carsPassed, carsToPass, level, levelName, levelDescription, lives, score, window, gameLoop):

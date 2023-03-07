@@ -1,6 +1,9 @@
 import pygame
 import os
 
+# Changing working directory
+os.chdir('../Traffic_Lights')
+
 # Import game files
 import trafficLightFile
 import roadFile

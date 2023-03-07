@@ -1,4 +1,8 @@
 import pygame
+import os
+
+# Changing working directory
+os.chdir('../Traffic_Lights')
 
 def trafficLight(x, y, color, windowWidth, windowHeight):
     """Creates a sprite for a traffic light

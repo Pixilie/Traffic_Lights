@@ -14,6 +14,9 @@ import Menus.settings as settings
 import Menus.credits as credits
 import music
 
+# Changing working directory
+os.chdir('../Traffic_Lights')
+
 # Main window setup
 mainWindow = tkinter.Tk()
 

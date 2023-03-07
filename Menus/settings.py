@@ -10,8 +10,12 @@ import os
 # Import other files from the game
 import music
 
+# Changing working directory
+os.chdir('../Traffic_Lights')
+
 #TODO: Terminer le design + param son appliquer uniquement après restart + langues
 def settingsWindow():
+    """Settings window."""    
     # Main window setup
     settingsWindow = tkinter.Toplevel()
 
@@ -50,7 +54,7 @@ def settingsWindow():
     backButton.bind("<Leave>", onLeave)
 
     # Volume control
-    volumeControl = Scale(settingsWindow, orient='horizontal', from_=0, to=1, resolution=0.1, tickinterval=0.1, length=200, label='Volume (%)', bg='#B78BC4', activebackground="#B78BC4", relief="flat", fg='white', cursor="hand2", highlightthickness=0, command=music.getVolume)
+    volumeControl = Scale(settingsWindow, orient='horizontal', from_=0, to=1, resolution=0.01, tickinterval=0.01, length=300, label='Volume (%)', bg='#B78BC4', activebackground="#B78BC4", relief="flat", fg='white', cursor="hand2", highlightthickness=0, command=music.getVolume)
     volumeControl.set(float(os.getenv("SOUND_VOLUME")))
     volumeControl.pack(side='top')
 

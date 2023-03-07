@@ -1,6 +1,10 @@
 # Import librairies
 import pygame
 from pygame.locals import *
+import os
+
+# Changing working directory
+os.chdir('../Traffic_Lights')
 
 # Import game files
 import map
@@ -15,7 +19,7 @@ levelDescription = "Le premier niveau est un niveau d'initiation. Il vous permet
 completed = False  # If the level is completed
 lives = 3  # Number of lives
 score = 0  # Score of the player
-carsToPass = 1  # How many cars the player has to pass to complete the level
+carsToPass = 100  # How many cars the player has to pass to complete the level
 carsPassed = 0  # How many cars the player has passed
 
 # Pygame init
@@ -50,6 +54,9 @@ while gameLoop:
     for event in pygame.event.get():
         if event.type == QUIT:
             gameLoop = False
+        if event.type == KEYDOWN:
+            if event.key == K_ESCAPE:
+                gameLoop = False #TODO: Add a pause menu
         if event.type == MOUSEBUTTONDOWN:
             x, y = event.pos  # Get the mouse position
             for trafficLight in trafficLightsList:
