@@ -7,7 +7,6 @@ except ImportError:
     from Tkinter import *
 # Other imports
 import os
-from dotenv import load_dotenv
 # Import other files from the game
 import Menus.selectLevel as selectLevel
 import Menus.settings as settings
@@ -52,7 +51,7 @@ def Credits():
 def onEnter(e):
     e.widget['bg'] = '#c59dd1'
     e.widget['fg'] = 'white'
-    music.playSound(float(os.getenv("SOUND_VOLUME")))
+    music.playSound(float(music.getVolume()))
 
 def onLeave(e):
     e.widget['bg'] = '#B78BC4'
@@ -92,7 +91,7 @@ creditsButton.bind("<Enter>", onEnter)
 creditsButton.bind("<Leave>", onLeave)
 
 # Play music
-music.playMusic(float(os.getenv("SOUND_VOLUME")))
+music.playMusic(float(music.getVolume()))
 
 # Compiling window
 mainWindow.mainloop()

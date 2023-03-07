@@ -2,7 +2,7 @@
 import pygame
 import random
 import os
-from dotenv import load_dotenv
+import json
 import subprocess
 
 # Changing working directory
@@ -38,13 +38,26 @@ def playSound(volume):
     pygame.mixer.music.play()
 
 
-def getVolume(n):
+def getVolume():
     """Get the volume level.
-    Args:
-        volume (int): Volume of the music.
     Returns:
         volumeLevel (int): Volume of the music.
     """
-    with open(".env", "w") as f:
-        f.write(f'SOUND_VOLUME={n}')
+    settingsFile = open('settings.json')
+    settings = json.load(settingsFile)
+    for setting in settings:
+        if setting == 'sound_volume':
+            volumeLevel = settings[setting]
+    settingsFile.close()
+    return volumeLevel
 
+
+def setVolume(volume):
+    """Set the volume level.
+
+    Args:
+        volume (int): Volume of the music.
+    """    
+    setting = { "sound_volume": volume}
+    with open('settings.json', 'w') as settingsFile:
+        json.dump(setting, settingsFile, indent=4)

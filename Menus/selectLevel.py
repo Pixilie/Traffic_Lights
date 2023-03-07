@@ -9,6 +9,7 @@ except ImportError:
 import music
 # Other imports
 import os
+import json
 
 # Changing working directory
 os.chdir('../Traffic_Lights')
@@ -34,7 +35,7 @@ def levelsWindow():
     def onEnter(e):
         e.widget['bg'] = '#c59dd1'
         e.widget['fg'] = 'white'
-        music.playSound(float(os.getenv("SOUND_VOLUME")))
+        music.playSound(float(music.getVolume()))
 
     def onLeave(e):
         e.widget['bg'] = '#B78BC4'

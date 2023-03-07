@@ -54,8 +54,8 @@ def settingsWindow():
     backButton.bind("<Leave>", onLeave)
 
     # Volume control
-    volumeControl = Scale(settingsWindow, orient='horizontal', from_=0, to=1, resolution=0.01, tickinterval=0.01, length=300, label='Volume (%)', bg='#B78BC4', activebackground="#B78BC4", relief="flat", fg='white', cursor="hand2", highlightthickness=0, command=music.getVolume)
-    volumeControl.set(float(os.getenv("SOUND_VOLUME")))
+    volumeControl = Scale(settingsWindow, orient='horizontal', from_=0, to=1, resolution=0.01, tickinterval=0.01, length=300, label='Volume (%)', bg='#B78BC4', activebackground="#B78BC4", relief="flat", fg='white', cursor="hand2", highlightthickness=0, command=music.setVolume)
+    volumeControl.set(float(music.getVolume()))
     volumeControl.pack(side='top')
 
     # Compiling window
