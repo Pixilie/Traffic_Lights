@@ -36,6 +36,7 @@ def car(x, y, direction, speed, windowWidth, windowHeight):
     car.speed = speed
     car.direction = direction
     car.previousSpeed = speed
+    car.stopped = False
     return car
 
 
@@ -93,8 +94,10 @@ def collisionRedLights(car, trafficLightsList):
     for trafficLight in trafficLightsList:
         if trafficLight.color == "red" and trafficLight.rect.collidepoint(car.rect.x, car.rect.y):
             car.speed = 0
+            car.stopped = True
         elif trafficLight.color == "green" and trafficLight.rect.collidepoint(car.rect.x, car.rect.y):
             car.speed = car.previousSpeed
+            car.stopped = False
 
 
 def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowHeight, lives):
@@ -104,21 +107,34 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
         carList (list): The list of cars
         spritesList (list): The list of sprites
         explosionList (list): The list of explosions
-    """    
+    """
     _carList = carList.copy()
     _carList.remove(car)
     for _car in _carList:
         if car.rect.colliderect(_car.rect):
-            boom = explosion(car.rect.x, car.rect.y, windowWidth, windowHeight)
-            spritesList.add(boom)
-            explosionList.add(boom)
-            car.kill()
-            _car.kill()
-            car.remove(carList)
-            _car.remove(carList)
-            car.remove(spritesList)
-            _car.remove(spritesList)
-            lives -= 1
+            if car.stopped == True:
+                _car.stopped = True
+                _car.speed = 0
+                print("stopped")
+            elif _car.stopped == True:
+                car.stopped = True
+                car.speed = 0
+                print("stopped")
+            else:
+                boom = explosion(car.rect.x, car.rect.y, windowWidth, windowHeight)
+                spritesList.add(boom)
+                explosionList.add(boom)
+                car.kill()
+                _car.kill()
+                car.remove(carList)
+                _car.remove(carList)
+                car.remove(spritesList)
+                _car.remove(spritesList)
+                lives -= 1
+        else:
+            print("not stopped")
+            car.stopped = False
+            car.speed = car.previousSpeed
 
 
 def explosionRemove(explosion, explosionList, spritesList):
