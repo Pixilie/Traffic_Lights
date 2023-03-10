@@ -62,7 +62,7 @@ def settingsWindow():
     backButton.bind("<Leave>", onLeave)
 
     # Volume control
-    volumeControl = Scale(settingsWindow, orient='horizontal', from_=0, to=100, resolution=10, tickinterval=1, length=300, label='Volume (%)', bg='#B78BC4', activebackground="#B78BC4", relief="flat", fg='white', cursor="hand2", highlightthickness=0, command=music.setVolume)
+    volumeControl = Scale(settingsWindow, orient='horizontal', from_=0, to=100, resolution=1, tickinterval=10, length=300, label='Volume (%)', bg='#B78BC4', activebackground="#B78BC4", relief="flat", fg='white', cursor="hand2", highlightthickness=0, command=music.setVolume)
     volumeControl.set(float(music.getVolume()))
     volumeControl.pack(side='top')
 
