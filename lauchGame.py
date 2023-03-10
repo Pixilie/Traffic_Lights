@@ -28,35 +28,38 @@ mainWindow.title("Traffic Light")
 mainWindow.config(background='#B78BC4')
 mainWindow.attributes('-fullscreen', True)
 
-
-# Exit button function
 def Close():
+    """Close the main window."""    
     mainWindow.destroy()
 
-
-# Levels button function
 def Levels():
+    """Open the levels window."""    
     selectLevel.levelsWindow()
 
-
-# Settings button function
 def Settings():
+    """Open the settings window."""    
     settings.settingsWindow()
 
-
-# Credits button function
 def Credits():
+    """Open the credits window."""    
     credits.creditsWindow()
 
 def onEnter(e):
+    """On enter event.
+    Args:
+        e (event): Event.
+    """    
     e.widget['bg'] = '#c59dd1'
     e.widget['fg'] = 'white'
-    music.playSound(float(music.getVolume()))
+    music.playSound('hover', music.getVolume())
 
 def onLeave(e):
+    """On leave event.
+    Args:
+        e (event): Event.
+    """ 
     e.widget['bg'] = '#B78BC4'
     e.widget['fg'] = 'white'
-
 
 # Title
 title_icon = PhotoImage(file="./Menus/Assets/Images/traffic_lights.png")
@@ -91,7 +94,7 @@ creditsButton.bind("<Enter>", onEnter)
 creditsButton.bind("<Leave>", onLeave)
 
 # Play music
-music.playMusic(float(music.getVolume()))
+music.playSound('music', music.getVolume())
 
 # Compiling window
 mainWindow.mainloop()

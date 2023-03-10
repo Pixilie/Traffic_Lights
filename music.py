@@ -4,39 +4,32 @@ import random
 import os
 import json
 import subprocess
+import time
 
 # Changing working directory
 os.chdir('../Traffic_Lights')
-
-def playMusic(volume):
-    """Play music in loop.
-    Args:
-        volume (float): Volume of the music.
-    """
-    pygame.mixer.init()
-    playlist = list()
-    musicNumber = random.randint(1, 3)
-    if musicNumber == 1:
-        pygame.mixer.music.load('./Menus/Assets/Sounds/music3.mp3')
-    elif musicNumber == 2:
-        pygame.mixer.music.load('./Menus/Assets/Sounds/music2.mp3')
-    else:
-        pygame.mixer.music.load('./Menus/Assets/Sounds/music1.mp3')
-    pygame.mixer.music.set_endevent(pygame.USEREVENT)
-    pygame.mixer.music.set_volume(volume)
-    pygame.mixer.music.play()
-
-
-def playSound(volume):
+    
+def playSound(type, volume):
     """Play a sound.
     Args:
-        sound (str): Path to the sound.
+        type (str): Type of sound to play.
+        volume (int): Volume of the music.
     """
     pygame.mixer.init()
-    pygame.mixer.music.load("./Menus/Assets/Sounds/hover.mp3")
-    pygame.mixer.music.set_volume(volume)
-    pygame.mixer.music.play()
-
+    if type == 'music':
+        musicNumber = random.randint(1, 3)
+        if musicNumber == 1:
+            pygame.mixer.Channel(1).play('./Menus/Assets/Sounds/music3.mp3', loops=-1)
+            pygame.mixer.Channel.set_volume(volume)
+        elif musicNumber == 2:
+            pygame.mixer.Channel(1).play('./Menus/Assets/Sounds/music2.mp3', loops=-1)
+            pygame.mixer.Channel.set_volume(volume)
+        else:
+            pygame.mixer.Channel(1).play('./Menus/Assets/Sounds/music1.mp3', loops=-1)
+            pygame.mixer.Channel.set_volume(volume)
+    else:
+        pygame.mixer.Channel(0).play("./Menus/Assets/Sounds/hover.mp3")
+        pygame.mixer.Channel.set_volume(volume)
 
 def getVolume():
     """Get the volume level.
@@ -47,10 +40,9 @@ def getVolume():
     settings = json.load(settingsFile)
     for setting in settings:
         if setting == 'sound_volume':
-            volumeLevel = settings[setting]
+            volumeLevel = float(settings[setting])/100
     settingsFile.close()
     return volumeLevel
-
 
 def setVolume(volume):
     """Set the volume level.
@@ -58,6 +50,6 @@ def setVolume(volume):
     Args:
         volume (int): Volume of the music.
     """    
-    setting = { "sound_volume": volume}
+    setting = { "sound_volume": volume, "language": f"{os.environ['LANG'][:2]}"}
     with open('settings.json', 'w') as settingsFile:
         json.dump(setting, settingsFile, indent=4)

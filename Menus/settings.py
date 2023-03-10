@@ -29,15 +29,23 @@ def settingsWindow():
     settingsWindow.attributes('-fullscreen', True)
 
     # Exit button function
-
     def Close():
+        """Close the settings window."""        
         settingsWindow.destroy()
 
     def onEnter(e):
+        """On enter event.
+        Args:
+            e (event): Event.
+        """        
         e.widget['bg'] = '#c59dd1'
         e.widget['fg'] = 'white'
 
     def onLeave(e):
+        """On leave event.
+        Args:
+            e (event): Event.
+        """        
         e.widget['bg'] = '#B78BC4'
         e.widget['fg'] = 'white'
 
@@ -54,7 +62,7 @@ def settingsWindow():
     backButton.bind("<Leave>", onLeave)
 
     # Volume control
-    volumeControl = Scale(settingsWindow, orient='horizontal', from_=0, to=1, resolution=0.01, tickinterval=0.01, length=300, label='Volume (%)', bg='#B78BC4', activebackground="#B78BC4", relief="flat", fg='white', cursor="hand2", highlightthickness=0, command=music.setVolume)
+    volumeControl = Scale(settingsWindow, orient='horizontal', from_=0, to=100, resolution=10, tickinterval=1, length=300, label='Volume (%)', bg='#B78BC4', activebackground="#B78BC4", relief="flat", fg='white', cursor="hand2", highlightthickness=0, command=music.setVolume)
     volumeControl.set(float(music.getVolume()))
     volumeControl.pack(side='top')
 

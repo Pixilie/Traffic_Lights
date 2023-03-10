@@ -35,7 +35,7 @@ def levelsWindow():
     def onEnter(e):
         e.widget['bg'] = '#c59dd1'
         e.widget['fg'] = 'white'
-        music.playSound(float(music.getVolume()))
+        music.playSound('hover', music.getVolume())
 
     def onLeave(e):
         e.widget['bg'] = '#B78BC4'
@@ -68,7 +68,7 @@ def levelsWindow():
         """
         e.widget['bg'] = '#c59dd1'
         e.widget['fg'] = 'white'
-        music.playSound(float(os.getenv("SOUND_VOLUME")))
+        music.playSound('hover', music.getVolume())
         # TODO: Terminer panel + panel ne disparaît pas quand on quitte le bouton
         infoPanel = Canvas(levelWindow, width=screenWidth * 0.43, height=screenHeight*0.8, bg='#B78BC4', bd=8)
         infoPanel.create_text(screenWidth*0.22, screenHeight*0.05, text=f'Niveau {e}', font=('Arial', round(screenWidth*0.016)), fill="white")
@@ -101,7 +101,7 @@ def levelsWindow():
             levelButton.bind("<Leave>", onLeaveLevelButton)
 
     # Play music
-    music.playMusic(float(os.getenv("SOUND_VOLUME")))
+    music.playSound('music', music.getVolume())
     
     # Compiling window
     levelWindow.mainloop()
