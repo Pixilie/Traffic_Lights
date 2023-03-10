@@ -19,16 +19,16 @@ def playSound(type, volume):
     if type == 'music':
         musicNumber = random.randint(1, 3)
         if musicNumber == 1:
-            pygame.mixer.Channel(1).play('./Menus/Assets/Sounds/music3.mp3', loops=-1)
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('./Menus/Assets/Sounds/music1.mp3'), loops=-1)
             pygame.mixer.Channel.set_volume(volume)
         elif musicNumber == 2:
-            pygame.mixer.Channel(1).play('./Menus/Assets/Sounds/music2.mp3', loops=-1)
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('./Menus/Assets/Sounds/music2.mp3'), loops=-1)
             pygame.mixer.Channel.set_volume(volume)
         else:
-            pygame.mixer.Channel(1).play('./Menus/Assets/Sounds/music1.mp3', loops=-1)
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('./Menus/Assets/Sounds/music3.mp3'), loops=-1)
             pygame.mixer.Channel.set_volume(volume)
     else:
-        pygame.mixer.Channel(0).play("./Menus/Assets/Sounds/hover.mp3")
+        pygame.mixer.Channel(0).play(pygame.mixer.Sound('./Menus/Assets/Sounds/hover.mp3'))
         pygame.mixer.Channel.set_volume(volume)
 
 def getVolume():
