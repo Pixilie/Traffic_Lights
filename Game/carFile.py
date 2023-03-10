@@ -98,7 +98,7 @@ def collisionRedLights(car, trafficLightsList):
         elif trafficLight.color == "green" and trafficLight.rect.collidepoint(car.rect.x, car.rect.y):
             car.speed = car.previousSpeed
             car.stopped = False
-
+        
 
 def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowHeight, lives):
     """Checks if the car is colliding with another car
@@ -114,12 +114,12 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
         if car.rect.colliderect(_car.rect):
             if car.stopped == True:
                 _car.stopped = True
+                car.speed = 0
                 _car.speed = 0
-                print("stopped")
             elif _car.stopped == True:
                 car.stopped = True
+                _car.speed = 0
                 car.speed = 0
-                print("stopped")
             else:
                 boom = explosion(car.rect.x, car.rect.y, windowWidth, windowHeight)
                 spritesList.add(boom)
@@ -132,8 +132,6 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
                 _car.remove(spritesList)
                 lives -= 1
         else:
-            print("not stopped")
-            car.stopped = False
             car.speed = car.previousSpeed
 
 
