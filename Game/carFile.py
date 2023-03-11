@@ -113,6 +113,7 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
     for _car in _carList:
         if not car.rect.colliderect(_car.rect):
             car.speed = car.previousSpeed
+            car.stopped = False
 
         if car.rect.colliderect(_car.rect):
             if car.stopped == True:
