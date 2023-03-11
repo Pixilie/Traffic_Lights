@@ -111,6 +111,9 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
     _carList = carList.copy()
     _carList.remove(car)
     for _car in _carList:
+        if not car.rect.colliderect(_car.rect):
+            car.speed = car.previousSpeed
+
         if car.rect.colliderect(_car.rect):
             if car.stopped == True:
                 _car.stopped = True
@@ -131,9 +134,6 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
                 car.remove(spritesList)
                 _car.remove(spritesList)
                 lives -= 1
-        else:
-            car.speed = car.previousSpeed
-
 
 def explosionRemove(explosion, explosionList, spritesList):
     """Removes the explosion from the lists
