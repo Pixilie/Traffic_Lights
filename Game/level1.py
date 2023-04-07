@@ -39,7 +39,7 @@ pygame.display.set_caption(f'Traffic Light - {levelName}')
 window.fill(white)
 
 # Sprites list
-spritesList, roadList, trafficLightsList, carSpawnPointsList = map.loadMap("./Game/Assets/Maps/map_lvl1.txt", window)
+spritesList, roadList, trafficLightsList, carSpawnPointsList = map.loadMap("./Game/Assets/Maps/test.txt", window)
 redTrafficLightsList = pygame.sprite.Group()
 carList = pygame.sprite.Group()
 explosionList = pygame.sprite.Group()

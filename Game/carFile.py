@@ -110,17 +110,15 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
     """
     _carList = carList.copy()
     _carList.remove(car)
+    collideCarsList = pygame.sprite.Group()
+
     for _car in _carList:
-        if not car.rect.colliderect(_car.rect):
-            car.speed = car.previousSpeed
-            car.stopped = False
 
         if car.rect.colliderect(_car.rect):
-            if car.stopped == True:
+            collideCarsList.add(_car) #TODO: Peut-être changé collideCarsList en stopCarsList et passer cette méthode ligne 121
+
+            if car.stopped or _car.stopped == True:
                 _car.stopped = True
-                car.speed = 0
-                _car.speed = 0
-            elif _car.stopped == True:
                 car.stopped = True
                 _car.speed = 0
                 car.speed = 0
@@ -135,6 +133,15 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
                 car.remove(spritesList)
                 _car.remove(spritesList)
                 lives -= 1
+
+            for collidedCar in collideCarsList:
+                if not _car.rect.colliderect(collidedCar.rect):
+                    print("no collision") #FIXME: A partir de la ligne 139 le code n'est jamais appelé -> condition à revoir
+                    collideCarsList.remove(collidedCar)
+                    _car.speed = _car.previousSpeed
+                    _car.stopped = False
+
+        #print(collideCarsList)
 
 def explosionRemove(explosion, explosionList, spritesList):
     """Removes the explosion from the lists
