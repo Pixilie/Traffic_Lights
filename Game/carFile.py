@@ -157,7 +157,7 @@ def explosionRemove(explosion, explosionList, spritesList):
         explosion.kill()
 
 
-def createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, ticks, speed):  # TODO: finir la fonction (vitesse différente)
+def createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, ticks, speed):
     """Creates a car
 
     Args:

@@ -46,7 +46,6 @@ def getVolume():
     for setting in settings:
         if setting == 'sound_volume':
             volumeLevel = float(settings[setting])/100
-            print(volumeLevel)
     settingsFile.close()
     return volumeLevel
 

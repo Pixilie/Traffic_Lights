@@ -41,15 +41,16 @@ def levelsWindow():
         e.widget['bg'] = '#B78BC4'
         e.widget['fg'] = 'white'
         
-    def startGame(level): #FIXME: Faire fonctionner, module du niveau non trouvé
-        exec(open(f"./Game/{level}").read())
+    def startGame(level): #FIXME: niveau se lance directement sans cliquer sur le bouton du niveau
+        print("click")
+        #exec(open(f"./Game/{level}").read())
 
     # Title
     title = Label(levelWindow, bg='#B78BC4', text="Sélectionner un niveau", font=('Arial', round(screenWidth*0.026)), fg="white", highlightthickness=0, bd=0, width=round(screenWidth*0.02))
     title.pack()
 
     # Go back button
-    backIcon = PhotoImage(file='./Menus/Assets/Images/back.png', width=round(screenWidth*0.06), height=round(screenHeight*0.09))
+    backIcon = PhotoImage(file='./Menus/Assets/Images/back.png', width=round(screenWidth*0.08), height=round(screenHeight*0.13))
     backButton = Button(levelWindow, image=backIcon, font=('Arial', round(screenWidth*0.016)),  bd=0, relief="flat", activebackground="#c59dd1", activeforeground="white", cursor="hand2", bg='#B78BC4', fg="#ffffff", command=goBack)
     backButton.pack(pady=20)
     backButton.place(x=screenWidth*0.01, y=0)
@@ -73,9 +74,9 @@ def levelsWindow():
         infoPanel = Canvas(levelWindow, width=screenWidth * 0.43, height=screenHeight*0.8, bg='#B78BC4', bd=8)
         infoPanel.create_text(screenWidth*0.22, screenHeight*0.05, text=f'Niveau {e}', font=('Arial', round(screenWidth*0.016)), fill="white")
         infoPanel.pack()
-        infoPanel.place(x=screenWidth*0.55, y=screenHeight*0.17)
+        infoPanel.place(x=screenWidth*0.55, y=screenHeight*0.15)
 
-    def onLeaveLevelButton(e):
+    def onLeaveLevelButton(e): #FIXME: panel ne disparaît pas quand on quitte le bouton
         """Destroys the panel and changes the background color of the button
         Args:
             e (Event): Event triggered by the button
@@ -90,13 +91,12 @@ def levelsWindow():
     folderIndex = 0
     for file in directory:
         if "level" in file and file != "levelFinished.py":
-            print(file)
             folderIndex += 1
             yPos += 0.07*screenHeight
             # Button creation
-            levelButton = Button(levelWindow, text=f'Niveau {folderIndex}', font=('Arial', round(screenWidth*0.016)), bd=0, cursor="hand2", bg='#B78BC4' ,activebackground="#c59dd1", activeforeground="white", fg="#ffffff", width=round(screenWidth*0.02), command=startGame(file))
+            levelButton = Button(levelWindow, text=f'Niveau {folderIndex}', font=('Arial', round(screenWidth*0.016)), bd=0, cursor="hand2", bg='#B78BC4' ,activebackground="#c59dd1", activeforeground="white", fg="#ffffff", width=round(screenWidth*0.03), command=startGame(file))
             levelButton.pack(pady=40)
-            levelButton.place(x=screenWidth*0.01, y=yPos)
+            levelButton.place(x=screenWidth*0.04, y=yPos)
             levelButton.bind("<Enter>", onEnterLevelButton)
             levelButton.bind("<Leave>", onLeaveLevelButton)
 

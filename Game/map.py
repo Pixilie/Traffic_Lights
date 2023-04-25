@@ -33,6 +33,7 @@ def loadMap(map, window):
     y = 0
     if not os.path.isfile(map):
         print("Map doesn't exist.")
+        pass
     else:
         with open(map, "rt") as file:
             map_data = file.readlines()

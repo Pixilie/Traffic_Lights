@@ -2,9 +2,11 @@
 import pygame
 from pygame.locals import *
 import os
+import sys
 
 # Changing working directory
 os.chdir('../Traffic_Lights')
+sys.path.append(f'{os.getcwd()}\\Game')
 
 # Import game files
 import map
