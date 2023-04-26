@@ -17,7 +17,7 @@ import levelFinished
 # Level Information
 level = 1  # Level number
 levelName = "Niveau 1"  # Level name
-levelDescription = "Le premier niveau est un niveau d'initiation. Il vous permettra de vous familiariser avec le jeu. Vous devrez apprendre à gérer les feux de signalisation et à éviter les collisions. Bonne chance !"  # Level description
+levelDescription = "Le premier niveau est un niveau d'initiation.Il vous permettra de vous familiariser avec le jeu. Vous devrez apprendre à gérer les feux de signalisation et à éviter les collisions. Bonne chance !"  # Level description
 completed = False  # If the level is completed
 lives = 3  # Number of lives
 score = 0  # Score of the player
