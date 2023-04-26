@@ -5,7 +5,7 @@ import os
 os.chdir('../Traffic_Lights')
 
 
-def isLevelFinished(carsPassed, carsToPass, level, levelName, levelDescription, lives, score, window, gameLoop):
+def isLevelFinished(carsPassed, carsToPass, level, levelName, lives, score, window, gameLoop):
     """Checks if the level is finished
     Args:
         carsPassed (int): The number of cars that passed
