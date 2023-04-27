@@ -94,10 +94,6 @@ def levelsWindow():
         print("startGame")
         level = __import__(f'Game.level{fileIndex}', fromlist=[f'Game.level{fileIndex}'])
         level.level()
-    
-    def test():
-        """Test function"""        
-        print("test")
 
 # -----------------------------------------------------------------------------------------------------------------------------
     # Main window setting
