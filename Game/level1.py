@@ -76,5 +76,3 @@ def level():
         displayRate = clock.tick(30)  # Limit the display rate to 30 fps
         ticks = pygame.time.get_ticks() # Get the ticks
     pygame.quit()
-
-level()

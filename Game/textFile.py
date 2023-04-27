@@ -21,8 +21,5 @@ def write(x, y, font, size, color, message, center, window):
         window.blit(text, (x-width/2, y))
     else:
         window.blit(text, (x, y))
-    print(x)
-    print(width)
-    print(x-width)
     pygame.display.update()
     return text
