@@ -3,6 +3,7 @@ import pygame
 from pygame.locals import *
 import os
 import sys
+import textFile
 
 # Changing working directory & adding path
 os.chdir('../Traffic_Lights')
@@ -15,7 +16,11 @@ import trafficLightFile
 import levelFinished
 
 # Level informations
-levelInfos = [1, "Niveau 1", False, 3, 0, 100, 0]
+levelInfos = [1, "Niveau 1", textFile.readData("completed", 1, "./Game/levelsData.json"), 3, textFile.readData("score", 1, "./Game/levelsData.json"), 100, 0]
+
+# Write data in json file
+if not (textFile.searchData("level_id", levelInfos[0], "./Game/levelsData.json")):
+    textFile.writeData({ "level_id" : levelInfos[0], "score" : 0, "completed" : "false"}, "./Game/levelsData.json")
 
 # TODO: Musics and sounds
 def level():
@@ -76,3 +81,5 @@ def level():
         displayRate = clock.tick(30)  # Limit the display rate to 30 fps
         ticks = pygame.time.get_ticks() # Get the ticks
     pygame.quit()
+
+level()

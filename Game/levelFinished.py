@@ -55,8 +55,8 @@ def pauseMenu(gameLoop, windowWidth, windowHeight, window):
     pygame.display.update()
     
     # Write text on the screen
-    textFile.write(windowWidth*0.5, windowHeight*0.1, "Arial", round(windowWidth*0.05), (0, 0, 0), "Jeu en pause", True, window)
-    textFile.write(windowWidth*0.5, windowHeight*0.4, "Arial", round(windowWidth*0.03), (0, 0, 0), "Appuyez sur 'Espace' pour continuer ou 'Echap' pour quitter", True, window)
+    textFile.writeText(windowWidth*0.5, windowHeight*0.1, "Arial", round(windowWidth*0.05), (0, 0, 0), "Jeu en pause", True, window)
+    textFile.writeText(windowWidth*0.5, windowHeight*0.4, "Arial", round(windowWidth*0.03), (0, 0, 0), "Appuyez sur 'Espace' pour continuer ou 'Echap' pour quitter", True, window)
     pause = True
     while pause:
         for event in pygame.event.get():

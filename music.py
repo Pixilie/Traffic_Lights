@@ -51,7 +51,6 @@ def getVolume():
 
 def setVolume(volume):
     """Set the volume level.
-
     Args:
         volume (int): Volume of the music.
     """
