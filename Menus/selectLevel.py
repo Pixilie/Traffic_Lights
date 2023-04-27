@@ -5,30 +5,25 @@ try:
 except ImportError:
     import Tkinter as tkinter
     from Tkinter import *
-#Import other files from the game
+
+#Other imports
 import music
-# Other imports
 import os
-#import Game.level1 as level1
 
 # Changing working directory
 os.chdir('../Traffic_Lights')
 
 def levelsWindow():
-    """Creates the window to select a level"""    
-    # Select window setup
+    """Creates the window to select a level"""
+
+    # levelWindow initialization
     levelWindow = tkinter.Toplevel()
 
-    # Screen info
+    # Screen informations
     screenWidth = levelWindow.winfo_screenwidth()
     screenHeight = levelWindow.winfo_screenheight()
 
-    # Main window setting
-    levelWindow.title("Traffic Light")
-    levelWindow.config(background='#B78BC4')
-    levelWindow.attributes('-fullscreen', True)
-
-    # Functions -------------------------------------------------------------------------------------------------------------
+    # Functions definition ----------------------------------------------------------------------------------------------------
     def goBack():
         """Close the window."""        
         levelWindow.destroy()
@@ -91,7 +86,7 @@ def levelsWindow():
         onEnter(event)
         onEnterLevelButton(fileIndex)
         
-    def startGame(fileIndex): #FIXME: niveau se lance directement sans cliquer sur le bouton du niveau
+    def startGame(fileIndex):
         """Start the game
         Args:
             fileIndex (int): Index of the file
@@ -105,6 +100,11 @@ def levelsWindow():
         print("test")
 
 # -----------------------------------------------------------------------------------------------------------------------------
+    # Main window setting
+    levelWindow.title("Traffic Light")
+    levelWindow.config(background='#B78BC4')
+    levelWindow.attributes('-fullscreen', True)
+    
     # Title
     title = Label(levelWindow, bg='#B78BC4', text="Sélectionner un niveau", font=('Arial', round(screenWidth*0.026)), fg="white", highlightthickness=0, bd=0, width=round(screenWidth*0.02))
     title.pack()

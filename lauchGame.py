@@ -16,18 +16,14 @@ import music
 # Changing working directory
 os.chdir('../Traffic_Lights')
 
-# Main window setup
+# Main window initialization
 mainWindow = tkinter.Tk()
 
-# Screen info
+# Screen informations
 screenWidth = mainWindow.winfo_screenwidth()
 screenHeight = mainWindow.winfo_screenheight()
 
-# Main window setting
-mainWindow.title("Traffic Light")
-mainWindow.config(background='#B78BC4')
-mainWindow.attributes('-fullscreen', True)
-
+# Functions definition ----------------------------------------------------------------------------------------------------
 def Close():
     """Close the main window."""    
     mainWindow.destroy()
@@ -60,6 +56,12 @@ def onLeave(e):
     """ 
     e.widget['bg'] = '#B78BC4'
     e.widget['fg'] = 'white'
+
+# Main window ----------------------------------------------------------------------------------------------------
+# Main window setting
+mainWindow.title("Traffic Light")
+mainWindow.config(background='#B78BC4')
+mainWindow.attributes('-fullscreen', True)
 
 # Title
 title_icon = PhotoImage(file="./Menus/Assets/Images/traffic_lights.png")

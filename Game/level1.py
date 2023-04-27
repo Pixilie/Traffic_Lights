@@ -4,7 +4,7 @@ from pygame.locals import *
 import os
 import sys
 
-# Changing working directory
+# Changing working directory & adding path
 os.chdir('../Traffic_Lights')
 sys.path.append(f'{os.getcwd()}\\Game')
 
@@ -15,12 +15,13 @@ import trafficLightFile
 import levelFinished
 
 # Level informations
-levelInfos = [1, "Niveau 1", False, 3, 0, 100, 0]  # List of level information
+levelInfos = [1, "Niveau 1", False, 3, 0, 100, 0]
 
+# TODO: Musics and sounds
 def level():
     """Launch the level."""
 
-    # Pygame init
+    # Pygame initialization
     pygame.init()
 
     # Variables
@@ -29,7 +30,6 @@ def level():
     white = (255, 255, 255)
     clock = pygame.time.Clock()
     ticks = 0
-    lastTick = 0
     level, levelName, completed, lives, score, carsToPass, carsPassed = levelInfos
 
     # Main window setup
@@ -43,8 +43,7 @@ def level():
     carList = pygame.sprite.Group()
     explosionList = pygame.sprite.Group()
 
-    # TODO: Musics and sounds
-    # Event loop
+    # Event loop & level's code
     gameLoop = True
     while gameLoop:
         for carSpawnPoint in carSpawnPointsList:
@@ -55,7 +54,7 @@ def level():
                 gameLoop = False
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    gameLoop = False #TODO: Add a pause menu
+                    gameLoop = levelFinished.pauseMenu(gameLoop, windowWidth, windowHeight, window)
             if event.type == MOUSEBUTTONDOWN:
                 x, y = event.pos  # Get the mouse position
                 for trafficLight in trafficLightsList:
@@ -74,6 +73,8 @@ def level():
         window.fill(white)  # Fill the window with white
         spritesList.draw(window)  # Draw the sprites
         pygame.display.flip()  # Update the display
-        displayRate = clock.tick(60)  # Limit the display rate to 60 fps
-        ticks = pygame.time.get_ticks()
+        displayRate = clock.tick(30)  # Limit the display rate to 30 fps
+        ticks = pygame.time.get_ticks() # Get the ticks
     pygame.quit()
+
+level()
