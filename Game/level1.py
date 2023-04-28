@@ -1,19 +1,21 @@
+
 # Import librairies
 import pygame
 from pygame.locals import *
 import os
 import sys
-import textFile
 
 # Changing working directory & adding path
 os.chdir('../Traffic_Lights')
+sys.path.append(f'{os.getcwd()}\\Game\\gameModules')
 sys.path.append(f'{os.getcwd()}\\Game')
 
 # Import game files
-import map
-import carFile
-import trafficLightFile
-import levelFinished
+import gameModules.map as map
+import gameModules.carFile as carFile
+import gameModules.trafficLightFile as trafficLightFile
+import gameModules.levelFinished as levelFinished
+import gameModules.textFile as textFile
 
 # Level informations
 levelInfos = [1, "Niveau 1", textFile.readData("completed", 1, "./Game/levelsData.json"), 3, textFile.readData("score", 1, "./Game/levelsData.json"), 100, 0]
@@ -66,20 +68,25 @@ def level():
                     trafficLightFile.trafficLightsUpdate(trafficLight, x, y, windowWidth, windowHeight)  # Update the traffic lights
 
         for car in carList:
-            carFile.collisionCars(car, carList, spritesList, explosionList, windowWidth, windowHeight, lives) # Check if the cars collide with each other
+            lives, score = carFile.collisionCars(car, carList, spritesList, explosionList, windowWidth, windowHeight, lives, score) # Check if the cars collide with each other
             carFile.collisionRedLights(car, trafficLightsList) # Check if the cars collide with the red lights
-            carsPassed = carFile.update(car, spritesList, carList, carsPassed)  # Update the cars
-
+            carsPassed, score = carFile.update(car, spritesList, carList, carsPassed, score)  # Update the cars
+            
         for explosion in explosionList:
             carFile.explosionRemove(explosion, explosionList, spritesList) # Remove the explosion
 
         gameLoop = levelFinished.isLevelFinished(carsPassed, carsToPass, level, levelName, lives, score, window, gameLoop)  # Check if the level is completed
-        map.loadMap("./Game/Assets/Maps/map_lvl1.txt", window)  # Load the map
+        map.loadMap("./Game/Assets/Maps/test.txt", window)  # Load the map #TODO: maybe useless
         window.fill(white)  # Fill the window with white
         spritesList.draw(window)  # Draw the sprites
         pygame.display.flip()  # Update the display
-        displayRate = clock.tick(30)  # Limit the display rate to 30 fps
+        clock.tick(30)  # Limit the number of actions
         ticks = pygame.time.get_ticks() # Get the ticks
+
+        # Update text on screen #FIXME: lagging text
+        textFile.writeText(windowWidth*0.005, 0, "Arial", 22, (0, 0, 0), f"Vie(s): {lives}", False, window)
+        textFile.writeText(windowWidth*0.005, windowHeight*0.03, "Arial", 22, (0, 0, 0), f"Score: {score}", False, window)
+        textFile.writeText(windowWidth*0.005, windowHeight*0.06, "Arial", 22, (0, 0, 0), f"Voiture(s) à faire passer: {carsToPass-carsPassed}", False, window)
     pygame.quit()
     
 #TODO: to delete

@@ -2,6 +2,7 @@ import pygame
 import time
 import random
 import os
+import textFile
 
 # Changing working directory
 os.chdir('../Traffic_Lights')
@@ -58,7 +59,7 @@ def explosion(x, y, windowWidth, windowHeight):
     return explosion
 
 
-def update(car, spritesList, carList, carsPassed):
+def update(car, spritesList, carList, carsPassed, score):
     """Updates the car
     Args:
         car (sprite): The car to update
@@ -66,7 +67,7 @@ def update(car, spritesList, carList, carsPassed):
         carList (list): The list of cars
         carsPassed (int): The number of cars that passed
     Returns:
-        carsPassed (int): The number of cars that passed
+        
     """
     width, heigh = pygame.display.get_window_size()
     if car.direction == "up":
@@ -82,8 +83,9 @@ def update(car, spritesList, carList, carsPassed):
         car.remove(carList)
         car.remove(spritesList)
         carsPassed += 1
-    return carsPassed
+        score += 100
 
+    return carsPassed, score
 
 def collisionRedLights(car, trafficLightsList):
     """Checks if the car is colliding with a red light
@@ -99,8 +101,7 @@ def collisionRedLights(car, trafficLightsList):
             car.speed = car.previousSpeed
             car.stopped = False
         
-
-def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowHeight, lives):
+def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowHeight, lives, score):
     """Checks if the car is colliding with another car
     Args:
         car (sprite): The car to check
@@ -133,15 +134,16 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
                 car.remove(spritesList)
                 _car.remove(spritesList)
                 lives -= 1
-
+                score -= 50
+                      
             for collidedCar in collideCarsList:
                 if not _car.rect.colliderect(collidedCar.rect):
                     print("no collision") #FIXME: A partir de la ligne 139 le code n'est jamais appelé -> condition à revoir
                     collideCarsList.remove(collidedCar)
                     _car.speed = _car.previousSpeed
                     _car.stopped = False
-
         #print(collideCarsList)
+    return lives, score
 
 def explosionRemove(explosion, explosionList, spritesList):
     """Removes the explosion from the lists
@@ -155,7 +157,6 @@ def explosionRemove(explosion, explosionList, spritesList):
         spritesList.remove(explosion)
         explosionList.remove(explosion)
         explosion.kill()
-
 
 def createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, ticks, speed):
     """Creates a car

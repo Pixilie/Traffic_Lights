@@ -32,10 +32,17 @@ def levelsWindow():
         """On enter event.
         Args:
             event (Event): Event.
+        Returns:
+            int: Index of the hover button.
         """        
         event.widget['bg'] = '#c59dd1'
         event.widget['fg'] = 'white'
         music.playSound('hover', music.getVolume())
+        index = 0
+        for c in str(event.widget):
+            if c.isdigit():
+                index += int(c)
+        return index-1
 
     def onLeave(event):
         """On leave event.
@@ -45,18 +52,18 @@ def levelsWindow():
         event.widget['bg'] = '#B78BC4'
         event.widget['fg'] = 'white'
 
-    def onEnterLevelButton(fileIndex):
+    def onEnterLevelButton(index):
         """Update the information panel
         Args:
             fileIndex (int): Index of the file
         """
-        selectedLevel = __import__(f'Game.level{fileIndex}', fromlist=[f'Game.level{fileIndex}'])
+        selectedLevel = __import__(f'Game.level{index}', fromlist=[f'Game.level{index}'])
 
         # Info panel update
         level, levelName, completed, lives, score, carsToPass, carsPassed = selectedLevel.levelInfos
         infoPanel.delete("all")
         infoPanel.create_text(screenWidth*0.22, screenHeight*0.05, text=levelName, font=('Arial', round(screenWidth*0.025)), fill="white")
-        infoPanel.create_text(screenWidth*0.22, screenHeight*0.15, text="Description (bug à fixe)", font=('Arial', round(screenWidth*0.016)), fill="white")
+        infoPanel.create_text(screenWidth*0.22, screenHeight*0.15, text="Description (bug affichage à fixe)", font=('Arial', round(screenWidth*0.016)), fill="white")
         infoPanel.create_text(screenWidth*0.22, screenHeight*0.20, text=f'Complété: {completed}', font=('Arial', round(screenWidth*0.016)), fill="white")
         infoPanel.create_text(screenWidth*0.22, screenHeight*0.25, text=f'Vies: {lives}', font=('Arial', round(screenWidth*0.016)), fill="white")
         infoPanel.create_text(screenWidth*0.22, screenHeight*0.30, text=f'Score: {score}', font=('Arial', round(screenWidth*0.016)), fill="white")
@@ -83,16 +90,15 @@ def levelsWindow():
         Args:
             event (Event): Event.
         """        
-        onEnter(event)
-        onEnterLevelButton(fileIndex)
+        index = onEnter(event)
+        onEnterLevelButton(index)
         
-    def startGame(fileIndex):
+    def startGame(index):
         """Start the game
         Args:
             fileIndex (int): Index of the file
-        """        
-        print("startGame")
-        level = __import__(f'Game.level{fileIndex}', fromlist=[f'Game.level{fileIndex}'])
+        """
+        level = __import__(f'Game.level{index}', fromlist=[f'Game.level{index}'])
         level.level()
 
 # -----------------------------------------------------------------------------------------------------------------------------
@@ -125,17 +131,18 @@ def levelsWindow():
     yPos = screenHeight*0.1
     fileIndex = 0
     for file in directory:
-        if "level" in file and file != "levelFinished.py":
+        if file.lower().startswith('level') and file.lower().endswith('.py') and file != 'levelFinished.py':
             fileIndex += 1
             yPos += 0.07*screenHeight
             # Button creation
-            levelButton = Button(levelWindow, text=f'Niveau {fileIndex}', font=('Arial', round(screenWidth*0.016)), bd=0, cursor="hand2", bg='#B78BC4' ,activebackground="#c59dd1", activeforeground="white", fg="#ffffff", width=round(screenWidth*0.03), command=lambda: startGame(fileIndex))
+            levelButton = Button(levelWindow, text=f'Niveau {fileIndex}', font=('Arial', round(screenWidth*0.016)), bd=0, cursor="hand2", bg='#B78BC4' ,activebackground="#c59dd1", activeforeground="white", fg="#ffffff", width=round(screenWidth*0.03))
             levelButton.pack(pady=40)
             levelButton.place(x=screenWidth*0.04, y=yPos)
 
             # Binds
             levelButton.bind("<Enter>", onEnterCombined)
             levelButton.bind("<Leave>", onLeaveCombined)
+            levelButton.bind("<ButtonPress>", lambda event: startGame(index = onEnter(event)))
 
     # Play music
     music.playSound('music', music.getVolume())

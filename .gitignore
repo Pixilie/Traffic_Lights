@@ -130,3 +130,6 @@ dmypy.json
 # Vscode
 .vscode/
 .VSCodeCounter/
+
+# Testing files
+Game/level2test.py

@@ -10,6 +10,7 @@ def writeText(x, y, font, size, color, message, center, window):
         size (int): The size of the text
         color (tuple): The color of the text
         message (string): The message to write
+        center (bool): If the text is centered or not
         window (pygame.display): The window
     Returns:
         text (sprite): The text
@@ -37,13 +38,24 @@ def writeData(newData, jsonFile):
         f.seek(0)
         json.dump(fileData, f, indent=4)
 
-def modifyData(data, jsonFile): #TODO: Faire la fonction
+def modifyData(levelID, dataToChange, value, jsonFile):
     """Modifies data in a json file
     Args:
-        data (dict): The data to modify
+        levelID (int): Level ID
+        dataToChange (string): Data to change
+        value (string/int): Value to change in dataToChange
         jsonFile (string): The json file
     """
-
+    with open(jsonFile, "r+") as f:
+        fileData = json.load(f)
+        for dataGroup in fileData:
+            for d in fileData[dataGroup]:
+                if d["level_id"] == levelID:
+                    d[dataToChange] = value
+        f.seek(0)
+        json.dump(fileData, f, indent=4)
+        f.truncate()
+                
 def searchData(dataName, data, jsonFile):
     """Searches data in a json file
     Args:
