@@ -24,6 +24,9 @@ def isLevelFinished(carsPassed, carsToPass, level, levelName, lives, score, wind
     if carsPassed == carsToPass or lives == 0:
         gameLoop = not gameLoop
         finishWindow(level, levelName, lives, score, window)
+        textFile.modifyData(level, "score", score, "./Game/levelsData.json")
+        if carsPassed == carsToPass:
+            textFile.modifyData(level, "completed", "true" "./Game/levelsData.json")
     else:
         return gameLoop
 

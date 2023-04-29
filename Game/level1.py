@@ -18,7 +18,7 @@ import gameModules.levelFinished as levelFinished
 import gameModules.textFile as textFile
 
 # Level informations
-levelInfos = [1, "Niveau 1", textFile.readData("completed", 1, "./Game/levelsData.json"), 3, textFile.readData("score", 1, "./Game/levelsData.json"), 100, 0]
+levelInfos = [1, "Niveau 1", textFile.readData("completed", 1, "./Game/levelsData.json"), 3, textFile.readData("score", 1, "./Game/levelsData.json"), 5, 0]
 
 # Write data in json file
 if not (textFile.searchData("level_id", levelInfos[0], "./Game/levelsData.json")):
@@ -90,4 +90,4 @@ def level():
     pygame.quit()
     
 #TODO: to delete
-level()
+#level()
