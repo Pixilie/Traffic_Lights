@@ -78,7 +78,7 @@ exitButton.bind("<Enter>", onEnter)
 exitButton.bind("<Leave>", onLeave)
 
 # Levels Button
-levelsButton = Button(mainWindow, text="Niveaux", font=('Arial', round(screenWidth*0.016)), bd=0, relief="flat", activebackground="#c59dd1", cursor="hand2", activeforeground="white", bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.006), command=Levels)
+levelsButton = Button(mainWindow, text="Niveaux", font=('Arial', round(screenWidth*0.016)), bd=0, relief="flat", activebackground="#c59dd1", cursor="hand2", activeforeground="white", bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.006), command= Levels)
 levelsButton.pack(side='top')
 levelsButton.bind("<Enter>", onEnter)
 levelsButton.bind("<Leave>", onLeave)

@@ -66,7 +66,7 @@ def levelsWindow():
         infoPanel.create_text(screenWidth*0.22, screenHeight*0.15, text="Description (bug affichage à fixe)", font=('Arial', round(screenWidth*0.016)), fill="white")
         infoPanel.create_text(screenWidth*0.22, screenHeight*0.20, text=f'Complété: {completed}', font=('Arial', round(screenWidth*0.016)), fill="white")
         infoPanel.create_text(screenWidth*0.22, screenHeight*0.25, text=f'Vies: {lives}', font=('Arial', round(screenWidth*0.016)), fill="white")
-        infoPanel.create_text(screenWidth*0.22, screenHeight*0.30, text=f'Score: {score}', font=('Arial', round(screenWidth*0.016)), fill="white")
+        infoPanel.create_text(screenWidth*0.22, screenHeight*0.30, text=f'Meilleur score: {score}', font=('Arial', round(screenWidth*0.016)), fill="white")
         infoPanel.create_text(screenWidth*0.22, screenHeight*0.35, text=f'Voitures à faire passer: {carsToPass}', font=('Arial', round(screenWidth*0.016)), fill="white")
 
     def onLeaveLevelButton(event):
