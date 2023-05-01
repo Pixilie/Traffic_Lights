@@ -90,7 +90,7 @@ settingsButton.bind("<Enter>", onEnter)
 settingsButton.bind("<Leave>", onLeave)
 
 # Credits Button
-creditsButton = Button(mainWindow, text="Crédits", font=('Arial', round(screenWidth*0.016)), bd=0, relief="flat", activebackground="#c59dd1", cursor="hand2", activeforeground="white", bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.006), command=Credits)
+creditsButton = Button(mainWindow, text="Crédits", font=('Arial', round(screenWidth*0.016)), bd=0, relief="flat", activebackground="#c59dd1", cursor="hand2", activeforeground="white", bg='#B78BC4', fg="#ffffff", width=round(screenWidth*0.006),  command=Credits)
 creditsButton.pack(side='top')
 creditsButton.bind("<Enter>", onEnter)
 creditsButton.bind("<Leave>", onLeave)
