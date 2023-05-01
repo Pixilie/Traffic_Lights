@@ -25,7 +25,7 @@ if not (textFile.searchData("level_id", levelInfos[0], "./Game/levelsData.json")
     textFile.writeData({ "level_id" : levelInfos[0], "score" : 0, "completed" : "false"}, "./Game/levelsData.json")
 
 # TODO: Musics and sounds
-def level():
+def levelFunction():
     """Launch the level."""
 
     # Pygame initialization
@@ -38,8 +38,7 @@ def level():
     clock = pygame.time.Clock()
     ticks = 0
     level, levelName, completed, lives, score, carsToPass, carsPassed = levelInfos
-    RESTART_EVENT = pygame.USEREVENT + 1
-    RESTART = pygame.event.Event(RESTART_EVENT)
+    restart = False
 
     # Main window setup
     window = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
@@ -48,13 +47,13 @@ def level():
 
     # Sprites list
     spritesList, roadList, trafficLightsList, carSpawnPointsList = map.loadMap("./Game/Assets/Maps/test.txt", window)
-    redTrafficLightsList = pygame.sprite.Group()
     carList = pygame.sprite.Group()
     explosionList = pygame.sprite.Group()
 
     # Event loop & level's code
     gameLoop = True
     while gameLoop:
+
         for carSpawnPoint in carSpawnPointsList:
             carFile.createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, ticks, 1) # Create the cars
         
@@ -63,15 +62,11 @@ def level():
                 gameLoop = False
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    gameLoop = levelBackend.pause(gameLoop, "pause", level, levelName, lives, score, windowWidth, windowHeight, window, RESTART)
+                    gameLoop, restart = levelBackend.pause(gameLoop, "pause", level, levelName, lives, score, windowWidth, windowHeight, window, restart)
             if event.type == MOUSEBUTTONDOWN:
                 x, y = event.pos  # Get the mouse position
                 for trafficLight in trafficLightsList:
                     trafficLightFile.trafficLightsUpdate(trafficLight, x, y, windowWidth, windowHeight)  # Update the traffic lights
-            if event.type == RESTART:
-                print("Restarting level...")
-                level() # Restart the level
-                gameLoop = False
 
         for car in carList:
             lives, score = carFile.collisionCars(car, carList, spritesList, explosionList, windowWidth, windowHeight, lives, score) # Check if the cars collide with each other
@@ -81,8 +76,12 @@ def level():
         for explosion in explosionList:
             carFile.explosionRemove(explosion, explosionList, spritesList) # Remove the explosion
 
-        gameLoop = levelBackend.isLevelFinished(carsPassed, carsToPass, level, levelName, lives, score, windowWidth, windowHeight, window, gameLoop, RESTART)  # Check if the level is completed
-        map.loadMap("./Game/Assets/Maps/test.txt", window)  # Load the map #TODO: maybe useless
+        gameLoop, restart = levelBackend.isLevelFinished(carsPassed, carsToPass, level, levelName, lives, score, windowWidth, windowHeight, window, gameLoop, restart)  # Check if the level is completed
+
+        if restart:  # Check if the level needs to be restarted
+            gameLoop = False
+            levelFunction()
+
         window.fill(white)  # Fill the window with white
         spritesList.draw(window)  # Draw the sprites
         pygame.display.flip()  # Update the display
@@ -95,6 +94,3 @@ def level():
         textFile.writeText(windowWidth*0.002, windowHeight*0.06, "Arial", 22, (0, 0, 0), f"Voiture(s) à faire passer: {carsToPass-carsPassed}", False, window)
 
     pygame.quit()
-    
-#TODO: to delete
-#level()

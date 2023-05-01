@@ -99,7 +99,7 @@ def levelsWindow():
             fileIndex (int): Index of the file
         """
         level = __import__(f'Game.level{index}', fromlist=[f'Game.level{index}'])
-        level.level()
+        level.levelFunction()
 
 # -----------------------------------------------------------------------------------------------------------------------------
     # Main window setting

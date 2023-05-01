@@ -137,12 +137,10 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
                 score -= 50
                       
             for collidedCar in collideCarsList:
-                if not _car.rect.colliderect(collidedCar.rect):
-                    print("no collision") #FIXME: A partir de la ligne 139 le code n'est jamais appelé -> condition à revoir
+                if not _car.rect.colliderect(collidedCar.rect): #FIXME: A partir de la ligne 140 le code n'est jamais appelé -> condition à revoir
                     collideCarsList.remove(collidedCar)
                     _car.speed = _car.previousSpeed
                     _car.stopped = False
-        #print(collideCarsList)
     return lives, score
 
 def explosionRemove(explosion, explosionList, spritesList):
