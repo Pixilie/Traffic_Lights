@@ -17,7 +17,7 @@ import gameModules.trafficLightFile as trafficLightFile
 import gameModules.levelBackend as levelBackend
 import gameModules.textFile as textFile
 
-# Level informations
+# Level informations -> Level number, level name, completed, lives, score, cars to pass, cars passed
 levelInfos = [1, "Niveau 1", textFile.readData("completed", 1, "./Game/levelsData.json"), 3, textFile.readData("score", 1, "./Game/levelsData.json"), 1, 0]
 
 # Write data in json file
@@ -85,7 +85,7 @@ def levelFunction():
         window.fill(white)  # Fill the window with white
         spritesList.draw(window)  # Draw the sprites
         pygame.display.flip()  # Update the display
-        clock.tick(30)  # Limit the number of actions
+        clock.tick(24)  # Limit the number of actions
         ticks = pygame.time.get_ticks() # Get the ticks
 
         # Update text on screen #FIXME: lagging text
