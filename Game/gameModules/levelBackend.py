@@ -29,9 +29,9 @@ def isLevelFinished(carsPassed, carsToPass, level, levelName, lives, score, wind
         if carsPassed == carsToPass:
             textFile.modifyData(level, "completed", "true", "./Game/levelsData.json")
             textFile.modifyData(level, "score", score, "./Game/levelsData.json")
-            gameLoop, restart = pause(gameLoop, "gagné(e)", level, levelName, lives, score, windowWidth, windowHeight, window, restart)
+            gameLoop, restart = pause(gameLoop, "gagné", level, levelName, lives, score, windowWidth, windowHeight, window, restart)
         else:
-            gameLoop, restart = pause(gameLoop, "perdu(e)", level, levelName, lives, score, windowWidth, windowHeight, window, restart)
+            gameLoop, restart = pause(gameLoop, "perdu", level, levelName, lives, score, windowWidth, windowHeight, window, restart)
     return gameLoop, restart
 
 def pause(gameLoop, context, level, levelName, lives, score, windowWidth, windowHeight, window, restart):
