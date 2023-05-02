@@ -54,10 +54,10 @@ def settingsWindow():
     title.pack(side='top')
 
     # Exit button
-    backIcon = PhotoImage(file='./Menus/Assets/Images/back.png', width=round(screenWidth*0.08), height=round(screenHeight*0.13))
+    backIcon = PhotoImage(file='./Menus/Assets/Images/back.png', width=round(screenWidth*0.06), height=round(screenHeight*0.09))
     backButton = Button(settingsWindow, image=backIcon, bd=0, bg='#B78BC4', highlightthickness=0, cursor="hand2", activebackground="#c59dd1", command=Close)
     backButton.pack()
-    backButton.place(x=screenWidth*0.01, y=0)
+    backButton.place(x=screenWidth*0.005, y=0)
     backButton.bind("<Enter>", onEnter)
     backButton.bind("<Leave>", onLeave)
 

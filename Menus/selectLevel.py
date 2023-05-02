@@ -39,10 +39,10 @@ def levelsWindow():
         event.widget['fg'] = 'white'
         music.playSound('hover', music.getVolume())
         index = 0
-        for c in str(event.widget):
+        for c in str(event.widget["text"]):
             if c.isdigit():
                 index += int(c)
-        return index-1
+        return index
 
     def onLeave(event):
         """On leave event.
@@ -112,10 +112,10 @@ def levelsWindow():
     title.pack()
 
     # Go back button
-    backIcon = PhotoImage(file='./Menus/Assets/Images/back.png', width=round(screenWidth*0.08), height=round(screenHeight*0.13))
+    backIcon = PhotoImage(file='./Menus/Assets/Images/back.png', width=round(screenWidth*0.06), height=round(screenHeight*0.09))
     backButton = Button(levelWindow, image=backIcon, font=('Arial', round(screenWidth*0.016)),  bd=0, relief="flat", activebackground="#c59dd1", activeforeground="white", cursor="hand2", bg='#B78BC4', fg="#ffffff", command=goBack)
     backButton.pack(pady=20)
-    backButton.place(x=screenWidth*0.01, y=0)
+    backButton.place(x=screenWidth*0.005, y=0)
     backButton.bind("<Enter>", onEnter)
     backButton.bind("<Leave>", onLeave)
 
@@ -135,8 +135,7 @@ def levelsWindow():
             fileIndex += 1
             yPos += 0.07*screenHeight
             # Button creation
-            levelButton = Button(levelWindow, text=f'Niveau {fileIndex}', font=('Arial', round(screenWidth*0.016)), bd=0, cursor="hand2", bg='#B78BC4' ,activebackground="#c59dd1", activeforeground="white", fg="#ffffff", width=round(screenWidth*0.03))
-            levelButton.pack(pady=40)
+            levelButton = Button(levelWindow, text=f'Niveau {fileIndex}', font=('Arial', round(screenWidth*0.016)), bd=0, cursor="hand2", bg='#B78BC4' ,activebackground="#c59dd1", fg="#ffffff", width=round(screenWidth*0.02), height=round(screenHeight*0.001))
             levelButton.place(x=screenWidth*0.04, y=yPos)
 
             # Binds
