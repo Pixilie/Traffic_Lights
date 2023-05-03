@@ -27,11 +27,11 @@ def isLevelFinished(carsPassed, carsToPass, level, levelName, lives, score, wind
     """
     if carsPassed == carsToPass or lives == 0:
         if carsPassed == carsToPass:
-            textFile.modifyData(level, "completed", "true", "./Game/levelsData.json")
+            textFile.modifyData(level, "completed", "Oui", "./Game/levelsData.json")
             textFile.modifyData(level, "score", score, "./Game/levelsData.json")
-            gameLoop, restart = pause(gameLoop, "gagné", level, levelName, lives, score, windowWidth, windowHeight, window, restart)
+            gameLoop, restart = pause(gameLoop, "gagné(e)", level, levelName, lives, score, windowWidth, windowHeight, window, restart)
         else:
-            gameLoop, restart = pause(gameLoop, "perdu", level, levelName, lives, score, windowWidth, windowHeight, window, restart)
+            gameLoop, restart = pause(gameLoop, "perdu(e)", level, levelName, lives, score, windowWidth, windowHeight, window, restart)
     return gameLoop, restart
 
 def pause(gameLoop, context, level, levelName, lives, score, windowWidth, windowHeight, window, restart):
@@ -109,4 +109,5 @@ def pauseWindow(windowWidth, windowHeight, window):
         window (pygame.display): The window
     """    
     textFile.writeText(windowWidth*0.5, windowHeight*0.1, "Arial", round(windowWidth*0.05), (0, 0, 0), "Jeu en pause", True, window)
-    textFile.writeText(windowWidth*0.5, windowHeight*0.4, "Arial", round(windowWidth*0.03), (0, 0, 0), "Appuyez sur 'Espace' pour continuer ou 'Echap' pour retourner au menu", True, window)
+    textFile.writeText(windowWidth*0.5, windowHeight*0.4, "Arial", round(windowWidth*0.03), (0, 0, 0), "Appuyez sur 'Espace' pour continuer, 'Echap' pour retourner au menu", True, window)
+    textFile.writeText(windowWidth*0.5, windowHeight*0.47, "Arial", round(windowWidth*0.03), (0, 0, 0), "ou 'R' pour recommencer le niveau", True, window)
