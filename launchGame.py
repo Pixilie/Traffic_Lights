@@ -73,7 +73,7 @@ title.pack(side='top')
 exitIcon = PhotoImage(file='./Menus/Assets/Images/exit_icon.png', width=round(screenWidth*0.08), height=round(screenHeight*0.09))
 exitButton = Button(mainWindow, image=exitIcon, bd=0, bg='#B78BC4', highlightthickness=0, cursor="hand2", activebackground="#c59dd1", command=close)
 exitButton.pack()
-exitButton.place(x=screenWidth - 100, y=screenHeight - 71)
+exitButton.place(x=screenWidth-round(screenWidth*0.05), y=screenHeight - round(screenHeight*0.07))
 exitButton.bind("<Enter>", onEnter)
 exitButton.bind("<Leave>", onLeave)
 
