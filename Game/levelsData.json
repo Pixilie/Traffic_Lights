@@ -2,8 +2,8 @@
     "levels": [
         {
             "level_id": 1,
-            "score": 1050,
-            "completed": "true"
+            "score": 0,
+            "completed": "Non"
         }
     ]
 }

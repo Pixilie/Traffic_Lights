@@ -17,7 +17,10 @@ def car(x, y, direction, speed, windowWidth, windowHeight):
     Returns:
         car (Sprite): Sprite of the car
     """
+
     car = pygame.sprite.Sprite()
+
+    # Loading the car image
     if direction == "up":
         car.image = pygame.image.load(
             "./Game/Assets/Textures/car_u.png").convert_alpha()
@@ -31,15 +34,18 @@ def car(x, y, direction, speed, windowWidth, windowHeight):
         car.image = pygame.image.load(
             "./Game/Assets/Textures/car_r.png").convert_alpha()
     car.image = pygame.transform.smoothscale(car.image, (windowWidth*0.02277, windowWidth*0.02277))
+
+    # Setting the car's rect
     car.rect = car.image.get_rect()
     car.rect.x = x
     car.rect.y = y
+
+    # Setting the car's attributes
     car.speed = speed
     car.direction = direction
     car.previousSpeed = speed
     car.stopped = False
     return car
-
 
 def explosion(x, y, windowWidth, windowHeight):
     """Creates a sprite for an explosion
@@ -57,7 +63,6 @@ def explosion(x, y, windowWidth, windowHeight):
     explosion.rect.y = y
     explosion.spawnTime = pygame.time.get_ticks()
     return explosion
-
 
 def update(car, spritesList, carList, carsPassed, score):
     """Updates the car

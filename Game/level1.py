@@ -69,6 +69,7 @@ def levelFunction():
                     trafficLightFile.trafficLightsUpdate(trafficLight, x, y, windowWidth, windowHeight)  # Update the traffic lights
 
         for car in carList:
+            pygame.draw.rect(window, (0, 0, 0), car.rect)  # Draw a white rectangle on the car
             lives, score = carFile.collisionCars(car, carList, spritesList, explosionList, windowWidth, windowHeight, lives, score) # Check if the cars collide with each other
             carFile.collisionRedLights(car, trafficLightsList) # Check if the cars collide with the red lights
             carsPassed, score = carFile.update(car, spritesList, carList, carsPassed, score)  # Update the cars
