@@ -24,6 +24,7 @@ def loadMap(map, window):
     spritesList = pygame.sprite.Group()
     trafficLightsList = pygame.sprite.Group()
     carSpawnPointsList = pygame.sprite.Group()
+    grassList = pygame.sprite.Group()
     
     windowSize = pygame.display.get_surface()
     windowWidth, windowHeight = windowSize.get_width(), windowSize.get_height()
@@ -53,7 +54,9 @@ def loadMap(map, window):
                         carSpawnPointsList.add(carSpawn)
                         spritesList.add(carSpawn)
                     else:
-                        pass
+                        grass = roadFile.grass(x, y, window.get_width(), window.get_height())
+                        grassList.add(grass)
+                        spritesList.add(grass)
                     x += tilesSize
                 y += tilesSize
-    return spritesList, roadList, trafficLightsList, carSpawnPointsList
+    return spritesList, roadList, trafficLightsList, carSpawnPointsList, grassList

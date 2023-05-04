@@ -46,7 +46,7 @@ def levelFunction():
     window.fill(white)
 
     # Sprites list
-    spritesList, roadList, trafficLightsList, carSpawnPointsList = map.loadMap("./Game/Assets/Maps/test.txt", window)
+    spritesList, roadList, trafficLightsList, carSpawnPointsList, grassList = map.loadMap("./Game/Assets/Maps/test.txt", window)
     carList = pygame.sprite.Group()
     explosionList = pygame.sprite.Group()
 

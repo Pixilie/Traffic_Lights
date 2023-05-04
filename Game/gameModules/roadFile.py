@@ -43,3 +43,21 @@ def carSpawn(x, y, windowWidth, windowHeight):
     carSpawn.speed = 0
     carSpawn.previousSpeed = 0
     return carSpawn
+
+def grass(x, y, windowWidth, windowHeight):
+    """Creates a sprite for a grass
+    Args:
+        x (float): x position on the screen
+        y (float): y position on the screen
+        windowWidth (float): Width of the window
+        windowHeight (float): Height of the window
+    Returns:
+        grass (Sprite): Sprite of the grass
+    """
+    grass = pygame.sprite.Sprite()
+    grass.image = pygame.image.load("./Game/Assets/Textures/grass.jpg").convert_alpha()
+    grass.image = pygame.transform.smoothscale(grass.image, (windowWidth*0.02277, windowWidth*0.02277))
+    grass.rect = grass.image.get_rect()
+    grass.rect.x = x
+    grass.rect.y = y
+    return grass
