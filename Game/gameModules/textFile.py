@@ -1,7 +1,7 @@
 import pygame
 import json
 
-def writeText(x, y, font, size, color, message, center, window):
+def writeText(x, y, fontName, fontSize, color, message, center, window):
     """Writes text on the screen
     Args:
         x (int): x position on the screen
@@ -16,7 +16,7 @@ def writeText(x, y, font, size, color, message, center, window):
         text (sprite): The text
     """    
     pygame.font.init()
-    font = pygame.font.SysFont(font, size)
+    font = pygame.font.SysFont(fontName, fontSize)
     text = font.render(message, True, color)
     width = text.get_rect().width
     if center:

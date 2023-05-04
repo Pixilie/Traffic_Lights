@@ -2,7 +2,7 @@ import pygame
 import time
 import random
 import os
-import textFile
+import soundsFile
 
 # Changing working directory
 os.chdir('../Traffic_Lights')
@@ -17,7 +17,10 @@ def car(x, y, direction, speed, windowWidth, windowHeight):
     Returns:
         car (Sprite): Sprite of the car
     """
+    # Play the car horn sound
+    soundsFile.playSound("sound", soundsFile.getVolume(), "./Game/Assets/Sounds/car-horn.mp3")
 
+    # Creating the car sprite
     car = pygame.sprite.Sprite()
 
     # Loading the car image
@@ -55,6 +58,7 @@ def explosion(x, y, windowWidth, windowHeight):
     Returns:
         explosion (Sprite): Sprite of the explosion
     """
+    soundsFile.playSound("sound", soundsFile.getVolume(), "./Game/Assets/Sounds/explosion.mp3")
     explosion = pygame.sprite.Sprite()
     explosion.image = pygame.image.load("./Game/Assets/Textures/explosion.png").convert_alpha()
     explosion.image = pygame.transform.smoothscale(explosion.image, (windowWidth*0.02277, windowWidth*0.02277))

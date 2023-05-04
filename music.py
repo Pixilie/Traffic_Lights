@@ -3,8 +3,6 @@ import pygame
 import random
 import os
 import json
-import subprocess
-import time
 
 # Changing working directory
 os.chdir('../Traffic_Lights')

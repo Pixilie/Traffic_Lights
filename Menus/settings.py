@@ -13,7 +13,6 @@ import music
 # Changing working directory
 os.chdir('../Traffic_Lights')
 
-#TODO: Terminer le design + param son appliquer uniquement après restart + langues
 def settingsWindow():
     """Settings window."""    
     # Main window setup
