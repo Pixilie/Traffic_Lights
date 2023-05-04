@@ -29,7 +29,7 @@ def loadMap(map, window):
     windowSize = pygame.display.get_surface()
     windowWidth, windowHeight = windowSize.get_width(), windowSize.get_height()
     
-    tilesSize = windowWidth*0.02273
+    tilesSize = round(windowWidth*0.02273)
     x = 0
     y = 0
     if not os.path.isfile(map):
