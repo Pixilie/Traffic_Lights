@@ -16,7 +16,7 @@ def road(x, y, windowWidth, windowHeight):
     """    
     road = pygame.sprite.Sprite()
     road.image = pygame.image.load("./Game/Assets/Textures/road.png").convert_alpha()
-    road.image = pygame.transform.smoothscale(road.image, (windowWidth*0.02277, windowWidth*0.02277))
+    road.image = pygame.transform.smoothscale(road.image, (windowWidth*0.023, windowWidth*0.023))
     road.rect = road.image.get_rect()
     road.rect.x = x
     road.rect.y = y
@@ -34,7 +34,7 @@ def carSpawn(x, y, windowWidth, windowHeight):
     """
     carSpawn = pygame.sprite.Sprite()
     carSpawn.image = pygame.image.load("./Game/Assets/Textures/car_spawn.png").convert_alpha()
-    carSpawn.image = pygame.transform.smoothscale(carSpawn.image, (windowWidth*0.02277, windowWidth*0.02277))
+    carSpawn.image = pygame.transform.smoothscale(carSpawn.image, (windowWidth*0.023, windowWidth*0.023))
     carSpawn.rect = carSpawn.image.get_rect()
     carSpawn.rect.x = x
     carSpawn.rect.y = y
@@ -56,7 +56,7 @@ def grass(x, y, windowWidth, windowHeight):
     """
     grass = pygame.sprite.Sprite()
     grass.image = pygame.image.load("./Game/Assets/Textures/grass.jpg").convert_alpha()
-    grass.image = pygame.transform.smoothscale(grass.image, (windowWidth*0.02277, windowWidth*0.02277))
+    grass.image = pygame.transform.smoothscale(grass.image, (windowWidth*0.023, windowWidth*0.023))
     grass.rect = grass.image.get_rect()
     grass.rect.x = x
     grass.rect.y = y

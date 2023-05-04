@@ -15,7 +15,7 @@ def trafficLight(x, y, color, windowWidth, windowHeight):
     """    
     trafficLights = pygame.sprite.Sprite()
     trafficLights.image = pygame.image.load("./Game/Assets/Textures/road_greenlights.png").convert_alpha()
-    trafficLights.image = pygame.transform.smoothscale(trafficLights.image, (windowWidth*0.02277, windowWidth*0.02277))
+    trafficLights.image = pygame.transform.smoothscale(trafficLights.image, (windowWidth*0.023, windowWidth*0.023))
     trafficLights.rect = trafficLights.image.get_rect()
     trafficLights.rect.x = x
     trafficLights.rect.y = y
@@ -33,12 +33,12 @@ def trafficLightsUpdate(trafficLight, x, y, windowWidth, windowHeight):
     """    
     if trafficLight.rect.collidepoint(x, y) and trafficLight.color == "green":
         trafficLight.image = pygame.image.load("./Game/Assets/Textures/road_redlights.png").convert_alpha()
-        trafficLight.image = pygame.transform.smoothscale(trafficLight.image, (windowWidth*0.02277, windowWidth*0.02277))
+        trafficLight.image = pygame.transform.smoothscale(trafficLight.image, (windowWidth*0.023, windowWidth*0.023))
         trafficLight.color = "red"
         
     elif trafficLight.rect.collidepoint(x, y) and trafficLight.color == "red":
         trafficLight.image = pygame.image.load("./Game/Assets/Textures/road_greenlights.png").convert_alpha()
-        trafficLight.image = pygame.transform.smoothscale(trafficLight.image, (windowWidth*0.02277, windowWidth*0.02277))
+        trafficLight.image = pygame.transform.smoothscale(trafficLight.image, (windowWidth*0.023, windowWidth*0.023))
         trafficLight.color = "green"
     return trafficLight.color
    
