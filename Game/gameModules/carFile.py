@@ -50,6 +50,20 @@ def car(x, y, direction, speed, windowWidth, windowHeight):
     car.stopped = False
     return car
 
+def collisionRedLights(car, trafficLightsList):
+    """Checks if the car is colliding with a red light
+    Args:
+        car (sprite): The car to check
+        trafficLightsList (list): The list of traffic lights
+    """
+    for trafficLight in trafficLightsList:
+        if trafficLight.color == "red" and trafficLight.rect.collidepoint(car.rect.x, car.rect.y):
+            car.speed = 0
+            car.stopped = True
+        elif trafficLight.color == "green" and trafficLight.rect.collidepoint(car.rect.x, car.rect.y):
+            car.speed = car.previousSpeed
+            car.stopped = False
+
 def explosion(x, y, windowWidth, windowHeight):
     """Creates a sprite for an explosion
     Args:
