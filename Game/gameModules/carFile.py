@@ -108,7 +108,7 @@ def collisionRedLights(car, trafficLightsList):
             car.speed = 0
             car.stopped = True
         elif trafficLight.color == "green" and trafficLight.rect.collidepoint(car.rect.x, car.rect.y):
-            if car.speed == 0 :
+            if car.stopped:
                 car.speed = car.previousSpeed
                 car.stopped = False
             else:
@@ -126,26 +126,16 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
     _carList.remove(car)
 
     for _car in _carList:
-        if car.rect.colliderect(_car.rect):
-            if car.stopped or _car.stopped == True:
-                _car.stopped = True
-                car.stopped = True
+        if car.rect.colliderect(_car.rect): #Si elles se touchent
+            if car.stopped or _car.stopped == True: #Si l'une des deux est arrêtée
                 _car.speed = 0
                 car.speed = 0
+                _car.stopped = True
+                car.stopped = True
                 car.last_collision_time = time.time()
-            elif _car.direction == car.direction:
-                if car.speed > 1 :
-                    _car.speed = car.speed - 0.2
-                    car.last_collision_time = time.time()
-                elif car.speed == 0 :
-                    _car.speed = 0
-                    _car.stopped = True
-                    car.stopped = True
-                    car.last_collision_time = time.time()
-                else: 
-                    _car.speed = car.speed
-                    car.last_collision_time = time.time() 
-            else:
+            elif _car.direction == car.direction: #Si elles vont dans le même sens
+                _car.speed = car.speed
+            else: #Si elles vont dans des sens opposés
                 boom = explosion(car.rect.x, car.rect.y, windowWidth, windowHeight)
                 spritesList.add(boom)
                 explosionList.add(boom)
@@ -159,27 +149,25 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
                 score -= 50                      
     return lives, score
     
-def regainSpeed(car, carList):#si réussit on est les rois du pétrole
-    
+def regainSpeed(car, carList):
     """Regains speed for all cars that the given car is colliding with
     Args:
         car (sprite): The car to check
         carList (list): The list of cars
-    """
-    
+    """  
     current_time = time.time()
     if car.speed != 0 :
         for _car in carList:
             if _car != car:   
-                if current_time - _car.last_collision_time <= 5:
-                    if car.speed > 1 :
-                        _car.speed = car.speed - 0.2
-                        _car.stopped = False
-                    elif car.speed == 0 or _car.speed == 0 :
-                        _car.speed = 0
-                    else:
-                        _car.speed = car.speed
-                        _car.stopped = False
+                if current_time - _car.last_collision_time <= 5: #Si la collision a eu lieu il y a moins de 5 secondes
+                    if car.speed > 1 : #Si la voiture va à plus de 1 pixel par seconde
+                        _car.speed = car.speed #On lui donne la vitesse de l'autre voiture
+                        _car.stopped = False #On la démarre
+                    elif car.speed == 0 or _car.speed == 0 : #Si l'une des deux voitures est arrêtée
+                        _car.speed = 0 #On arrête l'autre voiture
+                    else: #Si la voiture va à moins de 1 pixel par seconde
+                        _car.speed = car.speed #On lui donne la vitesse de l'autre voiture
+                        _car.stopped = False #On la démarre
 
 def explosionRemove(explosion, explosionList, spritesList):
     """Removes the explosion from the lists

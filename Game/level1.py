@@ -39,6 +39,7 @@ def levelFunction():
     ticks = 0
     level, levelName, completed, lives, score, carsToPass, carsPassed = levelInfos
     restart = False
+    developerMode = True
 
     # Main window setup
     window = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
@@ -78,6 +79,15 @@ def levelFunction():
                 x, y = event.pos  # Get the mouse position
                 for trafficLight in trafficLightsList:
                     trafficLightFile.trafficLightsUpdate(trafficLight, x, y, windowWidth, windowHeight)  # Update the traffic lights
+            #TODO: Supprimer
+            if developerMode:
+                if event.type == MOUSEMOTION:
+                    for car in carList:
+                        if car.rect.collidepoint(pygame.mouse.get_pos()):
+                            textFile.writeText(car.rect.x - 30 , car.rect.y + 40, "Arial", 12, (0, 0, 0), f"stopped: {car.stopped}", False, window)
+                            textFile.writeText(car.rect.x - 30 , car.rect.y + 50, "Arial", 12, (0, 0, 0), f"speed: {car.speed}", False, window)
+                            textFile.writeText(car.rect.x - 30 , car.rect.y + 60, "Arial", 12, (0, 0, 0), f"pspeed: {car.previousSpeed}", False, window)
+                            textFile.writeText(car.rect.x - 30 , car.rect.y + 70, "Arial", 12, (0, 0, 0), f"last_collision_time: {car.last_collision_time}", False, window)
 
         for car in carList:
             lives, score = carFile.collisionCars(car, carList, spritesList, explosionList, windowWidth, windowHeight, lives, score) # Check if the cars collide with each other

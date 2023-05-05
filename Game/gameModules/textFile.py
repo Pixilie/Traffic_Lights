@@ -74,6 +74,8 @@ def searchData(dataName, data, jsonFile):
 def readData(dataToRead, level, jsonFile):
     """Reads data in a json file
     Args:
+        dataToRead (string): The data to read
+        level (int): The level
         jsonFile (string): The json file
     """   
     with open(jsonFile, "r") as f:
