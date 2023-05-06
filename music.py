@@ -52,6 +52,6 @@ def setVolume(volume):
     Args:
         volume (int): Volume of the music.
     """
-    setting = { "sound_volume": volume, "language": f""}
+    setting = { "sound_volume": volume}
     with open('settings.json', 'w') as settingsFile:
         json.dump(setting, settingsFile, indent=4)
