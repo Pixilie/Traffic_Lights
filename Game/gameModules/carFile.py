@@ -146,10 +146,10 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
                 car.stopped = True
                 car.last_collision_time = time.time()
             elif _car.direction == car.direction: #Si elles vont dans le même sens
-                if car.speed != 0 :
+                if car.speed != 0 : #Si la voiture qui est derrière est en mouvement
                     _car.speed = car.speed
                     car.stopped = False
-                else:
+                else: #Si la voiture qui est devant est en mouvement
                     _car.speed = 0
                     _car.stopped = True
             else: #Si elles vont dans des sens opposés
