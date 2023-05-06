@@ -24,18 +24,30 @@ def car(x, y, direction, speed, windowWidth, windowHeight):
     car = pygame.sprite.Sprite()
 
     # Loading the car image
+    colorInt = random.randint(1, 5)
+    if colorInt == 1:
+        color = "g" # A remplacer par b
+    elif colorInt == 2:
+        color = "g"
+    elif colorInt == 3:
+        color = "r"
+    elif colorInt == 4:
+        color = "y"
+    else:
+        color = "gr"
+
     if direction == "up":
         car.image = pygame.image.load(
-            "./Game/Assets/Textures/car_u.png").convert_alpha()
+            f"./Game/Assets/Textures/{color}car_u.png").convert_alpha()
     elif direction == "down":
         car.image = pygame.image.load(
-            "./Game/Assets/Textures/car_d.png").convert_alpha()
+            f"./Game/Assets/Textures/{color}car_d.png").convert_alpha()
     elif direction == "left":
         car.image = pygame.image.load(
-            "./Game/Assets/Textures/car_l.png").convert_alpha()
+            f"./Game/Assets/Textures/{color}car_l.png").convert_alpha()
     elif direction == "right":
         car.image = pygame.image.load(
-            "./Game/Assets/Textures/car_r.png").convert_alpha()
+            f"./Game/Assets/Textures/{color}car_r.png").convert_alpha()
     car.image = pygame.transform.smoothscale(car.image, (windowWidth*0.02277, windowWidth*0.02277))
 
     # Setting the car's rect
