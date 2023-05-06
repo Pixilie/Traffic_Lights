@@ -91,9 +91,9 @@ def levelFunction():
 
         for car in carList:
             lives, score = carFile.collisionCars(car, carList, spritesList, explosionList, windowWidth, windowHeight, lives, score) # Check if the cars collide with each other
+            carFile.regainSpeed(car, carList)
             carFile.collisionRedLights(car, trafficLightsList) # Check if the cars collide with the red lights
             carsPassed, score = carFile.update(car, spritesList, carList, carsPassed, score)  # Update the cars
-            carFile.regainSpeed(car, carList)
             
         for explosion in explosionList:
             carFile.explosionRemove(explosion, explosionList, spritesList) # Remove the explosion

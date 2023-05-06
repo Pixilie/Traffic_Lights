@@ -146,7 +146,12 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
                 car.stopped = True
                 car.last_collision_time = time.time()
             elif _car.direction == car.direction: #Si elles vont dans le même sens
-                _car.speed = car.speed
+                if car.speed != 0 :
+                    _car.speed = car.speed
+                    car.stopped = False
+                else:
+                    _car.speed = 0
+                    _car.stopped = True
             else: #Si elles vont dans des sens opposés
                 boom = explosion(car.rect.x, car.rect.y, windowWidth, windowHeight)
                 spritesList.add(boom)
@@ -171,12 +176,13 @@ def regainSpeed(car, carList):
     if car.speed != 0 :
         for _car in carList:
             if _car != car:   
-                if current_time - _car.last_collision_time <= 5: #Si la collision a eu lieu il y a moins de 5 secondes
+                if current_time - _car.last_collision_time <= 0.001: #Si la collision a eu lieu il y a moins de 5 secondes
                     if car.speed > 1 : #Si la voiture va à plus de 1 pixel par seconde
                         _car.speed = car.speed #On lui donne la vitesse de l'autre voiture
                         _car.stopped = False #On la démarre
                     elif car.speed == 0 or _car.speed == 0 : #Si l'une des deux voitures est arrêtée
                         _car.speed = 0 #On arrête l'autre voiture
+                        _car.stopped = True
                     else: #Si la voiture va à moins de 1 pixel par seconde
                         _car.speed = car.speed #On lui donne la vitesse de l'autre voiture
                         _car.stopped = False #On la démarre
