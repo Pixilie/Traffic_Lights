@@ -150,7 +150,7 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
                     _car.speed = car.speed
                     car.stopped = False
                 else: #Si la voiture qui est devant est en mouvement
-                    _car.speed = 0
+                    _car.speed = car.speed
                     _car.stopped = True
             else: #Si elles vont dans des sens opposés
                 boom = explosion(car.rect.x, car.rect.y, windowWidth, windowHeight)
