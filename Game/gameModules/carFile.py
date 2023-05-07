@@ -60,7 +60,6 @@ def car(x, y, direction, speed, windowWidth, windowHeight):
     car.direction = direction
     car.previousSpeed = speed
     car.stopped = False
-    car.last_collision_time = 0
     return car
 
 def explosion(x, y, windowWidth, windowHeight):
@@ -127,65 +126,75 @@ def collisionRedLights(car, trafficLightsList):
                 car.stopped = False
 
 def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowHeight, lives, score):
-    """Checks if the car is colliding with another car
+    """Checks if the car is colliding with another car and handles the collision
     Args:
         car (sprite): The car to check
         carList (list): The list of cars
         spritesList (list): The list of sprites
         explosionList (list): The list of explosions
     """
-    _carList = carList.copy()
-    _carList.remove(car)
+    # Get the position of the new car
+    carPos = car.rect.copy()
 
-    for _car in _carList:
-        if car.rect.colliderect(_car.rect): #Si elles se touchent
-            if car.stopped or _car.stopped == True: #Si l'une des deux est arrêtée
-                _car.speed = 0
-                car.speed = 0
-                _car.stopped = True
-                car.stopped = True
-                car.last_collision_time = time.time()
-            elif _car.direction == car.direction: #Si elles vont dans le même sens
-                if car.speed != 0 : #Si la voiture qui est derrière est en mouvement
+    # Remove the new car from the car list
+    carList.remove(car)
+
+    for _car in carList:
+        if carPos.colliderect(_car.rect): # If they collide
+            if car.direction == _car.direction: # If they're going in the same direction
+                if (_car.speed != 0 or _car.stopped == False) and (not(car.stopped and _car.stopped and car.rect.colliderect(_car.rect))): # If the car in front is moving or if the two cars are not both stopped and in contact
                     _car.speed = car.speed
-                    car.stopped = False
-                else: #Si la voiture qui est devant est en mouvement
-                    _car.speed = car.speed
+                    _car.stopped = False
+                elif (_car.speed == 0 or _car.stopped == True): # If the car in front is stopped and the two cars are stopped and in contact
+                    _car.speed = 0
                     _car.stopped = True
-            else: #Si elles vont dans des sens opposés
+                    car.speed = 0
+                    car.stopped = True
+                    if _car.previousSpeed >= car.previousSpeed: #TODO: Bug not always car behind that that takes the speed of the car in front
+                        _car.previousSpeed = car.previousSpeed
+            else: # If they're going in opposite directions
                 boom = explosion(car.rect.x, car.rect.y, windowWidth, windowHeight)
                 spritesList.add(boom)
                 explosionList.add(boom)
                 car.kill()
                 _car.kill()
-                car.remove(carList)
-                _car.remove(carList)
-                car.remove(spritesList)
-                _car.remove(spritesList)
+                carList.remove(car)
+                carList.remove(_car)
+                spritesList.remove(car)
+                spritesList.remove(_car)
                 lives -= 1
-                score -= 50                      
+                score -= 50
+
+        if car.direction == "up":
+            xPos = 0
+            yPos = -windowWidth*0.032
+        elif car.direction == "down":
+            xPos = 0
+            yPos = windowWidth*0.032
+        elif car.direction == "left":
+            xPos = -windowWidth*0.032
+            yPos = 0
+        else:
+            xPos = windowWidth*0.032
+            yPos = 0
+
+        if (car.stopped == True) and (_car.rect.collidepoint(carPos.x + xPos, carPos.y + yPos)):
+            car.speed = 0
+            car.stopped = True
+        else:
+            car.speed = car.previousSpeed
+            car.stopped = False            
+
+    # Reinsert the new car into the car list
+    carList.add(car)
+
+    for _car in carList: 
+        if car != _car: # If the car is not the same as the car in the list
+            if _car.rect.collidepoint(carPos.x + xPos, carPos.y + yPos): # If they collide
+                if car.direction == _car.direction: # If they're going in the same direction
+                    if car.stopped == False or car.speed != 0: # If the car in front is moving or if the two cars are not both stopped and in contact
+                        car.speed = _car.speed # Set the speed of the new car to the speed of the car in front
     return lives, score
-    
-def regainSpeed(car, carList):
-    """Regains speed for all cars that the given car is colliding with
-    Args:
-        car (sprite): The car to check
-        carList (list): The list of cars
-    """  
-    current_time = time.time()
-    if car.speed != 0 :
-        for _car in carList:
-            if _car != car:   
-                if current_time - _car.last_collision_time <= 0.001: #Si la collision a eu lieu il y a moins de 5 secondes
-                    if car.speed > 1 : #Si la voiture va à plus de 1 pixel par seconde
-                        _car.speed = car.speed #On lui donne la vitesse de l'autre voiture
-                        _car.stopped = False #On la démarre
-                    elif car.speed == 0 or _car.speed == 0 : #Si l'une des deux voitures est arrêtée
-                        _car.speed = 0 #On arrête l'autre voiture
-                        _car.stopped = True
-                    else: #Si la voiture va à moins de 1 pixel par seconde
-                        _car.speed = car.speed #On lui donne la vitesse de l'autre voiture
-                        _car.stopped = False #On la démarre
 
 def explosionRemove(explosion, explosionList, spritesList):
     """Removes the explosion from the lists
