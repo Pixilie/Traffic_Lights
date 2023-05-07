@@ -1,25 +1,25 @@
-      RR                        cR
-      RR                        RR
-      RR                        RR
-      RR                        RR
-      RR                        RR
-      RR                        RR
-cRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRc
-      RR                        RR
-      RR                        RR
-      RR                        RR
-      RR                        RR
-      RR                        RR
-      RR                        RR
-      RR                        RR
-RRRRRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRc
-      RR                        RR
-      RR                        RR
-cRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-      Rg                        RR
-      RR                        RR
-      RR                        RR
-      RR                        RR
-      RR                        RR
-      Rc                        RR
+      c                                           
+      R                                           
+      R                                           
+      R                                           
+      R                                           
+      R                                           
+cRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+      R                                           
+      R                                           
+      R                                           
+      R                                           
+      R                                           
+      R                                           
+      R                                           
+      R                                           
+      R                                           
+      R                                           
+      R                                           
+      R                                           
+      R                                           
+      R                                           
+      R                                           
+      R                                           
+      R                                           
+      R                                            

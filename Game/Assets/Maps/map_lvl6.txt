@@ -1,0 +1,25 @@
+          c   c  R c   c    R        R             
+cRRRRRgRRRRRRRRRgRRRRRRRRRRgRRRRRRRRgRRRRRRRRRRRRRR
+          R   R  R R   R    R        R             
+RRRRRRRRRRRRgRRRRRRRRRRRRgRRRRRRRRRRRRRgRRRRRRRRRRc
+          R   R  R R   R    R        R             
+          R   R  R R   R    R        R             
+          R   R  R R   R    R        R             
+          R   R  R R   R    R        R             
+          R   R  R R   R    R        R             
+cRRRRRRgRRRRRRRRgRRRRRRRRRRRRRRRRgRRRRRRRRRRRRRRRRR
+          R   R  R R   R    R        R             
+          R   R  R R   R    R        R             
+          R   R  R R   R    R        R             
+          R   R  R R   R    R        R             
+RRRRRRRRRRRgRRRRRRRRgRRRRRRRRRgRRRRRRRRRRRRgRRRRRRc
+          R   R  R R   R    R        R             
+          R   R  R R   R    R        R             
+cRRRRRRgRRRRRgRRRRRRRRRRRRRgRRRRRRRRRRRRRRRRRRRRRRR
+          R   R  R R   R    R        R                          
+          R   R  R R   R    R        R                        
+          R   R  R R   R    R        R                  
+          R   R  R R   R    R        R             
+          R   R  R R   R    R        R             
+          R   R  R R   R    R        R             
+          R   R  c R   R    c        c              

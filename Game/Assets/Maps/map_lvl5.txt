@@ -1,0 +1,25 @@
+      c      R               c                   
+      R      R               R                   
+      R      R               R                   
+      R      R               R                   
+      R      R               R                   
+      g      R               R                   
+cRRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRRRRRRRRRRRRR
+cRRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRRRRRRRRRRRRR
+      R      g               R                   
+      g      R               g                   
+cRRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRRRRRRRRRRRRR
+cRRRRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRRRRRRRRRRR
+      R      g               R                   
+      R      R               R                   
+      R      R               R                   
+      R      R               R                   
+      R      R               R                   
+      R      R               R                   
+      R      R               R                   
+      R      R               R                   
+      R      R               R                   
+      R      R               R                   
+      R      R               R                   
+      R      R               R                   
+      R      c               R                    

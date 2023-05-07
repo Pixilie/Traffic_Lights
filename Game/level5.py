@@ -18,7 +18,7 @@ import gameModules.levelBackend as levelBackend
 import gameModules.textFile as textFile
 
 # Level informations -> Level number, level name, completed, lives, score, cars to pass, cars passed
-levelInfos = [1, "Niveau 1", textFile.readData("completed", 1, "./Game/levelsData.json"), 3, textFile.readData("score", 1, "./Game/levelsData.json"), 5, 0]
+levelInfos = [5, "Niveau 5", textFile.readData("completed", 1, "./Game/levelsData.json"), 3, textFile.readData("score", 1, "./Game/levelsData.json"), 30, 0]
 
 # Write data in json file
 if not (textFile.searchData("level_id", levelInfos[0], "./Game/levelsData.json")):
@@ -47,7 +47,7 @@ def levelFunction():
     window.fill(white)
 
     # Sprites list
-    spritesList, roadList, trafficLightsList, carSpawnPointsList, grassList = map.loadMap("./Game/Assets/Maps/map_lvl1.txt", window)
+    spritesList, roadList, trafficLightsList, carSpawnPointsList, grassList = map.loadMap("./Game/Assets/Maps/map_lvl5.txt", window)
     carList = pygame.sprite.Group()
     explosionList = pygame.sprite.Group()
 
