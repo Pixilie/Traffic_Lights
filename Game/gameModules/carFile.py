@@ -1,3 +1,4 @@
+# TODO: Supprimez les commentaires, variables inutiles + vérifier les docstrings
 import pygame
 import time
 import random
@@ -209,7 +210,8 @@ def explosionRemove(explosion, explosionList, spritesList):
         explosionList.remove(explosion)
         explosion.kill()
 
-def createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, ticks, speed):
+#TODO: Supprimer variable delay
+def createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, ticks, speedRange):
     """Creates a car
 
     Args:
@@ -219,39 +221,42 @@ def createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, t
         windowWidth (int): Width of the window
         windowHeight (int): Height of the window
         ticks (int): Number of ticks
-        speed (int): Speed of the car
+        speedRange (tuple): Speed for the cars
     """    
-    lastTick = 0
     if ticks > carSpawnPoint.lastTick + carSpawnPoint.delay:
-        
+        min , max = speedRange
         if 0 <= carSpawnPoint.rect.x <= windowWidth*0.023:
-            speed = random.randint(1, 3)
+            min, max = speedRange
+            speed = random.randint(min, max)
             newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "right", speed, windowWidth, windowHeight)
             newCar.add(spritesList)
             newCar.add(carList)
             carSpawnPoint.lastTick = ticks
-            carSpawnPoint.delay = delay = random.randint(5000, 20000)
+            carSpawnPoint.delay = random.randint(5000, 20000)
         
         if windowWidth - windowWidth*0.023 <= carSpawnPoint.rect.x <= windowWidth:
-            speed = random.randint(1, 3)
+            min, max = speedRange
+            speed = random.randint(min, max)
             newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "left", speed, windowWidth, windowHeight)
             newCar.add(spritesList)
             newCar.add(carList)
             carSpawnPoint.lastTick = ticks
-            carSpawnPoint.delay = delay = random.randint(5000, 20000)
+            carSpawnPoint.delay = random.randint(5000, 20000)
         
         if 0 <= carSpawnPoint.rect.y <= windowWidth*0.023:
-            speed = random.randint(1, 3)
+            min, max = speedRange
+            speed = random.randint(min, max)
             newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "down", speed, windowWidth, windowHeight)
             newCar.add(spritesList)
             newCar.add(carList)
             carSpawnPoint.lastTick = ticks
-            carSpawnPoint.delay = delay = random.randint(5000, 20000)
+            carSpawnPoint.delay = random.randint(5000, 20000)
         
         if windowHeight - windowWidth*0.023 <= carSpawnPoint.rect.y <= windowHeight:
-            speed = random.randint(1, 3)
+            min, max = speedRange
+            speed = random.randint(min, max)
             newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "up", speed, windowWidth, windowHeight)
             newCar.add(spritesList)
             newCar.add(carList)
             carSpawnPoint.lastTick = ticks
-            carSpawnPoint.delay = delay = random.randint(5000, 20000)
+            carSpawnPoint.delay = random.randint(5000, 20000)

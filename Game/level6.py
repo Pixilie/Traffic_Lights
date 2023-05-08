@@ -1,4 +1,4 @@
-
+# TODO: Supprimez les commentaires, variables inutiles + vérifier les docstrings
 # Import librairies
 import pygame
 from pygame.locals import *
@@ -39,7 +39,6 @@ def levelFunction():
     ticks = 0
     level, levelName, completed, lives, score, carsToPass, carsPassed = levelInfos
     restart = False
-    developerMode = True
 
     # Main window setup
     window = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
@@ -67,7 +66,7 @@ def levelFunction():
         carsToPassText = font.render(f"Voiture(s) à faire passer: {carsToPass-carsPassed}", True, (0, 0, 0))
 
         for carSpawnPoint in carSpawnPointsList:
-            carFile.createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, ticks, 1) # Create the cars
+            carFile.createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, ticks, (1, 6)) # Create the cars
         
         for event in pygame.event.get():
             if event.type == QUIT:

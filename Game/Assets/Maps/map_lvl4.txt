@@ -5,9 +5,9 @@
       R      R                                    
       g      g                                    
 cRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+      R      g                                    
       R      R                                    
-      R      R                                    
-      g      g                                    
+      g      R                                    
 cRRRRRRRRRRRgRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRc 
       R      R                                    

@@ -1,3 +1,5 @@
+# TODO: Supprimez les commentaires, variables inutiles + vérifier les docstrings
+
 # Import librairies
 import pygame
 from pygame.locals import *

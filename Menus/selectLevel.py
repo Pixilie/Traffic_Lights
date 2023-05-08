@@ -1,3 +1,4 @@
+# TODO: Supprimez les commentaires, variables inutiles + vérifier les docstrings
 # Compatibility with Python 2 and 3
 try:
     import tkinter
@@ -63,7 +64,6 @@ def levelsWindow():
         level, levelName, completed, lives, score, carsToPass, carsPassed = selectedLevel.levelInfos
         infoPanel.delete("all")
         infoPanel.create_text(screenWidth*0.22, screenHeight*0.05, text=levelName, font=('Arial', round(screenWidth*0.025)), fill="white")
-        infoPanel.create_text(screenWidth*0.22, screenHeight*0.15, text="Description (bug affichage à fixe)", font=('Arial', round(screenWidth*0.016)), fill="white")
         infoPanel.create_text(screenWidth*0.22, screenHeight*0.20, text=f'Complété: {completed}', font=('Arial', round(screenWidth*0.016)), fill="white")
         infoPanel.create_text(screenWidth*0.22, screenHeight*0.25, text=f'Vies: {lives}', font=('Arial', round(screenWidth*0.016)), fill="white")
         infoPanel.create_text(screenWidth*0.22, screenHeight*0.30, text=f'Meilleur score: {score}', font=('Arial', round(screenWidth*0.016)), fill="white")

@@ -1,3 +1,4 @@
+# TODO: Supprimez les commentaires, variables inutiles + vérifier les docstrings
 # Imports
 import pygame
 import random
