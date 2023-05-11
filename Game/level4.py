@@ -17,7 +17,7 @@ import gameModules.levelBackend as levelBackend
 import gameModules.textFile as textFile
 
 # Level informations -> Level number, level name, completed, lives, score, cars to pass, cars passed
-levelInfos = [4, "Niveau 4", textFile.readData("completed", 1, "./Game/levelsData.json"), 3, textFile.readData("score", 1, "./Game/levelsData.json"), 15, 0]
+levelInfos = [4, "Niveau 4", textFile.readData("completed", 1, "./Game/levelsData.json"), 6, textFile.readData("score", 1, "./Game/levelsData.json"), 15, 0]
 
 # Write data in json file
 if not (textFile.searchData("level_id", levelInfos[0], "./Game/levelsData.json")):

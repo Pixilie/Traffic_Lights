@@ -6,13 +6,13 @@
       g      R               R                   
 cRRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRRRRRRRRRRRRR
 cRRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRRRRRRRRRRRRR
-      R      g               R                   
-      g      R               g                   
+      R      R               R                   
+      g      g               R                   
+      R      R               R                   
 cRRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRRRRRRRRRRRRR
-cRRRRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRRRRRRRRRRR
+cRRRRRRRRRRRRRRRRRRRRRRRRRRgRRRRRRRRRRRRRRRRRRRRR                
+      R      R               R                   
       R      g               R                   
-      R      R               R                   
-      R      R               R                   
       R      R               R                   
       R      R               R                   
       R      R               R                   

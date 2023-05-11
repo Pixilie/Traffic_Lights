@@ -161,7 +161,7 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
                 carList.remove(_car)
                 spritesList.remove(car)
                 spritesList.remove(_car)
-                lives -= 0.5
+                lives -= 1
                 score -= 50
 
         if car.direction == "up":
