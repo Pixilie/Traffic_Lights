@@ -1,5 +1,3 @@
-# TODO: Supprimez les commentaires, variables inutiles + vérifier les docstrings
-
 # Import librairies
 import pygame
 from pygame.locals import *
@@ -27,7 +25,7 @@ def isLevelFinished(carsPassed, carsToPass, level, levelName, lives, score, wind
         gameLoop (bool): The game loop
         restart (bool): Should the level be restarted
     """
-    if carsPassed == carsToPass or lives == 0:
+    if carsPassed == carsToPass or lives <= 0:
         if carsPassed == carsToPass:
             textFile.modifyData(level, "completed", "Oui", "./Game/levelsData.json")
             textFile.modifyData(level, "score", score, "./Game/levelsData.json")

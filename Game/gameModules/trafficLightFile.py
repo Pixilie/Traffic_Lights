@@ -1,4 +1,3 @@
-# TODO: Supprimez les commentaires, variables inutiles + vérifier les docstrings
 import pygame
 import os
 
@@ -11,6 +10,8 @@ def trafficLight(x, y, color, windowWidth, windowHeight):
         x (float): position on the screen
         y (float): position on the screen
         color (str): The color of the traffic light
+        windowWidth (int): Width of the window
+        windowHeight (int): Height of the window
     Returns:
         trafficLight (Sprite): Sprite of the traffic light
     """    
@@ -29,6 +30,8 @@ def trafficLightsUpdate(trafficLight, x, y, windowWidth, windowHeight):
         trafficLight (sprite): The traffic light to update
         x (float): position on the screen
         y (float): position on the screen
+        windowWidth (int): Width of the window
+        windowHeight (int): Height of the window
     Returns:
         trafficLight.color (str): The color of the traffic light
     """    

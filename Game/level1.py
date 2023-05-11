@@ -1,5 +1,3 @@
-# TODO: Supprimez les commentaires, variables inutiles + vérifier les docstrings
-
 # Import librairies
 import pygame
 from pygame.locals import *
@@ -67,7 +65,7 @@ def levelFunction():
         carsToPassText = font.render(f"Voiture(s) à faire passer: {carsToPass-carsPassed}", True, (0, 0, 0))
 
         for carSpawnPoint in carSpawnPointsList:
-            carFile.createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, ticks, (1, 2)) # Create the cars
+            carFile.createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, ticks, (1, 2))
         
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -78,31 +76,33 @@ def levelFunction():
             if event.type == MOUSEBUTTONDOWN:
                 x, y = event.pos  # Get the mouse position
                 for trafficLight in trafficLightsList:
-                    trafficLightFile.trafficLightsUpdate(trafficLight, x, y, windowWidth, windowHeight)  # Update the traffic lights
+                    trafficLightFile.trafficLightsUpdate(trafficLight, x, y, windowWidth, windowHeight)
 
         for car in carList:
-            lives, score = carFile.collisionCars(car, carList, spritesList, explosionList, windowWidth, windowHeight, lives, score) # Check if the cars collide with each other
-            carFile.collisionRedLights(car, trafficLightsList) # Check if the cars collide with the red lights
-            carsPassed, score = carFile.update(car, spritesList, carList, carsPassed, score)  # Update the cars
+            lives, score = carFile.collisionCars(car, carList, spritesList, explosionList, windowWidth, windowHeight, lives, score)
+            carFile.collisionRedLights(car, trafficLightsList)
+            carsPassed, score = carFile.update(car, spritesList, carList, carsPassed, score)
 
         for explosion in explosionList:
             carFile.explosionRemove(explosion, explosionList, spritesList) # Remove the explosion
 
-        gameLoop, restart = levelBackend.isLevelFinished(carsPassed, carsToPass, level, levelName, lives, score, windowWidth, windowHeight, window, gameLoop, restart)  # Check if the level is completed
+        # Check if the level is finished
+        gameLoop, restart = levelBackend.isLevelFinished(carsPassed, carsToPass, level, levelName, lives, score, windowWidth, windowHeight, window, gameLoop, restart)
 
-        if restart:  # Check if the level needs to be restarted
+        # Check if the level needs to be restarted
+        if restart:
             gameLoop = False
             levelFunction()
 
-        window.fill(white)  # Fill the window with white
-        spritesList.draw(window)  # Draw the sprites
+        window.fill(white)
+        spritesList.draw(window)
 
         # Draw the texts
         window.blit(lifeText, (windowWidth*0.002, 0))
         window.blit(scoreText, (windowWidth*0.002, windowHeight*0.03))
         window.blit(carsToPassText, (windowWidth*0.002, windowHeight*0.06))
 
-        pygame.display.flip()  # Update the display
-        clock.tick(24)  # Limit the number of actions
+        pygame.display.flip()
+        clock.tick(24)
         ticks = pygame.time.get_ticks() # Get the ticks
     pygame.quit()

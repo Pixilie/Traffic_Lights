@@ -1,4 +1,3 @@
-# TODO: Supprimez les commentaires, variables inutiles + vérifier les docstrings
 import pygame
 import os
 
@@ -11,15 +10,15 @@ import roadFile
 
 def loadMap(map, window):
     """Loads the map
-
     Args:
         map (str): The map file
         window (pygame.display): The window
-
     Returns:
         spritesList (list): The list of sprites
         roadList (list): The list of roads
         trafficLightsList (list): The list of traffic lights
+        carSpawnPointsList (list): The list of car spawn points
+        grassList (list): The list of grass
     """    
     roadList = pygame.sprite.Group()
     spritesList = pygame.sprite.Group()
