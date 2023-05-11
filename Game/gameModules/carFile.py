@@ -1,4 +1,3 @@
-# TODO: Supprimez les commentaires, variables inutiles + vérifier les docstrings
 import pygame
 import time
 import random
@@ -27,7 +26,7 @@ def car(x, y, direction, speed, windowWidth, windowHeight):
     # Loading the car image
     colorInt = random.randint(1, 5)
     if colorInt == 1:
-        color = "g" # A remplacer par b
+        color = "b"
     elif colorInt == 2:
         color = "g"
     elif colorInt == 3:
@@ -141,19 +140,18 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
     carList.remove(car)
 
     for _car in carList:
-        if carPos.colliderect(_car.rect): # If they collide
-            if car.direction == _car.direction: # If they're going in the same direction
-                if (_car.speed != 0 or _car.stopped == False) and (not(car.stopped and _car.stopped and car.rect.colliderect(_car.rect))): # If the car in front is moving or if the two cars are not both stopped and in contact
+        if carPos.colliderect(_car.rect):
+            if car.direction == _car.direction:
+                if (_car.speed != 0 or _car.stopped == False) and (not(car.stopped and _car.stopped and car.rect.colliderect(_car.rect))):
                     _car.speed = car.speed
                     _car.stopped = False
-                elif (_car.speed == 0 or _car.stopped == True): # If the car in front is stopped and the two cars are stopped and in contact
-                    _car.speed = 0
+                elif (_car.speed == 0 or _car.stopped == True):
                     _car.stopped = True
                     car.speed = 0
                     car.stopped = True
-                    if _car.previousSpeed >= car.previousSpeed: #TODO: Bug not always car behind that that takes the speed of the car in front
+                    if _car.previousSpeed >= car.previousSpeed:
                         _car.previousSpeed = car.previousSpeed
-            else: # If they're going in opposite directions
+            else:
                 boom = explosion(car.rect.x, car.rect.y, windowWidth, windowHeight)
                 spritesList.add(boom)
                 explosionList.add(boom)
@@ -163,7 +161,7 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
                 carList.remove(_car)
                 spritesList.remove(car)
                 spritesList.remove(_car)
-                lives -= 1
+                lives -= 0.5
                 score -= 50
 
         if car.direction == "up":
@@ -186,15 +184,14 @@ def collisionCars(car, carList, spritesList, explosionList, windowWidth, windowH
             car.speed = car.previousSpeed
             car.stopped = False            
 
-    # Reinsert the new car into the car list
     carList.add(car)
 
     for _car in carList: 
-        if car != _car: # If the car is not the same as the car in the list
-            if _car.rect.collidepoint(carPos.x + xPos, carPos.y + yPos): # If they collide
-                if car.direction == _car.direction: # If they're going in the same direction
-                    if car.stopped == False or car.speed != 0: # If the car in front is moving or if the two cars are not both stopped and in contact
-                        car.speed = _car.speed # Set the speed of the new car to the speed of the car in front
+        if car != _car:
+            if _car.rect.collidepoint(carPos.x + xPos, carPos.y + yPos):
+                if car.direction == _car.direction:
+                    if car.stopped == False or car.speed != 0:
+                        car.speed = _car.speed
     return lives, score
 
 def explosionRemove(explosion, explosionList, spritesList):
@@ -210,7 +207,6 @@ def explosionRemove(explosion, explosionList, spritesList):
         explosionList.remove(explosion)
         explosion.kill()
 
-#TODO: Supprimer variable delay
 def createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, ticks, speedRange):
     """Creates a car
 

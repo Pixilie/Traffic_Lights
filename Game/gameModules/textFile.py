@@ -1,4 +1,4 @@
-# TODO: Supprimez les commentaires, variables inutiles + vérifier les docstrings
+# Import libraries
 import pygame
 import json
 

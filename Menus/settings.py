@@ -1,4 +1,3 @@
-# TODO: Supprimez les commentaires, variables inutiles + vérifier les docstrings
 # Compatibility with Python 2 and 3
 try:
     import tkinter

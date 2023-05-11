@@ -1,5 +1,4 @@
-# TODO: Supprimez les commentaires, variables inutiles + vérifier les docstrings
-# Imports
+# import libraries
 import pygame
 import random
 import os
@@ -13,6 +12,7 @@ def playSound(type, volume, sound):
     Args:
         type (str): Type of sound to play.
         volume (int): Volume of the music.
+        sound (str): Path to the sound file.
     """
     pygame.mixer.init()
     soundChannel = pygame.mixer.Channel(3)

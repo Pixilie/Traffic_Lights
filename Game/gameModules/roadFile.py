@@ -1,4 +1,3 @@
-# TODO: Supprimez les commentaires, variables inutiles + vérifier les docstrings
 import pygame
 import os
 
@@ -7,13 +6,11 @@ os.chdir('../Traffic_Lights')
 
 def road(x, y, windowWidth, windowHeight):
     """Creates a sprite for a road
-
     Args:
         x (float): x position on the screen
         y (float): y position on the screen
-
     Returns:
-        road (Sprite): Sprite of the road
+        road (sprite): Sprite of the road
     """    
     road = pygame.sprite.Sprite()
     road.image = pygame.image.load("./Game/Assets/Textures/road.png").convert_alpha()
@@ -25,13 +22,13 @@ def road(x, y, windowWidth, windowHeight):
 
 def carSpawn(x, y, windowWidth, windowHeight):
     """Creates a sprite for a road that spawns a car
-
     Args:
         x (float): x position on the screen
         y (float): y position on the screen
-
+        windowWidth (float): Width of the window
+        windowHeight (float): Height of the window
     Returns:
-        carSpawn (Sprite): Sprite of the road that spawns a car
+        carSpawn (sprite): Sprite of the road that spawns a car
     """
     carSpawn = pygame.sprite.Sprite()
     carSpawn.image = pygame.image.load("./Game/Assets/Textures/car_spawn.png").convert_alpha()
@@ -53,7 +50,7 @@ def grass(x, y, windowWidth, windowHeight):
         windowWidth (float): Width of the window
         windowHeight (float): Height of the window
     Returns:
-        grass (Sprite): Sprite of the grass
+        grass (sprite): Sprite of the grass
     """
     grass = pygame.sprite.Sprite()
     grass.image = pygame.image.load("./Game/Assets/Textures/grass.jpg").convert_alpha()
