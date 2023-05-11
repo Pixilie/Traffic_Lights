@@ -112,7 +112,7 @@ def levelsWindow():
     title.pack()
 
     # Go back button
-    backIcon = PhotoImage(file='./Menus/Assets/Images/back.png', width=round(screenWidth*0.06), height=round(screenHeight*0.09))
+    backIcon = PhotoImage(file='./Menus/Assets/Images/back.png', width=round(screenWidth*0.07), height=round(screenHeight*0.12))
     backButton = Button(levelWindow, image=backIcon, font=('Arial', round(screenWidth*0.016)),  bd=0, relief="flat", activebackground="#c59dd1", activeforeground="white", cursor="hand2", bg='#B78BC4', fg="#ffffff", command=goBack)
     backButton.pack(pady=20)
     backButton.place(x=screenWidth*0.005, y=0)

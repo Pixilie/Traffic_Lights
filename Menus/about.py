@@ -53,7 +53,7 @@ def aboutWindow():
     title.pack(side='top')
 
     # Exit button
-    backIcon = PhotoImage(file='./Menus/Assets/Images/back.png', width=round(screenWidth*0.08), height=round(screenHeight*0.13))
+    backIcon = PhotoImage(file='./Menus/Assets/Images/back.png', width=round(screenWidth*0.07), height=round(screenHeight*0.12))
     backButton = Button(aboutWindow, image=backIcon, bd=0, bg='#B78BC4', highlightthickness=0, cursor="hand2", activebackground="#c59dd1", command=Close)
     backButton.pack()
     backButton.place(x=screenWidth*0.01, y=0)
