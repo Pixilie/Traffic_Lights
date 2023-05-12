@@ -70,10 +70,10 @@ title.create_image(screenWidth*0.35, screenHeight*0.2, image=title_icon)
 title.pack(side='top')
 
 # Exit button
-exitIcon = PhotoImage(file='./Menus/Assets/Images/exit_icon.png', width=round(screenWidth*0.05), height=round(screenHeight*0.07))
+exitIcon = PhotoImage(file='./Menus/Assets/Images/exit_icon.png', width=round(screenWidth*0.06), height=round(screenHeight*0.08))
 exitButton = Button(mainWindow, image=exitIcon, bd=0, bg='#B78BC4', highlightthickness=0, cursor="hand2", activebackground="#c59dd1", command=close)
 exitButton.pack()
-exitButton.place(x=screenWidth-round(screenWidth*0.05), y=screenHeight - round(screenHeight*0.07))
+exitButton.place(x=screenWidth-round(screenWidth*0.06), y=screenHeight - round(screenHeight*0.08))
 exitButton.bind("<Enter>", onEnter)
 exitButton.bind("<Leave>", onLeave)
 
