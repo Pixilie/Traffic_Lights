@@ -17,11 +17,11 @@ import gameModules.levelBackend as levelBackend
 import gameModules.textFile as textFile
 
 # Level informations -> Level number, level name, completed, lives, score, cars to pass, cars passed
-levelInfos = [1, "Niveau 1", textFile.readData("completed", 1, "./Game/levelsData.json"), 6, textFile.readData("score", 1, "./Game/levelsData.json"), 5, 0]
+levelInfos = [1, "Niveau 1", textFile.readData("completed", 1, "./Game/levelsData.json"), 4, textFile.readData("score", 1, "./Game/levelsData.json"), 10, 0]
 
 # Write data in json file
 if not (textFile.searchData("level_id", levelInfos[0], "./Game/levelsData.json")):
-    textFile.writeData({ "level_id" : levelInfos[0], "score" : 0, "completed" : "false"}, "./Game/levelsData.json")
+    textFile.writeData({ "level_id" : levelInfos[0], "score" : 0, "completed" : "Non"}, "./Game/levelsData.json")
 
 def levelFunction():
     """Launch the level."""
@@ -64,27 +64,36 @@ def levelFunction():
         scoreText = font.render(f"Score: {score}", True, (0, 0, 0))
         carsToPassText = font.render(f"Voiture(s) à faire passer: {carsToPass-carsPassed}", True, (0, 0, 0))
 
+        # Spawn cars
         for carSpawnPoint in carSpawnPointsList:
             carFile.createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, ticks, (1, 2))
-        
+            # Check if the cars are stuck
+            for car in carList:
+                for _car in carList:
+                    lives, score = carFile.destroyCarAtSpawn(car, _car, spritesList, carList, carSpawnPoint, windowWidth, windowHeight, lives, score, carFile, explosionList)
+                    
         for event in pygame.event.get():
             if event.type == QUIT:
                 gameLoop = False
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
+                    # Pause the game
                     gameLoop, restart = levelBackend.pause(gameLoop, "pause", level, levelName, lives, score, windowWidth, windowHeight, window, restart)
             if event.type == MOUSEBUTTONDOWN:
-                x, y = event.pos  # Get the mouse position
+                x, y = event.pos
+                # Update and handle the traffic lights
                 for trafficLight in trafficLightsList:
                     trafficLightFile.trafficLightsUpdate(trafficLight, x, y, windowWidth, windowHeight)
 
+        # Update and handle cars
         for car in carList:
             lives, score = carFile.collisionCars(car, carList, spritesList, explosionList, windowWidth, windowHeight, lives, score)
             carFile.collisionRedLights(car, trafficLightsList)
             carsPassed, score = carFile.update(car, spritesList, carList, carsPassed, score)
 
+        # Update and handle explosions
         for explosion in explosionList:
-            carFile.explosionRemove(explosion, explosionList, spritesList) # Remove the explosion
+            carFile.explosionRemove(explosion, explosionList, spritesList)
 
         # Check if the level is finished
         gameLoop, restart = levelBackend.isLevelFinished(carsPassed, carsToPass, level, levelName, lives, score, windowWidth, windowHeight, window, gameLoop, restart)
@@ -94,6 +103,7 @@ def levelFunction():
             gameLoop = False
             levelFunction()
 
+        # Clear the window
         window.fill(white)
         spritesList.draw(window)
 
@@ -101,8 +111,9 @@ def levelFunction():
         window.blit(lifeText, (windowWidth*0.002, 0))
         window.blit(scoreText, (windowWidth*0.002, windowHeight*0.03))
         window.blit(carsToPassText, (windowWidth*0.002, windowHeight*0.06))
-
+        
+        # Update the window
         pygame.display.flip()
         clock.tick(24)
-        ticks = pygame.time.get_ticks() # Get the ticks
+        ticks = pygame.time.get_ticks()
     pygame.quit()

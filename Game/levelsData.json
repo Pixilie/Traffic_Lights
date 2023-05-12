@@ -2,33 +2,33 @@
     "levels": [
         {
             "level_id": 1,
-            "score": 350,
-            "completed": "Oui"
+            "score": 0,
+            "completed": "Non"
         },
         {
             "level_id": 2,
             "score": 0,
-            "completed": "false"
+            "completed": "Non"
         },
         {
             "level_id": 3,
             "score": 0,
-            "completed": "false"
+            "completed": "Non"
         },
         {
             "level_id": 4,
             "score": 0,
-            "completed": "false"
+            "completed": "Non"
         },
         {
             "level_id": 5,
             "score": 0,
-            "completed": "false"
+            "completed": "Non"
         },
         {
             "level_id": 6,
             "score": 0,
-            "completed": "false"
+            "completed": "Non"
         }
     ]
 }

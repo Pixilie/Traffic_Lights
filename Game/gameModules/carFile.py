@@ -201,7 +201,7 @@ def explosionRemove(explosion, explosionList, spritesList):
         explosionList (list): The list of explosions
         spritesList (list): The list of sprites
     """    
-    explosionDelay = 2000
+    explosionDelay = 500
     if pygame.time.get_ticks() - explosionDelay > explosion.spawnTime:
         spritesList.remove(explosion)
         explosionList.remove(explosion)
@@ -221,7 +221,7 @@ def createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, t
     """    
     if ticks > carSpawnPoint.lastTick + carSpawnPoint.delay:
         min , max = speedRange
-        if 0 <= carSpawnPoint.rect.x <= windowWidth*0.023:
+        if 0 <= carSpawnPoint.rect.x <= windowWidth*0.025:
             min, max = speedRange
             speed = random.randint(min, max)
             newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "right", speed, windowWidth, windowHeight)
@@ -230,7 +230,7 @@ def createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, t
             carSpawnPoint.lastTick = ticks
             carSpawnPoint.delay = random.randint(5000, 20000)
         
-        if windowWidth - windowWidth*0.023 <= carSpawnPoint.rect.x <= windowWidth:
+        if windowWidth - windowWidth*0.028 <= carSpawnPoint.rect.x <= windowWidth:
             min, max = speedRange
             speed = random.randint(min, max)
             newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "left", speed, windowWidth, windowHeight)
@@ -239,7 +239,7 @@ def createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, t
             carSpawnPoint.lastTick = ticks
             carSpawnPoint.delay = random.randint(5000, 20000)
         
-        if 0 <= carSpawnPoint.rect.y <= windowWidth*0.023:
+        if 0 <= carSpawnPoint.rect.y <= windowWidth*0.025:
             min, max = speedRange
             speed = random.randint(min, max)
             newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "down", speed, windowWidth, windowHeight)
@@ -248,7 +248,7 @@ def createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, t
             carSpawnPoint.lastTick = ticks
             carSpawnPoint.delay = random.randint(5000, 20000)
         
-        if windowHeight - windowWidth*0.023 <= carSpawnPoint.rect.y <= windowHeight:
+        if windowHeight - windowWidth*0.025 <= carSpawnPoint.rect.y <= windowHeight:
             min, max = speedRange
             speed = random.randint(min, max)
             newCar = car(carSpawnPoint.rect.x, carSpawnPoint.rect.y, "up", speed, windowWidth, windowHeight)
@@ -256,3 +256,20 @@ def createCars(carSpawnPoint, spritesList, carList, windowWidth, windowHeight, t
             newCar.add(carList)
             carSpawnPoint.lastTick = ticks
             carSpawnPoint.delay = random.randint(5000, 20000)
+
+def destroyCarAtSpawn(car, _car, spritesList, carList, carSpawnPoint, windowWidth, windowHeight, lives, score, carFile, explosionList):
+    if _car != car:
+        if car.rect.colliderect(carSpawnPoint.rect) and _car.rect.colliderect(car.rect):
+            boom = explosion(car.rect.x, car.rect.y, windowWidth, windowHeight)
+            boom = explosion(car.rect.x, car.rect.y, windowWidth, windowHeight)
+            spritesList.add(boom)
+            explosionList.add(boom)
+            car.kill()
+            _car.kill()
+            carList.remove(car)
+            carList.remove(_car)
+            spritesList.remove(car)
+            spritesList.remove(_car)
+            lives -= 2
+            score -= 50
+    return lives, score
