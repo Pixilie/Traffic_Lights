@@ -10,7 +10,7 @@ Traffic Lights needs python3 or python2, pygame and tkinter to work.
 - **``Linux (debian/ubuntu)``** You can download python [here](https://www.python.org/downloads/source/) or using your package manager (apt, brew...)
 > sudo apt-get install python3  
 > sudo apt-get install python3-tk  
-> *Chercher comment installer pygame sur linux*
+> sudo apt-get install python-pygame
 - **``MacOS (Homebrew)``** You can download python [here](https://www.python.org/downloads/macos/) or using Homebrew.
 > brew install python  
 > pip install pygame  
@@ -19,6 +19,9 @@ Traffic Lights needs python3 or python2, pygame and tkinter to work.
 > Using **[``Git (All plateforms)``](https://git-scm.com/downloads)** or ``apt/brew install git`` -> ``git clone https://github.com/Pixilie/Traffic_Lights``  
 > Using **[``Github CLI (Windows)``](https://cli.github.com/)** -> ``gh repo clone Pixilie/Traffic_Lights``  
 > Using **[``Github Deskstop``](https://desktop.github.com/)** -> go [here](https://github.com/Pixilie/Traffic_Lights), click on the green code button and click ``Open with Gitub Deskstop``
+
+## Next update
+We will soon clean the whole code to make it respect snake-case and every other convention. Furthermore we will make a in game level creator or just a tutorial to explain how to do it.
 
 ## Credits
 Game based on [Traffix](https://store.steampowered.com/app/1102580/Traffix/), there was no intention to copy or to compete with the real game, it's just a school project. I don't think we will continue to develop the game.
