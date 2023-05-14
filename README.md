@@ -24,4 +24,12 @@ Traffic Lights needs python3 or python2, pygame and tkinter to work.
 We will soon clean the whole code to make it respect snake-case and every other convention. Furthermore we will make a in game level creator or just a tutorial to explain how to do it.
 
 ## Credits
-Game based on [Traffix](https://store.steampowered.com/app/1102580/Traffix/), there was no intention to copy or to compete with the real game, it's just a school project. I don't think we will continue to develop the game.
+Game based on [Traffix](https://store.steampowered.com/app/1102580/Traffix/), there was no intention to copy or to compete with the real game, it's just a school project. I don't think we will continue to develop the game.  
+
+Here are the sources for the different sounds used in the game in order to respect the royalty-free licenses.   
+- For the musics:
+> Shine par Onycs  
+> Gaia par Nova Noma  
+> K For Kool par Kuromaru  
+- For the sounds effects:
+> Sound Effect from Pixabay  
