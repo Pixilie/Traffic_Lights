@@ -10,9 +10,6 @@ except ImportError:
 import music
 import os
 
-# Changing working directory
-os.chdir('../Traffic_Lights')
-
 def levelsWindow():
     """Creates the window to select a level"""
 

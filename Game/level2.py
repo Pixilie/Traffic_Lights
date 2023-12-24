@@ -4,17 +4,12 @@ from pygame.locals import *
 import os
 import sys
 
-# Changing working directory & adding path
-os.chdir('../Traffic_Lights')
-sys.path.append(f'{os.getcwd()}\\Game\\gameModules')
-sys.path.append(f'{os.getcwd()}\\Game')
-
 # Import game files
-import gameModules.map as map
-import gameModules.carFile as carFile
-import gameModules.trafficLightFile as trafficLightFile
-import gameModules.levelBackend as levelBackend
-import gameModules.textFile as textFile
+import Game.gameModules.map as map
+import Game.gameModules.carFile as carFile
+import Game.gameModules.trafficLightFile as trafficLightFile
+import Game.gameModules.levelBackend as levelBackend
+import Game.gameModules.textFile as textFile
 
 # Level informations -> Level number, level name, completed, lives, score, cars to pass, cars passed
 levelInfos = [2, "Niveau 2", textFile.readData("completed", 2, "./Game/levelsData.json"), 4, textFile.readData("score", 2, "./Game/levelsData.json"), 15, 0]

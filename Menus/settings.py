@@ -10,9 +10,6 @@ import os
 # Import other files from the game
 import music
 
-# Changing working directory
-os.chdir('../Traffic_Lights')
-
 def settingsWindow():
     """Settings window."""    
     # Main window setup

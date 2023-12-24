@@ -1,12 +1,9 @@
 import pygame
 import os
 
-# Changing working directory
-os.chdir('../Traffic_Lights')
-
 # Import game files
-import trafficLightFile
-import roadFile
+import Game.gameModules.trafficLightFile as trafficLightFile
+import Game.gameModules.roadFile as roadFile
 
 def loadMap(map, window):
     """Loads the map

@@ -1,9 +1,6 @@
 import pygame
 import os
 
-# Changing working directory
-os.chdir('../Traffic_Lights')
-
 def road(x, y, windowWidth, windowHeight):
     """Creates a sprite for a road
     Args:
