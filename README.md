@@ -20,9 +20,6 @@ Traffic Lights needs python3 or python2, pygame and tkinter to work.
 > Using **[``Github CLI (Windows)``](https://cli.github.com/)** -> ``gh repo clone Pixilie/Traffic_Lights``  
 > Using **[``Github Deskstop``](https://desktop.github.com/)** -> go [here](https://github.com/Pixilie/Traffic_Lights), click on the green code button and click ``Open with Gitub Deskstop``
 
-## Next update
-We will soon clean the whole code to make it respect snake-case and every other convention. Furthermore we will make a in game level creator or just a tutorial to explain how to do it.
-
 ## Credits
 Game based on [Traffix](https://store.steampowered.com/app/1102580/Traffix/), there was no intention to copy or to compete with the real game, it's just a school project. I don't think we will continue to develop the game.  
 
