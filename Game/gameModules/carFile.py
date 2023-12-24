@@ -2,10 +2,8 @@ import pygame
 import time
 import random
 import os
-import soundsFile
 
-# Changing working directory
-os.chdir('../Traffic_Lights')
+import Game.gameModules.soundsFile as soundsFile
 
 def car(x, y, direction, speed, windowWidth, windowHeight):
     """Creates a sprite for a car

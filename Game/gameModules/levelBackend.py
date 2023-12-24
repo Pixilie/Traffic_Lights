@@ -2,10 +2,8 @@
 import pygame
 from pygame.locals import *
 import os
-import textFile
 
-# Changing working directory
-os.chdir('../Traffic_Lights')
+import Game.gameModules.textFile as textFile
 
 def isLevelFinished(carsPassed, carsToPass, level, levelName, lives, score, windowWidth, windowHeight, window, gameLoop, restart):
     """Checks if the level is finished

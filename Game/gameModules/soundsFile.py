@@ -4,9 +4,6 @@ import random
 import os
 import json
 
-# Changing working directory
-os.chdir('../Traffic_Lights')
-    
 def playSound(type, volume, sound):
     """Play a sound.
     Args:

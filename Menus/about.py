@@ -8,10 +8,6 @@ except ImportError:
 # Other imports
 import os
 
-
-# Changing working directory
-os.chdir('../Traffic_Lights')
-
 def aboutWindow():
     """credits window."""    
     # Main window setup
